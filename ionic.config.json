@@ -1,0 +1,7 @@
+{
+  "name": "myNewHomeMSU",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
