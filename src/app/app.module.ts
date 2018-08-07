@@ -7,10 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
+import { NewsPage } from '../pages/news/news'
+import { MapPage } from '../pages/map/map'
  
 let page =  [
   LoginPage,
-  HomePage
+  HomePage,
+  NewsPage,
+  MapPage
 ]
 
 @NgModule({

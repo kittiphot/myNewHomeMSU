@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+declare var google;
+
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-map',
+  templateUrl: 'map.html',
 })
-export class LoginPage {
+export class MapPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log('ionViewDidLoad MapPage');
   }
 
 }
