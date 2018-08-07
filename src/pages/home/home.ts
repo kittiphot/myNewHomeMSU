@@ -16,17 +16,14 @@ export class HomePage {
   }
 
   goToLoginPage() {
-    console.log("login");
     this.navCtrl.push(LoginPage);
   }
 
   goToNewsPage() {
-    console.log("news");
     this.navCtrl.push(NewsPage);
   }
 
   goToMapPage() {
-    console.log("map");
     this.navCtrl.push(MapPage);
   }
 
