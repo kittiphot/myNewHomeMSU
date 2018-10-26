@@ -7,6 +7,43 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background-color: gray; color: yellow">
+  <ion-grid>
 
+    <ion-row>
+      <ion-col col-12 text-center>
+        <ion-item>
+          <ion-label color="primary" floating>Email</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <ion-item>
+          <ion-label color="primary" floating>Password</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button block color="secondary" (click)="goToHomeAdminPage()">
+          &nbsp;Login
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button block style="background: #395697" (click)="facebookLogin()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          &nbsp;Login With Facebook
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
