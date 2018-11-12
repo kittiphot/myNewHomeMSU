@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -24,18 +24,23 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
-    private afauth: AngularFireAuth
+    private afauth: AngularFireAuth,
+    private loadingCtrl: LoadingController
     ) {
   }
 
   loginwithfb() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.storage.set('loggedIn', true)
       this.facebook.name = res.user.displayName
       this.facebook.email = res.user.email
       this.facebook.img = res.user.photoURL
-      // loading
       this.navCtrl.push(HomePage)
+      loading.dismiss()
     })
   }
 
