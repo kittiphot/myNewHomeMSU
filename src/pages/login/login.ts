@@ -30,11 +30,7 @@ export class LoginPage {
 
   loginwithfb() {
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      // this.facebook.loggedIn = true
       this.storage.set('loggedIn', 'true');
-      // this.storage.get('age').then((val) => {
-      //   console.log('Your age is', val);
-      // });
       this.facebook.name = res.user.displayName
       this.facebook.email = res.user.email
       this.facebook.img = res.user.photoURL
