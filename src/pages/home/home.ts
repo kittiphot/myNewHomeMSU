@@ -14,7 +14,7 @@ import { MapPage } from '../map/map'
 })
 export class HomePage {
 
-  loggedIn
+  loggedIn = false
 
   constructor(
     public navCtrl: NavController,
@@ -38,18 +38,18 @@ export class HomePage {
 
   logoutwithfb() {
     this.afauth.auth.signOut().then(res => {
-      this.storage.set('loggedIn', 'false');
+      this.storage.set('loggedIn', 'false')
       this.loggedIn = false
     })
     // this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
 
   goToNewsPage() {
-    this.navCtrl.push(NewsPage);
+    this.navCtrl.push(NewsPage)
   }
 
   goToMapPage() {
-    this.navCtrl.push(MapPage);
+    this.navCtrl.push(MapPage)
   }
 
 }

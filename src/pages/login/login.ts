@@ -30,12 +30,12 @@ export class LoginPage {
 
   loginwithfb() {
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      this.storage.set('loggedIn', 'true');
+      this.storage.set('loggedIn', 'true')
       this.facebook.name = res.user.displayName
       this.facebook.email = res.user.email
       this.facebook.img = res.user.photoURL
     })
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(HomePage)
   }
 
 }
