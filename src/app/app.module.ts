@@ -4,6 +4,11 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
@@ -17,6 +22,15 @@ let page =  [
   MapPage
 ]
 
+var config = {
+  apiKey: "AIzaSyC0Eu2Qea3-8FNuZbTxOtmO_q0yahrjTpk",
+  authDomain: "mynewhomemsu-db952.firebaseapp.com",
+  databaseURL: "https://mynewhomemsu-db952.firebaseio.com",
+  projectId: "mynewhomemsu-db952",
+  storageBucket: "mynewhomemsu-db952.appspot.com",
+  messagingSenderId: "143793453488"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +38,11 @@ let page =  [
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

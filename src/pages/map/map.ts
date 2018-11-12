@@ -13,7 +13,10 @@ export class MapPage {
   private map: any;
   private itemsRef: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams
+    ) {
   }
 
   ionViewDidLoad() {

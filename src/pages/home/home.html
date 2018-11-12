@@ -4,10 +4,10 @@
       My New Home MSU
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goToLoginPage()" *ngIf="!facebook.loggedIn">
+      <button ion-button icon-only (click)="goToLoginPage()" *ngIf="!loggedIn">
         <ion-icon name="ios-log-in"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="goToLoginPage()" *ngIf="facebook.loggedIn">
+      <button ion-button icon-only (click)="logoutwithfb()" *ngIf="loggedIn">
         <ion-icon name="ios-log-out"></ion-icon>
       </button>
     </ion-buttons>

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { LoginPage } from '../login/login'
 import { NewsPage } from '../news/news'
 import { MapPage } from '../map/map'
@@ -11,15 +14,21 @@ import { MapPage } from '../map/map'
 })
 export class HomePage {
 
-  facebook = {
-    loggedIn: false,
-    name: '',
-    email: '',
-    img: ''
-  }
+  loggedIn
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(
+    public navCtrl: NavController,
+    private storage: Storage,
+    private afauth: AngularFireAuth
+  ) {
+    this.storage.get('loggedIn').then((val) => {
+      if (val == null || val == false) {
+        this.loggedIn = false
+      }
+      else {
+        this.loggedIn = val
+      }
+    });
   }
 
   goToLoginPage() {
@@ -32,6 +41,14 @@ export class HomePage {
 
   goToMapPage() {
     this.navCtrl.push(MapPage);
+  }
+
+  logoutwithfb() {
+    this.afauth.auth.signOut().then(res => {
+      this.storage.set('loggedIn', 'false');
+      this.loggedIn = false
+    })
+    // this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
 
 }

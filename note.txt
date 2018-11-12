@@ -1,0 +1,6 @@
+Storage
+  ionic cordova plugin add cordova-sqlite-storage
+  npm install --save @ionic/storage
+  
+firebase
+  npm install angularfire2 firebase --save
