@@ -29,18 +29,11 @@ export class HomePage {
         this.loggedIn = val
       }
     });
+    console.log(this.loggedIn)
   }
 
   goToLoginPage() {
     this.navCtrl.push(LoginPage);
-  }
-
-  goToNewsPage() {
-    this.navCtrl.push(NewsPage);
-  }
-
-  goToMapPage() {
-    this.navCtrl.push(MapPage);
   }
 
   logoutwithfb() {
@@ -49,6 +42,14 @@ export class HomePage {
       this.loggedIn = false
     })
     // this.navCtrl.setRoot(this.navCtrl.getActive().component)
+  }
+
+  goToNewsPage() {
+    this.navCtrl.push(NewsPage);
+  }
+
+  goToMapPage() {
+    this.navCtrl.push(MapPage);
   }
 
 }
