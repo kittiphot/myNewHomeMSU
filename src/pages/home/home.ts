@@ -11,6 +11,13 @@ import { MapPage } from '../map/map'
 })
 export class HomePage {
 
+  facebook = {
+    loggedIn: false,
+    name: '',
+    email: '',
+    img: ''
+  }
+
   constructor(public navCtrl: NavController) {
 
   }
