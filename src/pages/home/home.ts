@@ -28,8 +28,8 @@ export class HomePage {
       else {
         this.loggedIn = val
       }
+      console.log(this.loggedIn)
     });
-    console.log(this.loggedIn)
   }
 
   goToLoginPage() {
