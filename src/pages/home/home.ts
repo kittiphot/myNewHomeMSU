@@ -110,6 +110,8 @@ export class HomePage {
         nameMenu : nameMenu
       })
     }
+    if (nameMenu == 'user') {
+    }
   }
 
 }
