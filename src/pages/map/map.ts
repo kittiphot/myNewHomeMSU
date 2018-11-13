@@ -40,7 +40,6 @@ export class MapPage {
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    // this.getPlaceProfiles();
   }
 
   getPlaceProfiles() {
@@ -63,11 +62,9 @@ export class MapPage {
       map: this.map,
       title: params.name,
       animation: google.maps.Animation.DROP,
-      // position: this.map.getCenter()
       position: new google.maps.LatLng(params.lat, params.long)
     });
 
-    // let content = "<h4>Information!</h4>";
     let myLinkLocation = 'geo:' + params.lat + ',' + params.long + '?q=' + params.name;
     let content = 
       "<h5>" + params.name + "</h5>" + 
