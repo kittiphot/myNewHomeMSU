@@ -73,45 +73,45 @@ export class HomePage {
     }
     if (nameMenu == 'building') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'bank') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'ATM') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'busStop') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'dorm') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'parking') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'restaurant') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
     if (nameMenu == 'toilet') {
       this.navCtrl.push(MapPage, {
-        nameMenu : nameMenu
+        nameMenu: nameMenu
       })
     }
-    if (nameMenu == 'user') {
+    if (nameMenu == 'member') {
     }
   }
 

@@ -4,3 +4,4 @@ Storage
   
 firebase
   npm install angularfire2 firebase --save
+  npm install angularfire2@5.0.0-rc.6 firebase@4.12.1

@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
 
 import { HomePage } from '../home/home'
@@ -13,20 +14,28 @@ import { HomePage } from '../home/home'
 })
 export class LoginPage {
 
-  private facebook = {
-    loggedIn: false,
-    name: '',
-    email: '',
-    img: ''
+  private member = {
+    UID: '',
+    status: ''
   }
+  itemsRef
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
+    private loadingCtrl: LoadingController,
     private afauth: AngularFireAuth,
-    private loadingCtrl: LoadingController
-    ) {
+    private afDatabase: AngularFireDatabase
+  ) {
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // })
+    // loading.present()
+    // this.afauth.authState.subscribe(res => {
+    // loading.dismiss()
+    // })
+    this.itemsRef = this.afDatabase.list('member')
   }
 
   loginwithfb() {
@@ -37,9 +46,27 @@ export class LoginPage {
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.storage.set('loggedIn', true)
       this.storage.set('UID', res.user.uid)
-      this.facebook.name = res.user.displayName
-      this.facebook.email = res.user.email
-      this.facebook.img = res.user.photoURL
+      this.member.UID = res.user.uid
+      this.member.status = '2'
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          console.log(values)
+        });
+      });
+      // if (typeof this.id == 'undefined') {
+      this.itemsRef.push(this.member)
+      // }
+      // else {
+      //   this.itemsRef.update(
+      //     this.id, {
+      //       buildingName: params.buildingName,
+      //       lat: params.lat,
+      //       lng: params.lng,
+      //       initials: params.initials,
+      //       openClosed: params.openClosed
+      //     }
+      //   );
+      // }
       this.navCtrl.push(HomePage)
       loading.dismiss()
     })
