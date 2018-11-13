@@ -9,6 +9,15 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+var config = {
+  apiKey: "AIzaSyDf91o_zJHk98Qi7kTAVLfA3-5JRL86pRc",
+  authDomain: "mynewhomemsu-cf07f.firebaseapp.com",
+  databaseURL: "https://mynewhomemsu-cf07f.firebaseio.com",
+  projectId: "mynewhomemsu-cf07f",
+  storageBucket: "mynewhomemsu-cf07f.appspot.com",
+  messagingSenderId: "844761814782"
+};
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
@@ -21,15 +30,6 @@ let page =  [
   NewsPage,
   MapPage
 ]
-
-var config = {
-  apiKey: "AIzaSyC0Eu2Qea3-8FNuZbTxOtmO_q0yahrjTpk",
-  authDomain: "mynewhomemsu-db952.firebaseapp.com",
-  databaseURL: "https://mynewhomemsu-db952.firebaseio.com",
-  projectId: "mynewhomemsu-db952",
-  storageBucket: "mynewhomemsu-db952.appspot.com",
-  messagingSenderId: "143793453488"
-};
 
 @NgModule({
   declarations: [
