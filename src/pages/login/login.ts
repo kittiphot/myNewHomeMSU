@@ -50,7 +50,8 @@ export class LoginPage {
       // this.member.status = '2'
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
-          console.log(values)
+          console.log(values.payload.val()['UID'])
+          console.log(values.payload.val()['status'])
         })
       })
       // if (typeof this.id == 'undefined') {
