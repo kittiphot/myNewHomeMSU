@@ -36,6 +36,7 @@ export class LoginPage {
     loading.present()
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.storage.set('loggedIn', true)
+      this.storage.set('UID', res.user.uid)
       this.facebook.name = res.user.displayName
       this.facebook.email = res.user.email
       this.facebook.img = res.user.photoURL

@@ -4,15 +4,15 @@
       My New Home MSU
     </ion-title>
     <ion-buttons left>
-      <button ion-button icon-only *ngIf="loggedIn">
-        <img src="../../assets/imgs/news.png" style="width: 50px; height: 50px">
+      <button ion-button icon-only *ngIf="facebook.loggedIn">
+        <img src="{{ facebook.img }}" style="border-radius: 50%; overflow: hidden; width: 40px; height: 40px">
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goToLoginPage()" *ngIf="!loggedIn">
+      <button ion-button icon-only (click)="goToLoginPage()" *ngIf="!facebook.loggedIn">
         <ion-icon name="ios-log-in"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="logoutwithfb()" *ngIf="loggedIn">
+      <button ion-button icon-only (click)="logoutwithfb()" *ngIf="facebook.loggedIn">
         <ion-icon name="ios-log-out"></ion-icon>
       </button>
     </ion-buttons>

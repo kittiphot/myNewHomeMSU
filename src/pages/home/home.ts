@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -14,22 +14,44 @@ import { MapPage } from '../map/map'
 })
 export class HomePage {
 
-  loggedIn = false
+  private facebook = {
+    loggedIn: false,
+    name: '',
+    email: '',
+    img: '',
+    UID: ''
+  }
 
   constructor(
     public navCtrl: NavController,
     private storage: Storage,
-    private afauth: AngularFireAuth
+    private afauth: AngularFireAuth,
+    private loadingCtrl: LoadingController
   ) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
     this.storage.get('loggedIn').then((val) => {
-      if (val == null || val == false) {
-        this.loggedIn = false
+      this.facebook.loggedIn = false
+      if (val == true) {
+        this.facebook.loggedIn = val
       }
-      else {
-        this.loggedIn = val
-      }
-      console.log(this.loggedIn)
-    });
+      this.storage.get('UID').then((val) => {
+        this.facebook.UID = ''
+        if (val != '') {
+          this.facebook.UID = val
+        }
+        this.afauth.authState.subscribe(res => {
+          if (res != null) {
+            if (res.uid == this.facebook.UID) {
+              this.facebook.img = res.photoURL
+            }
+          }
+          loading.dismiss()
+        })
+      })
+    })
   }
 
   goToLoginPage() {
@@ -39,7 +61,7 @@ export class HomePage {
   logoutwithfb() {
     this.afauth.auth.signOut().then(res => {
       this.storage.set('loggedIn', 'false')
-      this.loggedIn = false
+      this.facebook.loggedIn = false
     })
     // this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
