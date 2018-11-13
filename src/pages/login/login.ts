@@ -39,10 +39,10 @@ export class LoginPage {
   }
 
   loginwithfb() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // })
+    // loading.present()
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       // this.storage.set('loggedIn', true)
       // this.storage.set('UID', res.user.uid)
@@ -51,8 +51,8 @@ export class LoginPage {
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           console.log(values)
-        });
-      });
+        })
+      })
       // if (typeof this.id == 'undefined') {
       // this.itemsRef.push(this.member)
       // }
@@ -68,7 +68,7 @@ export class LoginPage {
       //   );
       // }
       // this.navCtrl.push(HomePage)
-      loading.dismiss()
+      // loading.dismiss()
     })
   }
 
