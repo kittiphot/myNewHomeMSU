@@ -44,17 +44,17 @@ export class LoginPage {
     })
     loading.present()
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      this.storage.set('loggedIn', true)
-      this.storage.set('UID', res.user.uid)
-      this.member.UID = res.user.uid
-      this.member.status = '2'
+      // this.storage.set('loggedIn', true)
+      // this.storage.set('UID', res.user.uid)
+      // this.member.UID = res.user.uid
+      // this.member.status = '2'
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           console.log(values)
         });
       });
       // if (typeof this.id == 'undefined') {
-      this.itemsRef.push(this.member)
+      // this.itemsRef.push(this.member)
       // }
       // else {
       //   this.itemsRef.update(
@@ -67,7 +67,7 @@ export class LoginPage {
       //     }
       //   );
       // }
-      this.navCtrl.push(HomePage)
+      // this.navCtrl.push(HomePage)
       loading.dismiss()
     })
   }
