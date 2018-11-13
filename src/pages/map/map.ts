@@ -74,10 +74,10 @@ export class MapPage {
       distance + "<br>" + 
       "<a target='_blank' jstcache='6' href=" + myLinkLocation + "> <span>ดูใน Google Maps </span> </a>";
 
-    this.addInfoWindow(marker, content, params);
+    this.addInfoWindow(marker, content);
   }
 
-  addInfoWindow(marker, content, params) {
+  addInfoWindow(marker, content) {
     let infoWindow = new google.maps.InfoWindow({
       content: content
     });
