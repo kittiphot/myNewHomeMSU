@@ -55,7 +55,7 @@ export class HomePage {
   }
 
   goToLoginPage() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(LoginPage)
   }
 
   logoutwithfb() {
@@ -66,12 +66,50 @@ export class HomePage {
     // this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
 
-  goToNewsPage() {
-    this.navCtrl.push(NewsPage)
-  }
-
-  goToMapPage() {
-    this.navCtrl.push(MapPage)
+  goToPage(nameMenu) {
+    if (nameMenu == 'news') {
+      this.navCtrl.push(NewsPage)
+    }
+    if (nameMenu == 'building') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'bank') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'ATM') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'busStop') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'dorm') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'parking') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'restaurant') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
+    if (nameMenu == 'toilet') {
+      this.navCtrl.push(MapPage, {
+        nameMenu : nameMenu
+      })
+    }
   }
 
 }
