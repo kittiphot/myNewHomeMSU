@@ -61,6 +61,7 @@ export class HomePage {
   logoutwithfb() {
     this.afauth.auth.signOut().then(res => {
       this.storage.set('loggedIn', 'false')
+      this.storage.set('UID', null)
       this.facebook.loggedIn = false
     })
     // this.navCtrl.setRoot(this.navCtrl.getActive().component)
