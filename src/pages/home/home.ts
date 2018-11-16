@@ -16,8 +16,6 @@ export class HomePage {
 
   private facebook = {
     loggedIn: false,
-    name: '',
-    email: '',
     img: '',
     UID: '',
     status: ''
@@ -43,13 +41,19 @@ export class HomePage {
         if (val != '') {
           this.facebook.UID = val
         }
-        this.afauth.authState.subscribe(res => {
-          if (res != null) {
-            if (res.uid == this.facebook.UID) {
-              this.facebook.img = res.photoURL
-            }
+        this.storage.get('status').then((val) => {
+          this.facebook.status = ''
+          if (val != '') {
+            this.facebook.status = val
           }
-          loading.dismiss()
+          this.afauth.authState.subscribe(res => {
+            if (res != null) {
+              if (res.uid == this.facebook.UID) {
+                this.facebook.img = res.photoURL
+              }
+            }
+            loading.dismiss()
+          })
         })
       })
     })
@@ -61,15 +65,51 @@ export class HomePage {
 
   logoutwithfb() {
     this.afauth.auth.signOut().then(res => {
-      this.storage.set('loggedIn', 'false')
+      this.storage.set('loggedIn', null)
       this.storage.set('UID', null)
+      this.storage.set('status', null)
       this.facebook.loggedIn = false
+      this.facebook.img = ''
+      this.facebook.UID = ''
+      this.facebook.status = ''
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
     })
-    // this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
 
   goToPage(nameMenu) {
-    if (this.facebook.status == '2') {
+    if (this.facebook.status == '1' || this.facebook.status == '0') {
+      if (nameMenu == 'news') {
+        console.log('News Admin')
+      }
+      if (nameMenu == 'building') {
+        console.log('Building Admin')
+      }
+      if (nameMenu == 'bank') {
+        console.log('Bank Admin')
+      }
+      if (nameMenu == 'ATM') {
+        console.log('ATM Admin')
+      }
+      if (nameMenu == 'busStop') {
+        console.log('Bus Stop Admin')
+      }
+      if (nameMenu == 'dorm') {
+        console.log('Dorm Admin')
+      }
+      if (nameMenu == 'parking') {
+        console.log('Parking Admin')
+      }
+      if (nameMenu == 'restaurant') {
+        console.log('Restaurant Admin')
+      }
+      if (nameMenu == 'toilet') {
+        console.log('Toilet Admin')
+      }
+      if (nameMenu == 'member') {
+        console.log('Member Admin')
+      }
+    }
+    else {
       if (nameMenu == 'news') {
         this.navCtrl.push(NewsPage)
       }
@@ -112,38 +152,6 @@ export class HomePage {
         this.navCtrl.push(MapPage, {
           nameMenu: nameMenu
         })
-      }
-    }
-    else {
-      if (nameMenu == 'news') {
-        console.log('News Admin')
-      }
-      if (nameMenu == 'building') {
-        console.log('Building Admin')
-      }
-      if (nameMenu == 'bank') {
-        console.log('Bank Admin')
-      }
-      if (nameMenu == 'ATM') {
-        console.log('ATM Admin')
-      }
-      if (nameMenu == 'busStop') {
-        console.log('Bus Stop Admin')
-      }
-      if (nameMenu == 'dorm') {
-        console.log('Dorm Admin')
-      }
-      if (nameMenu == 'parking') {
-        console.log('Parking Admin')
-      }
-      if (nameMenu == 'restaurant') {
-        console.log('Restaurant Admin')
-      }
-      if (nameMenu == 'toilet') {
-        console.log('Toilet Admin')
-      }
-      if (nameMenu == 'member') {
-        console.log('Member Admin')
       }
     }
   }

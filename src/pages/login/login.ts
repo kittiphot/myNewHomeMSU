@@ -46,14 +46,15 @@ export class LoginPage {
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.storage.set('loggedIn', true)
       this.storage.set('UID', res.user.uid)
+      this.storage.set('status', "1")
       this.member.UID = res.user.uid
-      this.member.status = '2'
-      this.itemsRef.snapshotChanges().subscribe(data => {
-        data.forEach(values => {
-          console.log(values.payload.val()['UID'])
-          console.log(values.payload.val()['status'])
-        })
-      })
+      this.member.status = '1'
+      // this.itemsRef.snapshotChanges().subscribe(data => {
+      //   data.forEach(values => {
+      //     console.log(values.payload.val()['UID'])
+      //     console.log(values.payload.val()['status'])
+      //   })
+      // })
       // if (typeof this.id == 'undefined') {
       // this.itemsRef.push(this.member)
       // }
@@ -66,6 +67,9 @@ export class LoginPage {
       //   )
       // }
       this.navCtrl.push(HomePage)
+      if (res == '') {
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      }
       loading.dismiss()
     })
   }
