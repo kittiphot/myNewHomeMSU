@@ -19,7 +19,8 @@ export class HomePage {
     name: '',
     email: '',
     img: '',
-    UID: ''
+    UID: '',
+    status: ''
   }
 
   constructor(
@@ -68,7 +69,7 @@ export class HomePage {
   }
 
   goToPage(nameMenu) {
-    if (status == '2') {
+    if (this.facebook.status == '2') {
       if (nameMenu == 'news') {
         this.navCtrl.push(NewsPage)
       }
