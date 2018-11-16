@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams, LoadingController } from 'ionic-angular'
 
-import { Storage } from '@ionic/storage';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
-import firebase from 'firebase';
+import { Storage } from '@ionic/storage'
+import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireDatabase } from 'angularfire2/database'
+import firebase from 'firebase'
 
 import { HomePage } from '../home/home'
 

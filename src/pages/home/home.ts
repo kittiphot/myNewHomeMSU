@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, LoadingController } from 'ionic-angular'
 
-import { Storage } from '@ionic/storage';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Storage } from '@ionic/storage'
+import { AngularFireAuth } from 'angularfire2/auth'
 
 import { LoginPage } from '../login/login'
 import { NewsPage } from '../news/news'
