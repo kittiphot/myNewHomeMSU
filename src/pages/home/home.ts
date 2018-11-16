@@ -68,50 +68,82 @@ export class HomePage {
   }
 
   goToPage(nameMenu) {
-    if (nameMenu == 'news') {
-      this.navCtrl.push(NewsPage)
+    if (status == '2') {
+      if (nameMenu == 'news') {
+        this.navCtrl.push(NewsPage)
+      }
+      if (nameMenu == 'building') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'bank') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'ATM') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'busStop') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'dorm') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'parking') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'restaurant') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
+      if (nameMenu == 'toilet') {
+        this.navCtrl.push(MapPage, {
+          nameMenu: nameMenu
+        })
+      }
     }
-    if (nameMenu == 'building') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'bank') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'ATM') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'busStop') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'dorm') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'parking') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'restaurant') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'toilet') {
-      this.navCtrl.push(MapPage, {
-        nameMenu: nameMenu
-      })
-    }
-    if (nameMenu == 'member') {
+    else {
+      if (nameMenu == 'news') {
+        console.log('News Admin')
+      }
+      if (nameMenu == 'building') {
+        console.log('Building Admin')
+      }
+      if (nameMenu == 'bank') {
+        console.log('Bank Admin')
+      }
+      if (nameMenu == 'ATM') {
+        console.log('ATM Admin')
+      }
+      if (nameMenu == 'busStop') {
+        console.log('Bus Stop Admin')
+      }
+      if (nameMenu == 'dorm') {
+        console.log('Dorm Admin')
+      }
+      if (nameMenu == 'parking') {
+        console.log('Parking Admin')
+      }
+      if (nameMenu == 'restaurant') {
+        console.log('Restaurant Admin')
+      }
+      if (nameMenu == 'toilet') {
+        console.log('Toilet Admin')
+      }
+      if (nameMenu == 'member') {
+        console.log('Member Admin')
+      }
     }
   }
 
