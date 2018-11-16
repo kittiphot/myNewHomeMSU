@@ -67,9 +67,8 @@ export class LoginPage {
       //   )
       // }
       this.navCtrl.push(HomePage)
-      if (res == '') {
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-      }
+      loading.dismiss()
+    }, (err) => {
       loading.dismiss()
     })
   }
