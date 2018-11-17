@@ -4,11 +4,11 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { IonicStorageModule } from '@ionic/storage';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { IonicStorageModule } from '@ionic/storage'
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireStorageModule } from 'angularfire2/storage'
+import { AngularFireAuthModule } from 'angularfire2/auth'
 
 var config = {
   apiKey: "AIzaSyDf91o_zJHk98Qi7kTAVLfA3-5JRL86pRc",
@@ -17,7 +17,7 @@ var config = {
   projectId: "mynewhomemsu-cf07f",
   storageBucket: "mynewhomemsu-cf07f.appspot.com",
   messagingSenderId: "844761814782"
-};
+}
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';

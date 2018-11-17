@@ -72,7 +72,7 @@ export class HomePage {
       this.facebook.img = ''
       this.facebook.UID = ''
       this.facebook.status = ''
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      this.navCtrl.setRoot(this.navCtrl.getActive().component)
     })
   }
 
