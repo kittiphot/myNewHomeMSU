@@ -90,7 +90,7 @@ export class HomePage {
       if (nameMenu == 'ATM') {
         console.log('ATM Admin')
       }
-      if (nameMenu == 'busStop') {
+      if (nameMenu == 'bus') {
         console.log('Bus Stop Admin')
       }
       if (nameMenu == 'dorm') {

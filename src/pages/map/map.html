@@ -2,13 +2,18 @@
 
   <ion-navbar>
     <ion-title>map</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="search()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  
-    <div #map id="map"></div>
+
+  <div #map id="map"></div>
 
 </ion-content>

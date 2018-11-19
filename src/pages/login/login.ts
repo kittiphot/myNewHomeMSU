@@ -46,9 +46,9 @@ export class LoginPage {
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.storage.set('loggedIn', true)
       this.storage.set('UID', res.user.uid)
-      this.storage.set('status', "1")
+      this.storage.set('status', "2")
       this.member.UID = res.user.uid
-      this.member.status = '1'
+      this.member.status = '2'
       // this.itemsRef.snapshotChanges().subscribe(data => {
       //   data.forEach(values => {
       //     console.log(values.payload.val()['UID'])
@@ -56,7 +56,7 @@ export class LoginPage {
       //   })
       // })
       // if (typeof this.id == 'undefined') {
-      // this.itemsRef.push(this.member)
+      this.itemsRef.push(this.member)
       // }
       // else {
       //   this.itemsRef.update(

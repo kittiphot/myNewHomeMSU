@@ -1,8 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Component, ViewChild, ElementRef } from '@angular/core'
+import { NavController, NavParams, ModalController } from 'ionic-angular'
+import { AngularFireDatabase } from 'angularfire2/database'
 
-declare var google;
+declare var google
 
 @Component({
   selector: 'page-map',
@@ -20,7 +20,7 @@ export class MapPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    // private modalCtrl: ModalController
+    private modalCtrl: ModalController
   ) {
     this.nameMenu = navParams.get('nameMenu')
     this.itemsRef = this.afDatabase.list(this.nameMenu)
@@ -28,7 +28,7 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
-    this.loadMap();
+    this.loadMap()
   }
 
   loadMap() {
@@ -47,49 +47,46 @@ export class MapPage {
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
   }
 
-  // getPlaceProfiles() {
-  //   this.itemsRef.snapshotChanges().subscribe(data => {
-  //     data.forEach(values => {
-  //       let params = {
-  //         id: values.key,
-  //         buildingName: values.payload.val()['buildingName'],
-  //         lat: values.payload.val()['lat'],
-  //         lng: values.payload.val()['lng'],
-  //         initials: values.payload.val()['initials'],
-  //         openClosed: values.payload.val()['openClosed']
-  //       }
-  //       // let distance = this.getDistanceBetweenPoints(params).toFixed(2)
-  //       this.addMarker(params)
-  //     })
-  //   })
-  // }
+  getPlaceProfiles() {
+    //   this.itemsRef.snapshotChanges().subscribe(data => {
+    //     data.forEach(values => {
+    //       let params = {
+    //         id: values.key,
+    //         buildingName: values.payload.val()['buildingName'],
+    //         lat: values.payload.val()['lat'],
+    //         lng: values.payload.val()['lng'],
+    //         initials: values.payload.val()['initials'],
+    //         openClosed: values.payload.val()['openClosed']
+    //       }
+    //       // let distance = this.getDistanceBetweenPoints(params).toFixed(2)
+    //       this.addMarker(params)
+    //     })
+    //   })
+  }
 
-  // addMarker(params) {
-  //   let marker = new google.maps.Marker({
-  //     map: this.map,
-  //     label: {text: params.buildingName, color: "yellow"},
-  //     animation: google.maps.Animation.DROP,
-  //     position: new google.maps.LatLng(params.lat, params.long)
-  //   })
-  //   this.markers.push(marker)
-  //   // let content =
-  //   //   "<h5>" + params.name + "</h5>" +
-  //   //   "<a target='_blank' jstcache='6' href=" + 'geo:' + params.lat + ',' + params.long + '?q=' + params.name + "><span>ดูใน Google Maps </span> </a>"
-  //   this.addInfoWindow(marker)
-  // }
+  addMarker(params) {
+    let marker = new google.maps.Marker({
+      map: this.map,
+      label: { text: params.buildingName, color: "yellow" },
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(params.lat, params.lng)
+    })
+    this.markers.push(marker)
+    this.addInfoWindow(marker)
+  }
 
-  // addInfoWindow(marker) {
-  //   google.maps.event.addListener(marker, "click", () => {
-  //     // let profileModal = this.modalCtrl.create(BuildingPage);
-  //     // profileModal.present()
-  //   });
-  // }
+  addInfoWindow(marker) {
+    // google.maps.event.addListener(marker, "click", () => {
+    //   let profileModal = this.modalCtrl.create(BuildingPage)
+    //   profileModal.present()
+    // })
+  }
 
   search() {
-    // if (this.nameMenu == "buildingProfile") {
+    // if (this.nameMenu == "building") {
     //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
     //     nameMenu: this.nameMenu
-    //   });
+    //   })
     //   searchModal.onDidDismiss(data => {
     //     this.clear()
     //     data.forEach(value => {
@@ -102,45 +99,157 @@ export class MapPage {
     //         openClosed: value.openClosed
     //       }
     //       this.addMarker(params)
-    //     });
-    //   });
+    //     })
+    //   })
     //   searchModal.present()
     // }
     // if (this.nameMenu == "bank") {
-    //   let searchModal = this.modalCtrl.create(BankOfficeSearchPage);
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "a") {
-    //   let searchModal = this.modalCtrl.create(AtmMachineSearchPage);
+    // if (this.nameMenu == "ATM") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "d") {
-    //   let searchModal = this.modalCtrl.create(DormitorySearchPage);
+    // if (this.nameMenu == "bus") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "p") {
-    //   let searchModal = this.modalCtrl.create(ParkingPlaceSearchPage);
+    // if (this.nameMenu == "dorm") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "r") {
-    //   let searchModal = this.modalCtrl.create(RestaurantCafeSearchPage);
+    // if (this.nameMenu == "parking") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "t") {
-    //   let searchModal = this.modalCtrl.create(ToiletSearchPage);
+    // if (this.nameMenu == "restaurant") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "b") {
-    //   let searchModal = this.modalCtrl.create(BusStopSearchPage);
+    // if (this.nameMenu == "toilet") {
+    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+    //     nameMenu: this.nameMenu
+    //   })
+    //   searchModal.onDidDismiss(data => {
+    //     this.clear()
+    //     data.forEach(value => {
+    //       let params = {
+    //         id: value.key,
+    //         buildingName: value.buildingName,
+    //         lat: value.lat,
+    //         lng: value.lng,
+    //         initials: value.initials,
+    //         openClosed: value.openClosed
+    //       }
+    //       this.addMarker(params)
+    //     })
+    //   })
     //   searchModal.present()
     // }
   }
 
   clear() {
     for (var i = 0; i < this.markers.length; i++) {
-      this.markers[i].setMap(null);
+      this.markers[i].setMap(null)
     }
-    this.markers = [];
+    this.markers = []
   }
 
 }
