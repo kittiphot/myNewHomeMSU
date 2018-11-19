@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
 
 import { LoginPage } from '../login/login'
-import { NewsPage } from '../news/news'
+import { NewsPage } from '../news/user/news/news'
 import { MapPage } from '../map/map'
 
 @Component({
