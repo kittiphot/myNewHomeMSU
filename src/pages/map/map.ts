@@ -2,6 +2,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ModalController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { BuildingPage } from '../building/user/building/building'
+import { BuildingSearchPage } from '../building/user/search/search'
+
 declare var google
 
 @Component({
@@ -76,33 +79,33 @@ export class MapPage {
   }
 
   addInfoWindow(marker) {
-    // google.maps.event.addListener(marker, "click", () => {
-    //   let profileModal = this.modalCtrl.create(BuildingPage)
-    //   profileModal.present()
-    // })
+    google.maps.event.addListener(marker, "click", () => {
+      let profileModal = this.modalCtrl.create(BuildingPage)
+      profileModal.present()
+    })
   }
 
   search() {
-    // if (this.nameMenu == "building") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         id: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
+    if (this.nameMenu == "building") {
+      let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            id: value.key,
+            buildingName: value.buildingName,
+            lat: value.lat,
+            lng: value.lng,
+            initials: value.initials,
+            openClosed: value.openClosed
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
     // if (this.nameMenu == "bank") {
     //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
     //     nameMenu: this.nameMenu
