@@ -12,7 +12,7 @@ import { NavController, NavParams } from 'ionic-angular';
   selector: 'page-building',
   templateUrl: 'building.html',
 })
-export class BuildingPage {
+export class BuildingUserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

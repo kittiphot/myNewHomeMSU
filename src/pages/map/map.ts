@@ -2,8 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ModalController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
-import { BuildingPage } from '../building/user/building/building'
-import { BuildingSearchPage } from '../building/user/search/search'
+import { BuildingUserPage } from '../building/user/building/building'
+import { BuildingUserSearchPage } from '../building/user/search/search'
 
 declare var google
 
@@ -80,14 +80,14 @@ export class MapPage {
 
   addInfoWindow(marker) {
     google.maps.event.addListener(marker, "click", () => {
-      let profileModal = this.modalCtrl.create(BuildingPage)
+      let profileModal = this.modalCtrl.create(BuildingUserPage)
       profileModal.present()
     })
   }
 
   search() {
     if (this.nameMenu == "building") {
-      let searchModal = this.modalCtrl.create(BuildingSearchPage, {
+      let searchModal = this.modalCtrl.create(BuildingUserSearchPage, {
         nameMenu: this.nameMenu
       })
       searchModal.onDidDismiss(data => {

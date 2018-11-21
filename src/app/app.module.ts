@@ -24,12 +24,16 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { NewsPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
+import { BuildingUserPage } from '../pages/building/user/building/building'
+import { BuildingUserSearchPage } from '../pages/building/user/search/search'
  
 let page =  [
   LoginPage,
   HomePage,
   NewsPage,
-  MapPage
+  MapPage,
+  BuildingUserPage,
+  BuildingUserSearchPage
 ]
 
 @NgModule({
