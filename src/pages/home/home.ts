@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { LoginPage } from '../login/login'
 import { NewsPage } from '../news/user/news/news'
 import { MapPage } from '../map/map'
+import { BuildingAdminPage } from '../building/admin/building/building'
 
 @Component({
   selector: 'page-home',
@@ -82,7 +83,7 @@ export class HomePage {
         console.log('News Admin')
       }
       if (nameMenu == 'building') {
-        console.log('Building Admin')
+        this.navCtrl.push(BuildingAdminPage)
       }
       if (nameMenu == 'bank') {
         console.log('Bank Admin')

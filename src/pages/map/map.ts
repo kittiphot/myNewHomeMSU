@@ -48,23 +48,26 @@ export class MapPage {
       fullscreenControl: false
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+    this.getPlaceProfiles()
   }
 
   getPlaceProfiles() {
-    //   this.itemsRef.snapshotChanges().subscribe(data => {
-    //     data.forEach(values => {
-    //       let params = {
-    //         id: values.key,
-    //         buildingName: values.payload.val()['buildingName'],
-    //         lat: values.payload.val()['lat'],
-    //         lng: values.payload.val()['lng'],
-    //         initials: values.payload.val()['initials'],
-    //         openClosed: values.payload.val()['openClosed']
-    //       }
-    //       // let distance = this.getDistanceBetweenPoints(params).toFixed(2)
-    //       this.addMarker(params)
-    //     })
-    //   })
+    if (this.nameMenu == "building") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            id: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          // let distance = this.getDistanceBetweenPoints(params).toFixed(2)
+          this.addMarker(params)
+        })
+      })
+    }
   }
 
   addMarker(params) {

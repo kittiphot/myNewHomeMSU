@@ -6,4 +6,9 @@ page-modal {
     width: 100%;
     height: 50%;
   }
+  ion-input {
+    ::placeholder{
+        color:#FFDAB9 !important;
+    }
+  }
 }
