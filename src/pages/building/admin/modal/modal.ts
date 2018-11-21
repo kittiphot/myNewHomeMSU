@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the SearchPage page.
+ * Generated class for the ModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-search',
-  templateUrl: 'search.html',
+  selector: 'page-modal',
+  templateUrl: 'modal.html',
 })
-export class BuildingAdminSearchPage {
+export class BuildingAdminModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+    console.log('ionViewDidLoad ModalPage');
   }
 
 }

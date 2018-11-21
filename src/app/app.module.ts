@@ -24,6 +24,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { NewsPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
+import { BuildingAdminPage } from '../pages/building/admin/building/building'
+import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
+import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
  
@@ -32,6 +35,9 @@ let page =  [
   HomePage,
   NewsPage,
   MapPage,
+  BuildingAdminPage,
+  BuildingAdminModalPage,
+  BuildingAdminSearchPage,
   BuildingUserPage,
   BuildingUserSearchPage
 ]
