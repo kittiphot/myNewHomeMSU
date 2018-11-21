@@ -1,12 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core'
+import { NavController, NavParams, ViewController } from 'ionic-angular'
+import { AngularFireDatabase } from 'angularfire2/database'
 
-/**
- * Generated class for the ModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+declare var google
 
 @Component({
   selector: 'page-modal',
@@ -14,11 +10,93 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class BuildingAdminModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild("map") mapElement: ElementRef
+  private map
+  private itemsRef
+  private params
+  private id
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afDatabase: AngularFireDatabase,
+    private viewCtrl: ViewController
+  ) {
+    this.itemsRef = this.afDatabase.list('building')
+    this.id = navParams.get('id')
+    this.params = {
+      buildingName: '',
+      lat: '',
+      lng: '',
+      initials: '',
+      openClosed: ''
+    }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalPage');
+    this.loadMap()
+  }
+
+  loadMap() {
+    let latLng = new google.maps.LatLng(16.245616, 103.250208)
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+      zoomControl: true,
+      mapTypeControl: true,
+      scaleControl: true,
+      streetViewControl: false,
+      rotateControl: true,
+      fullscreenControl: false
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+    this.getPlaceProfiles()
+
+    google.maps.event.addListener(this.map, "click", (event) => {
+      this.params.lat = event.latLng.lat()
+      this.params.lng = event.latLng.lng()
+    })
+  }
+
+  getPlaceProfiles() {
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        if (this.id == data.key) {
+          this.params.buildingName = data.payload.val()['buildingName']
+          this.params.lat = data.payload.val()['lat']
+          this.params.lng = data.payload.val()['lng']
+          this.params.initials = data.payload.val()['initials']
+          this.params.openClosed = data.payload.val()['openClosed']
+        }
+      })
+    })
+  }
+
+  onSubmit(myform) {
+    let params = myform.value
+    console.log(params)
+    if (typeof this.id == 'undefined') {
+      this.itemsRef.push(params)
+    }
+    else {
+      this.itemsRef.update(
+        this.id, {
+          buildingName: params.buildingName,
+          lat: params.lat,
+          lng: params.lng,
+          initials: params.initials,
+          openClosed: params.openClosed
+        }
+      )
+    }
+    this.closeModal()
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss('close')
   }
 
 }

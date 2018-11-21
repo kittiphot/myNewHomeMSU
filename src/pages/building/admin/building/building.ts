@@ -1,12 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { AngularFireDatabase } from 'angularfire2/database'
 
-/**
- * Generated class for the BuildingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { BuildingAdminModalPage } from '../modal/modal'
 
 @Component({
   selector: 'page-building',
@@ -14,11 +10,56 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class BuildingAdminPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private items
+  private itemsRef
+
+  constructor(
+    public navCtrl: NavController,
+    private afDatabase: AngularFireDatabase,
+    private loadingCtrl: LoadingController,
+    private modalCtrl: ModalController
+  ) {
+    this.itemsRef = this.afDatabase.list('building')
+    this.items = []
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuildingPage');
+    this.getPlaceProfiles()
+  }
+
+  getPlaceProfiles() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      this.items = []
+      data.forEach(data => {
+        this.items.push({
+          id: data.key,
+          buildingName: data.payload.val()['buildingName']
+        })
+      });
+      loading.dismiss()
+      }, (err) => {
+      console.log("probleme : ", err)
+    });
+  }
+
+  create() {
+    let profileModal = this.modalCtrl.create(BuildingAdminModalPage);
+    profileModal.present()
+  }
+
+  update(id) {
+    let profileModal = this.modalCtrl.create(BuildingAdminModalPage, {
+      id: id
+    });
+    profileModal.present()
+  }
+
+  delete(id) {
+    this.itemsRef.remove(id);
   }
 
 }

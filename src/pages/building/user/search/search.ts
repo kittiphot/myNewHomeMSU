@@ -8,10 +8,10 @@ import { AngularFireDatabase } from 'angularfire2/database'
 })
 export class BuildingUserSearchPage {
 
-  public params: any
-  private items: any
-  private itemsRef: any
-  private temp: any
+  public params
+  private items
+  private itemsRef
+  private temp
 
   constructor(
     public navCtrl: NavController,

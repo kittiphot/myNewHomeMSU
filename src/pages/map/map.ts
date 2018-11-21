@@ -15,7 +15,7 @@ export class MapPage {
 
   @ViewChild("map") mapElement: ElementRef
   private map
-  private itemsRef
+  public itemsRef
   private nameMenu
   private markers
 

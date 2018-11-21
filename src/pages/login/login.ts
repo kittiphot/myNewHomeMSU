@@ -18,7 +18,7 @@ export class LoginPage {
     UID: '',
     status: ''
   }
-  itemsRef
+  private itemsRef
 
   constructor(
     public navCtrl: NavController,
