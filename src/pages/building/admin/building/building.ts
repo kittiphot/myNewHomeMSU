@@ -39,25 +39,25 @@ export class BuildingAdminPage {
           key: data.key,
           buildingName: data.payload.val()['buildingName']
         })
-      });
+      })
       loading.dismiss()
-    });
+    })
   }
 
   create() {
-    let profileModal = this.modalCtrl.create(BuildingAdminModalPage);
+    let profileModal = this.modalCtrl.create(BuildingAdminModalPage)
     profileModal.present()
   }
 
   update(key) {
     let profileModal = this.modalCtrl.create(BuildingAdminModalPage, {
       key: key
-    });
+    })
     profileModal.present()
   }
 
   delete(key) {
-    this.itemsRef.remove(key);
+    this.itemsRef.remove(key)
   }
 
 }
