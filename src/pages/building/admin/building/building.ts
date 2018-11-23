@@ -41,8 +41,6 @@ export class BuildingAdminPage {
         })
       });
       loading.dismiss()
-      }, (err) => {
-      console.log("probleme : ", err)
     });
   }
 

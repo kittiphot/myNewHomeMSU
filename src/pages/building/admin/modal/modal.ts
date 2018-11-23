@@ -74,7 +74,6 @@ export class BuildingAdminModalPage {
 
   onSubmit(myform) {
     let params = myform.value
-    console.log(params)
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
     }

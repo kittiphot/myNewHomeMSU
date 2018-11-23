@@ -64,7 +64,6 @@ export class BuildingUserPage {
           this.items.openClosed = data.payload.val()['openClosed']
         }
       })
-      console.log(this.items)
       loading.dismiss()
     })
   }
