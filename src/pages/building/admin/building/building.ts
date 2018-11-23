@@ -36,7 +36,7 @@ export class BuildingAdminPage {
       this.items = []
       data.forEach(data => {
         this.items.push({
-          id: data.key,
+          key: data.key,
           buildingName: data.payload.val()['buildingName']
         })
       });
@@ -51,15 +51,15 @@ export class BuildingAdminPage {
     profileModal.present()
   }
 
-  update(id) {
+  update(key) {
     let profileModal = this.modalCtrl.create(BuildingAdminModalPage, {
-      id: id
+      key: key
     });
     profileModal.present()
   }
 
-  delete(id) {
-    this.itemsRef.remove(id);
+  delete(key) {
+    this.itemsRef.remove(key);
   }
 
 }

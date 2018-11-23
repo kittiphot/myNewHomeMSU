@@ -56,7 +56,7 @@ export class MapPage {
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           let params = {
-            id: values.key,
+            key: values.key,
             buildingName: values.payload.val()['buildingName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
@@ -78,26 +78,54 @@ export class MapPage {
       position: new google.maps.LatLng(params.lat, params.lng)
     })
     this.markers.push(marker)
-    this.addInfoWindow(marker)
+    this.addInfoWindow(marker, params)
   }
 
-  addInfoWindow(marker) {
+  addInfoWindow(marker, params) {
+    let page
+    if (this.nameMenu == 'news') {
+      console.log('News Admin')
+    }
+    if (this.nameMenu == 'building') {
+      page = BuildingUserPage
+    }
+    if (this.nameMenu == 'bank') {
+      console.log('Bank Admin')
+    }
+    if (this.nameMenu == 'ATM') {
+      console.log('ATM Admin')
+    }
+    if (this.nameMenu == 'bus') {
+      console.log('Bus Stop Admin')
+    }
+    if (this.nameMenu == 'dorm') {
+      console.log('Dorm Admin')
+    }
+    if (this.nameMenu == 'parking') {
+      console.log('Parking Admin')
+    }
+    if (this.nameMenu == 'restaurant') {
+      console.log('Restaurant Admin')
+    }
+    if (this.nameMenu == 'toilet') {
+      console.log('Toilet Admin')
+    }
     google.maps.event.addListener(marker, "click", () => {
-      let profileModal = this.modalCtrl.create(BuildingUserPage)
+      let profileModal = this.modalCtrl.create(page, {
+        key: params.key
+      })
       profileModal.present()
     })
   }
 
   search() {
     if (this.nameMenu == "building") {
-      let searchModal = this.modalCtrl.create(BuildingUserSearchPage, {
-        nameMenu: this.nameMenu
-      })
+      let searchModal = this.modalCtrl.create(BuildingUserSearchPage)
       searchModal.onDidDismiss(data => {
         this.clear()
         data.forEach(value => {
           let params = {
-            id: value.key,
+            key: value.key,
             buildingName: value.buildingName,
             lat: value.lat,
             lng: value.lng,
@@ -117,7 +145,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -137,7 +165,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -157,7 +185,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -177,7 +205,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -197,7 +225,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -217,7 +245,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,
@@ -237,7 +265,7 @@ export class MapPage {
     //     this.clear()
     //     data.forEach(value => {
     //       let params = {
-    //         id: value.key,
+    //         key: value.key,
     //         buildingName: value.buildingName,
     //         lat: value.lat,
     //         lng: value.lng,

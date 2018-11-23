@@ -55,12 +55,12 @@ export class LoginPage {
       //     console.log(values.payload.val()['status'])
       //   })
       // })
-      // if (typeof this.id == 'undefined') {
+      // if (typeof this.key == 'undefined') {
       this.itemsRef.push(this.member)
       // }
       // else {
       //   this.itemsRef.update(
-      //     this.id, {
+      //     this.key, {
       //       UID: member.UID,
       //       status: member.status
       //     }

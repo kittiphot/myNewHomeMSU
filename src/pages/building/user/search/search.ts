@@ -19,12 +19,12 @@ export class BuildingUserSearchPage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
-    ) {
-      this.itemsRef = this.afDatabase.list('building')
-      this.params = {
-        buildingName: '',
-        initials: ''
-      }
+  ) {
+    this.itemsRef = this.afDatabase.list('building')
+    this.params = {
+      buildingName: '',
+      initials: ''
+    }
   }
 
   ionViewDidLoad() {
@@ -40,7 +40,7 @@ export class BuildingUserSearchPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.items.push({
-          id: data.key,
+          key: data.key,
           buildingName: data.payload.val()['buildingName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
@@ -71,7 +71,7 @@ export class BuildingUserSearchPage {
       })
       this.add(values)
     }
-    if (this.items == "") {
+    if (this.items == '') {
       this.items = this.temp
     }
     this.closeModal()
@@ -80,7 +80,7 @@ export class BuildingUserSearchPage {
   add(values) {
     values.forEach(value => {
       this.items.push({
-        id: value.id,
+        key: value.key,
         buildingName: value.buildingName,
         lat: value.lat,
         lng: value.lng,

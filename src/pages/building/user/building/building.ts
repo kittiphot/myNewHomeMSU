@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
   selector: 'page-building',
@@ -13,13 +14,26 @@ export class BuildingUserPage {
   public star3
   public star4
   public star5
+  private items
+  private itemsRef
+  private key
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
+    this.itemsRef = this.afDatabase.list('building')
+    this.items = {
+      buildingName: '',
+      lat: '',
+      lng: '',
+      initials: '',
+      openClosed: ''
+    }
+    this.key = navParams.get('key')
     this.params = {
       buildingName: 'คณะวิทยาการสารสนเทศ',
       lat: '16.24658423965131',
@@ -32,6 +46,27 @@ export class BuildingUserPage {
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
+    this.getBuilding()
+  }
+
+  getBuilding() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        if (data.key == this.key) {
+          this.items.buildingName = data.payload.val()['buildingName']
+          this.items.lat = data.payload.val()['lat']
+          this.items.lng = data.payload.val()['lng']
+          this.items.initials = data.payload.val()['initials']
+          this.items.openClosed = data.payload.val()['openClosed']
+        }
+      })
+      console.log(this.items)
+      loading.dismiss()
+    })
   }
 
   changeColor(point) {

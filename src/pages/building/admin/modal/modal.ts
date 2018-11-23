@@ -14,7 +14,7 @@ export class BuildingAdminModalPage {
   private map
   private itemsRef
   private params
-  private id
+  private key
 
   constructor(
     public navCtrl: NavController,
@@ -23,7 +23,7 @@ export class BuildingAdminModalPage {
     private viewCtrl: ViewController
   ) {
     this.itemsRef = this.afDatabase.list('building')
-    this.id = navParams.get('id')
+    this.key = navParams.get('key')
     this.params = {
       buildingName: '',
       lat: '',
@@ -39,7 +39,6 @@ export class BuildingAdminModalPage {
 
   loadMap() {
     let latLng = new google.maps.LatLng(16.245616, 103.250208)
-
     let mapOptions = {
       center: latLng,
       zoom: 15,
@@ -51,10 +50,8 @@ export class BuildingAdminModalPage {
       rotateControl: true,
       fullscreenControl: false
     }
-
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
     this.getPlaceProfiles()
-
     google.maps.event.addListener(this.map, "click", (event) => {
       this.params.lat = event.latLng.lat()
       this.params.lng = event.latLng.lng()
@@ -64,7 +61,7 @@ export class BuildingAdminModalPage {
   getPlaceProfiles() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
-        if (this.id == data.key) {
+        if (this.key == data.key) {
           this.params.buildingName = data.payload.val()['buildingName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
@@ -78,12 +75,12 @@ export class BuildingAdminModalPage {
   onSubmit(myform) {
     let params = myform.value
     console.log(params)
-    if (typeof this.id == 'undefined') {
+    if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
     }
     else {
       this.itemsRef.update(
-        this.id, {
+        this.key, {
           buildingName: params.buildingName,
           lat: params.lat,
           lng: params.lng,
