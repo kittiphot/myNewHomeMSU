@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
 
 /**
  * Generated class for the BusPage page.
@@ -18,7 +18,7 @@ export class BusPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BusPage');
+    console.log('ionViewDidLoad BusPage')
   }
 
 }

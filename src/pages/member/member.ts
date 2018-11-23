@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
 
-// import { AdminPage } from '../admin/admin';
-// import { UserPage } from '../user/user';
+// import { AdminPage } from '../admin/admin'
+// import { UserPage } from '../user/user'
 
 @Component({
   selector: 'page-member',
@@ -10,14 +10,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MemberPage {
   
-  // tab1Root = AdminPage;
-  // tab2Root = UserPage;
+  // tab1Root = AdminPage
+  // tab2Root = UserPage
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MemberPage');
+    console.log('ionViewDidLoad MemberPage')
   }
 
 }

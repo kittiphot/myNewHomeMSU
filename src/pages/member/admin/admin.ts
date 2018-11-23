@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams, ModalController } from 'ionic-angular'
 
 // import { AdminModalPage } from '../admin-modal/admin-modal'
 
@@ -16,11 +16,11 @@ export class AdminPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminPage');
+    console.log('ionViewDidLoad AdminPage')
   }
 
   // create() {
-  //   let profileModal = this.modalCtrl.create(AdminModalPage);
+  //   let profileModal = this.modalCtrl.create(AdminModalPage)
   //   profileModal.present()
   // }
 

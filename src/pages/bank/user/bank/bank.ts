@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
 
 /**
  * Generated class for the BankPage page.
@@ -18,7 +18,7 @@ export class BankPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BankPage');
+    console.log('ionViewDidLoad BankPage')
   }
 
 }

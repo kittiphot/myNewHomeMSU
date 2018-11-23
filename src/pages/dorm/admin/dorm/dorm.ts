@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core'
+import { NavController, NavParams } from 'ionic-angular'
 
 /**
  * Generated class for the DormPage page.
@@ -18,7 +18,7 @@ export class DormPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DormPage');
+    console.log('ionViewDidLoad DormPage')
   }
 
 }
