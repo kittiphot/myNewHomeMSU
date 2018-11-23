@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>อาคารในมหาวิทยาลัยมหาสารคาม</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: gray; color: yellow">
+
+  <div #map id="map"></div>
+  <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="Latitude ..." required></ion-input>
+        </ion-col>
+        <ion-col col-6>
+          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="Longitude ..." required></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."
+          required></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-input type="text" [(ngModel)]="params.initials" name="initials" placeholder="ตัวอักษรย่อเรียกแทนชื่ออาคาร ..."
+          required></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" placeholder="เวลาเปิด – ปิดอาคาร (08.00 - 16.00 น.) ..."
+          required></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>
