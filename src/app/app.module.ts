@@ -44,6 +44,10 @@ import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
 import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
 import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
+import { MemberPage } from '../pages/member/member'
+import { AdminPage } from '../pages/member/admin/admin'
+import { AdminModalPage } from '../pages/member/modal/modal'
+import { UserPage } from '../pages/member/user/user'
  
 let page =  [
   LoginPage,
@@ -68,7 +72,11 @@ let page =  [
   ParkingAdminiPage,
   ParkingAdminModalPage,
   ToiletAdminPage,
-  ToiletAdminModalPage
+  ToiletAdminModalPage,
+  MemberPage,
+  AdminPage,
+  AdminModalPage,
+  UserPage
 ]
 
 @NgModule({

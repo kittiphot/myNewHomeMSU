@@ -66,6 +66,7 @@ export class LoginPage {
       //     }
       //   )
       // }
+      console.log(res)
       this.navCtrl.push(HomePage)
       loading.dismiss()
     }, (err) => {

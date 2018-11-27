@@ -15,6 +15,7 @@ import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 import { ParkingAdminiPage } from '../parking/admin/parking/parking'
 import { ToiletAdminPage } from '../toilet/admin/toilet/toilet'
+import { MemberPage } from '../member/member'
 
 @Component({
   selector: 'page-home',
@@ -114,7 +115,7 @@ export class HomePage {
         this.navCtrl.push(ToiletAdminPage)
       }
       if (nameMenu == 'member') {
-        // this.navCtrl.push(DormAdminPage)
+        this.navCtrl.push(MemberPage)
       }
     }
     else {
