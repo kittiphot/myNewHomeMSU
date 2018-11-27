@@ -20,7 +20,7 @@ export class BusAdminPage {
     private modalCtrl: ModalController
   ) {
     this.items = []
-    this.itemsRef = this.afDatabase.list('busStop')
+    this.itemsRef = this.afDatabase.list('bus')
   }
 
   ionViewDidLoad() {
