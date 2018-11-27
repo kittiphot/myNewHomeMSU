@@ -37,7 +37,7 @@ export class AtmAdminPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          namePlace: data.payload.val()['namePlace']
+          placeName: data.payload.val()['placeName']
         })
       })
       loading.dismiss()

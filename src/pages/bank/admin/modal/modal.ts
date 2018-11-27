@@ -8,7 +8,7 @@ declare var google
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
-export class BuildingAdminModalPage {
+export class BankAdminModalPage {
 
   @ViewChild("map") mapElement: ElementRef
   private map
@@ -22,7 +22,7 @@ export class BuildingAdminModalPage {
     private afDatabase: AngularFireDatabase,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('bank')
     this.key = navParams.get('key')
     this.params = {
       buildingName: '',

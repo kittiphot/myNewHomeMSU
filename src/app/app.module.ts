@@ -27,7 +27,8 @@ import { NewsPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
 import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
-// import { BuildingAdminSearchPage } from '../pages/atm/admin/search/search'
+import { BankAdminPage } from '../pages/bank/admin/bank/bank'
+import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
@@ -41,6 +42,8 @@ let page =  [
   MapPage,
   AtmAdminPage,
   AtmAdminModalPage,
+  BankAdminPage,
+  BankAdminModalPage,
   BuildingAdminPage,
   BuildingAdminModalPage,
   BuildingAdminSearchPage,

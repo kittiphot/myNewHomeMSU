@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login'
 import { NewsPage } from '../news/user/news/news'
 import { MapPage } from '../map/map'
 import { AtmAdminPage } from '../atm/admin/atm/atm'
+import { BankAdminPage } from '../bank/admin/bank/bank'
 import { BuildingAdminPage } from '../building/admin/building/building'
 
 @Component({
@@ -87,7 +88,7 @@ export class HomePage {
         this.navCtrl.push(BuildingAdminPage)
       }
       if (nameMenu == 'bank') {
-        console.log('Bank Admin')
+        this.navCtrl.push(BankAdminPage)
       }
       if (nameMenu == 'ATM') {
         this.navCtrl.push(AtmAdminPage)

@@ -28,8 +28,8 @@ export class AtmAdminModalPage {
     this.itemsRef = this.afDatabase.list('atm')
     this.key = navParams.get('key')
     this.params = {
-      namePlace: '',
-      nameATM: '',
+      placeName: '',
+      ATMName: '',
       lat: '',
       lng: ''
     }
@@ -65,8 +65,8 @@ export class AtmAdminModalPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
-          this.params.namePlace = data.payload.val()['namePlace']
-          this.params.nameATM = data.payload.val()['nameATM']
+          this.params.placeName = data.payload.val()['placeName']
+          this.params.ATMName = data.payload.val()['ATMName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
         }
@@ -101,8 +101,8 @@ export class AtmAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
-          namePlace: params.namePlace,
-          nameATM: params.nameATM,
+          placeName: params.placeName,
+          ATMName: params.ATMName,
           lat: params.lat,
           lng: params.lng
         }
