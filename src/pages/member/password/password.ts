@@ -4,8 +4,8 @@ import { NavController, NavParams, ModalController } from 'ionic-angular'
 import { HomePage } from '../../home/home'
 
 @Component({
-  selector: 'page-admin',
-  templateUrl: 'admin.html',
+  selector: 'page-password',
+  templateUrl: 'password.html',
 })
 export class PasswordPage {
 
