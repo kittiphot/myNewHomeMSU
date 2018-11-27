@@ -10,6 +10,7 @@ import { MapPage } from '../map/map'
 import { AtmAdminPage } from '../atm/admin/atm/atm'
 import { BankAdminPage } from '../bank/admin/bank/bank'
 import { BuildingAdminPage } from '../building/admin/building/building'
+import { BusAdminPage } from '../bus/admin/bus/bus'
 
 @Component({
   selector: 'page-home',
@@ -94,7 +95,7 @@ export class HomePage {
         this.navCtrl.push(AtmAdminPage)
       }
       if (nameMenu == 'bus') {
-        console.log('Bus Stop Admin')
+        this.navCtrl.push(BusAdminPage)
       }
       if (nameMenu == 'dorm') {
         console.log('Dorm Admin')

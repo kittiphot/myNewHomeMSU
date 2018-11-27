@@ -34,6 +34,8 @@ import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
+import { BusAdminPage } from '../pages/bus/admin/bus/bus'
+import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
  
 let page =  [
   LoginPage,
@@ -48,7 +50,9 @@ let page =  [
   BuildingAdminModalPage,
   BuildingAdminSearchPage,
   BuildingUserPage,
-  BuildingUserSearchPage
+  BuildingUserSearchPage,
+  BusAdminPage,
+  BusAdminModalPage
 ]
 
 @NgModule({
