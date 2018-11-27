@@ -11,6 +11,7 @@ import { AtmAdminPage } from '../atm/admin/atm/atm'
 import { BankAdminPage } from '../bank/admin/bank/bank'
 import { BuildingAdminPage } from '../building/admin/building/building'
 import { BusAdminPage } from '../bus/admin/bus/bus'
+import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 
 @Component({
   selector: 'page-home',
@@ -104,7 +105,7 @@ export class HomePage {
         console.log('Parking Admin')
       }
       if (nameMenu == 'restaurant') {
-        console.log('Restaurant Admin')
+        this.navCtrl.push(CafeAdminPage)
       }
       if (nameMenu == 'toilet') {
         console.log('Toilet Admin')

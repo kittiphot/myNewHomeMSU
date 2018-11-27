@@ -12,7 +12,7 @@ import { NavController, NavParams } from 'ionic-angular'
   selector: 'page-dorm',
   templateUrl: 'dorm.html',
 })
-export class DormPage {
+export class DormAdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -36,6 +36,10 @@ import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
 import { BusAdminPage } from '../pages/bus/admin/bus/bus'
 import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
+import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
+import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
+import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
+import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
  
 let page =  [
   LoginPage,
@@ -52,7 +56,11 @@ let page =  [
   BuildingUserPage,
   BuildingUserSearchPage,
   BusAdminPage,
-  BusAdminModalPage
+  BusAdminModalPage,
+  CafeAdminPage,
+  CafeAdminModalPage,
+  DormAdminPage,
+  DormAdminModalPage
 ]
 
 @NgModule({

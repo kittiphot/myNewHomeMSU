@@ -8,7 +8,7 @@ declare var google
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
-export class BuildingAdminModalPage {
+export class CafeAdminModalPage {
 
   @ViewChild("map") mapElement: ElementRef
   private map
@@ -22,14 +22,16 @@ export class BuildingAdminModalPage {
     private afDatabase: AngularFireDatabase,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('cafe')
     this.key = navParams.get('key')
     this.params = {
-      buildingName: '',
+      cafeName: '',
       lat: '',
       lng: '',
-      initials: '',
-      openClosed: ''
+      price: '',
+      openClosed: '',
+      phoneNumber: '',
+      contact: ''
     }
   }
 
@@ -62,11 +64,13 @@ export class BuildingAdminModalPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
-          this.params.buildingName = data.payload.val()['buildingName']
+          this.params.cafeName = data.payload.val()['cafeName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
-          this.params.initials = data.payload.val()['initials']
+          this.params.price = data.payload.val()['price']
           this.params.openClosed = data.payload.val()['openClosed']
+          this.params.phoneNumber = data.payload.val()['phoneNumber']
+          this.params.contact = data.payload.val()['contact']
         }
       })
     })
@@ -80,11 +84,13 @@ export class BuildingAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
-          buildingName: params.buildingName,
+          cafeName: params.cafeName,
           lat: params.lat,
           lng: params.lng,
-          initials: params.initials,
-          openClosed: params.openClosed
+          price: params.price,
+          openClosed: params.openClosed,
+          phoneNumber: params.phoneNumber,
+          contact: params.contact
         }
       )
     }
