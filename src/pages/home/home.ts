@@ -14,6 +14,7 @@ import { BusAdminPage } from '../bus/admin/bus/bus'
 import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 import { ParkingAdminiPage } from '../parking/admin/parking/parking'
+import { ToiletAdminPage } from '../toilet/admin/toilet/toilet'
 
 @Component({
   selector: 'page-home',
@@ -110,7 +111,7 @@ export class HomePage {
         this.navCtrl.push(CafeAdminPage)
       }
       if (nameMenu == 'toilet') {
-        // this.navCtrl.push(DormAdminPage)
+        this.navCtrl.push(ToiletAdminPage)
       }
       if (nameMenu == 'member') {
         // this.navCtrl.push(DormAdminPage)

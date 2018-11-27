@@ -42,6 +42,8 @@ import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
+import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
+import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
  
 let page =  [
   LoginPage,
@@ -64,7 +66,9 @@ let page =  [
   DormAdminPage,
   DormAdminModalPage,
   ParkingAdminiPage,
-  ParkingAdminModalPage
+  ParkingAdminModalPage,
+  ToiletAdminPage,
+  ToiletAdminModalPage
 ]
 
 @NgModule({
