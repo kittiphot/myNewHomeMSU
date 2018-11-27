@@ -1,0 +1,19 @@
+page-modal {
+  .scroll {
+    height: 100%
+  }
+  #map {
+    width: 100%;
+    height: 50%;
+  }
+  ion-input {
+    ::placeholder{
+        color:#FFDAB9 !important;
+    }
+  }
+  ion-textarea {
+    ::placeholder{
+        color:#FFDAB9 !important;
+    }
+  }
+}
