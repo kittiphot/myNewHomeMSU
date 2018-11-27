@@ -8,7 +8,7 @@ declare var google
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
-export class BuildingAdminModalPage {
+export class ParkingAdminModalPage {
 
   @ViewChild("map") mapElement: ElementRef
   private map
@@ -22,14 +22,12 @@ export class BuildingAdminModalPage {
     private afDatabase: AngularFireDatabase,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('parking')
     this.key = navParams.get('key')
     this.params = {
-      buildingName: '',
+      parkingName: '',
       lat: '',
-      lng: '',
-      initials: '',
-      openClosed: ''
+      lng: ''
     }
   }
 
@@ -62,11 +60,9 @@ export class BuildingAdminModalPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
-          this.params.buildingName = data.payload.val()['buildingName']
+          this.params.parkingName = data.payload.val()['parkingName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
-          this.params.initials = data.payload.val()['initials']
-          this.params.openClosed = data.payload.val()['openClosed']
         }
       })
     })
@@ -80,11 +76,9 @@ export class BuildingAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
-          buildingName: params.buildingName,
+          parkingName: params.parkingName,
           lat: params.lat,
-          lng: params.lng,
-          initials: params.initials,
-          openClosed: params.openClosed
+          lng: params.lng
         }
       )
     }

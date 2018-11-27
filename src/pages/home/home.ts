@@ -13,6 +13,7 @@ import { BuildingAdminPage } from '../building/admin/building/building'
 import { BusAdminPage } from '../bus/admin/bus/bus'
 import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 import { DormAdminPage } from '../dorm/admin/dorm/dorm'
+import { ParkingAdminiPage } from '../parking/admin/parking/parking'
 
 @Component({
   selector: 'page-home',
@@ -103,7 +104,7 @@ export class HomePage {
         this.navCtrl.push(DormAdminPage)
       }
       if (nameMenu == 'parking') {
-        // this.navCtrl.push(DormAdminPage)
+        this.navCtrl.push(ParkingAdminiPage)
       }
       if (nameMenu == 'restaurant') {
         this.navCtrl.push(CafeAdminPage)

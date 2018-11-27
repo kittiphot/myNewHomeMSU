@@ -40,6 +40,8 @@ import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
+import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
+import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
  
 let page =  [
   LoginPage,
@@ -60,7 +62,9 @@ let page =  [
   CafeAdminPage,
   CafeAdminModalPage,
   DormAdminPage,
-  DormAdminModalPage
+  DormAdminModalPage,
+  ParkingAdminiPage,
+  ParkingAdminModalPage
 ]
 
 @NgModule({
