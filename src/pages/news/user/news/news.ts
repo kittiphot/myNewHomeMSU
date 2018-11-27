@@ -5,7 +5,7 @@ import { NavController, NavParams } from 'ionic-angular'
   selector: 'page-news',
   templateUrl: 'news.html',
 })
-export class NewsPage {
+export class NewsUserPage {
 
   constructor(
     public navCtrl: NavController,

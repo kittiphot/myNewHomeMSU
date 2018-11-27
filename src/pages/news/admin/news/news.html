@@ -1,40 +1,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>News</ion-title>
+    <ion-title>ข่าว</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="search()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="create()">
+        <ion-icon name="ios-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background-color: gray; color: yellow">
 
   <ion-list>
-    <!-- <ion-item *ngFor="let item of items"> -->
-    <ion-item>
-      <!-- <ion-avatar item-start class="text">
-        <img src="./assets/imgs/logo.png">
-      </ion-avatar> -->
-      <!-- <h2>{{ item.name }}</h2> -->
-      <h2>Title</h2>
+    <ion-item style="background-color: gray; color: yellow" *ngFor="let item of items">
+      <h2>{{ item.newsName }}</h2>
+      <button ion-button clear item-end style="color: #69dcff">แสดง</button>
+      <button ion-button clear item-end style="color: #f0ad4e" (click)="update(item.key)">แก้ไข</button>
+      <button ion-button clear item-end style="color: #d9534f" (click)="delete(item.key)">ลบ</button>
     </ion-item>
-
-    <ion-item>
-      <!-- <ion-avatar item-start class="text">
-        <img src="./assets/imgs/logo.png">
-      </ion-avatar> -->
-      <!-- <h2>{{ item.name }}</h2> -->
-      <h2>Title</h2>
-    </ion-item>
-
-    <ion-item>
-      <!-- <ion-avatar item-start class="text">
-        <img src="./assets/imgs/logo.png">
-      </ion-avatar> -->
-      <!-- <h2>{{ item.name }}</h2> -->
-      <h2>Title</h2>
-    </ion-item>
-
   </ion-list>
 
 </ion-content>

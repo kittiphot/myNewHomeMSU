@@ -23,7 +23,7 @@ var config = {
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
-import { NewsPage } from '../pages/news/user/news/news'
+import { NewsUserPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
 import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
@@ -48,11 +48,14 @@ import { MemberPage } from '../pages/member/member'
 import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
+import { PasswordPage } from '../pages/member/password/password'
+import { NewsAdminPage } from '../pages/news/admin/news/news'
+import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
  
 let page =  [
   LoginPage,
   HomePage,
-  NewsPage,
+  NewsUserPage,
   MapPage,
   AtmAdminPage,
   AtmAdminModalPage,
@@ -76,7 +79,10 @@ let page =  [
   MemberPage,
   AdminPage,
   AdminModalPage,
-  UserPage
+  UserPage,
+  PasswordPage,
+  NewsAdminPage,
+  NewsAdminModalPage
 ]
 
 @NgModule({

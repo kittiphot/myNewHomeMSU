@@ -9,6 +9,9 @@
       </button>
     </ion-buttons>
     <ion-buttons end>
+      <button ion-button icon-only (click)="goToChangePasswordPage()">
+        <ion-icon name="ios-lock"></ion-icon>
+      </button>
       <button ion-button icon-only (click)="goToLoginPage()" *ngIf="!facebook.loggedIn">
         <ion-icon name="ios-log-in"></ion-icon>
       </button>

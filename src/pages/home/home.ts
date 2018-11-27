@@ -5,7 +5,8 @@ import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
 
 import { LoginPage } from '../login/login'
-import { NewsPage } from '../news/user/news/news'
+import { NewsUserPage } from '../news/user/news/news'
+import { NewsAdminPage } from '../news/admin/news/news'
 import { MapPage } from '../map/map'
 import { AtmAdminPage } from '../atm/admin/atm/atm'
 import { BankAdminPage } from '../bank/admin/bank/bank'
@@ -16,6 +17,7 @@ import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 import { ParkingAdminiPage } from '../parking/admin/parking/parking'
 import { ToiletAdminPage } from '../toilet/admin/toilet/toilet'
 import { MemberPage } from '../member/member'
+import { PasswordPage } from '../member/password/password'
 
 @Component({
   selector: 'page-home',
@@ -88,7 +90,7 @@ export class HomePage {
   goToPage(nameMenu) {
     if (this.facebook.status == '1' || this.facebook.status == '0') {
       if (nameMenu == 'news') {
-        console.log('News Admin')
+        this.navCtrl.push(NewsAdminPage)
       }
       if (nameMenu == 'building') {
         this.navCtrl.push(BuildingAdminPage)
@@ -120,7 +122,7 @@ export class HomePage {
     }
     else {
       if (nameMenu == 'news') {
-        this.navCtrl.push(NewsPage)
+        this.navCtrl.push(NewsUserPage)
       }
       if (nameMenu == 'building') {
         this.navCtrl.push(MapPage, {
@@ -163,6 +165,10 @@ export class HomePage {
         })
       }
     }
+  }
+
+  goToChangePasswordPage() {
+    this.navCtrl.push(PasswordPage)
   }
 
 }
