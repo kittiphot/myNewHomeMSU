@@ -39,7 +39,6 @@ export class AtmAdminPage {
           key: data.key,
           placeName: data.payload.val()['placeName']
         })
-        console.log(this.items)
       })
       loading.dismiss()
     })

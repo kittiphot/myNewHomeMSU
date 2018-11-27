@@ -1,12 +1,8 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams } from 'ionic-angular'
+import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { AngularFireDatabase } from 'angularfire2/database'
 
-/**
- * Generated class for the DormPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DormAdminModalPage } from '../modal/modal'
 
 @Component({
   selector: 'page-dorm',
@@ -14,11 +10,58 @@ import { NavController, NavParams } from 'ionic-angular'
 })
 export class DormAdminPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private items
+  private itemsRef
+
+  constructor(
+    public navCtrl: NavController,
+    private afDatabase: AngularFireDatabase,
+    private loadingCtrl: LoadingController,
+    private modalCtrl: ModalController
+  ) {
+    this.itemsRef = this.afDatabase.list('dorm')
+    this.items = []
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DormPage')
+    this.getPlaceProfiles()
+  }
+
+  getPlaceProfiles() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      this.items = []
+      data.forEach(data => {
+        this.items.push({
+          key: data.key,
+          dormName: data.payload.val()['dormName']
+        })
+      })
+      loading.dismiss()
+    })
+  }
+
+  create() {
+    let profileModal = this.modalCtrl.create(DormAdminModalPage);
+    profileModal.present()
+  }
+
+  update(key) {
+    let profileModal = this.modalCtrl.create(DormAdminModalPage, {
+      key: key
+    });
+    profileModal.present()
+  }
+
+  delete(key) {
+    this.itemsRef.remove(key);
+  }
+
+  search(){
+    console.log('search')
   }
 
 }

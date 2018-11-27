@@ -25,11 +25,18 @@ export class DormAdminModalPage {
     this.itemsRef = this.afDatabase.list('dorm')
     this.key = navParams.get('key')
     this.params = {
-      buildingName: '',
+      dormName: '',
       lat: '',
       lng: '',
-      initials: '',
-      openClosed: ''
+      openClosed: '',
+      dailyAirConditioner: '',
+      monthlyAirConditioner: '',
+      termAirConditioner: '',
+      dailyFan: '',
+      monthlyFan: '',
+      termFan: '',
+      phoneNumber: '',
+      contact: ''
     }
   }
 
@@ -62,11 +69,18 @@ export class DormAdminModalPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
-          this.params.buildingName = data.payload.val()['buildingName']
+          this.params.dormName = data.payload.val()['dormName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
-          this.params.initials = data.payload.val()['initials']
           this.params.openClosed = data.payload.val()['openClosed']
+          this.params.dailyAirConditioner = data.payload.val()['dailyAirConditioner']
+          this.params.monthlyAirConditioner = data.payload.val()['monthlyAirConditioner']
+          this.params.termAirConditioner = data.payload.val()['termAirConditioner']
+          this.params.dailyFan = data.payload.val()['dailyFan']
+          this.params.monthlyFan = data.payload.val()['monthlyFan']
+          this.params.termFan = data.payload.val()['termFan']
+          this.params.phoneNumber = data.payload.val()['phoneNumber']
+          this.params.contact = data.payload.val()['contact']
         }
       })
     })
@@ -83,8 +97,15 @@ export class DormAdminModalPage {
           buildingName: params.buildingName,
           lat: params.lat,
           lng: params.lng,
-          initials: params.initials,
-          openClosed: params.openClosed
+          openClosed: params.openClosed,
+          dailyAirConditioner: params.dailyAirConditioner,
+          monthlyAirConditioner: params.monthlyAirConditioner,
+          termAirConditioner: params.termAirConditioner,
+          dailyFan: params.dailyFan,
+          monthlyFan: params.monthlyFan,
+          termFan: params.termFan,
+          phoneNumber: params.phoneNumber,
+          contact: params.contact
         }
       )
     }

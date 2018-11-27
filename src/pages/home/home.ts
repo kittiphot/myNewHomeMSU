@@ -12,6 +12,7 @@ import { BankAdminPage } from '../bank/admin/bank/bank'
 import { BuildingAdminPage } from '../building/admin/building/building'
 import { BusAdminPage } from '../bus/admin/bus/bus'
 import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
+import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 
 @Component({
   selector: 'page-home',
@@ -99,19 +100,19 @@ export class HomePage {
         this.navCtrl.push(BusAdminPage)
       }
       if (nameMenu == 'dorm') {
-        console.log('Dorm Admin')
+        this.navCtrl.push(DormAdminPage)
       }
       if (nameMenu == 'parking') {
-        console.log('Parking Admin')
+        // this.navCtrl.push(DormAdminPage)
       }
       if (nameMenu == 'restaurant') {
         this.navCtrl.push(CafeAdminPage)
       }
       if (nameMenu == 'toilet') {
-        console.log('Toilet Admin')
+        // this.navCtrl.push(DormAdminPage)
       }
       if (nameMenu == 'member') {
-        console.log('Member Admin')
+        // this.navCtrl.push(DormAdminPage)
       }
     }
     else {
