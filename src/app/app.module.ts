@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireStorageModule } from 'angularfire2/storage'
 import { AngularFireAuthModule } from 'angularfire2/auth'
+import { Camera } from '@ionic-native/camera'
 
 var config = {
   apiKey: "AIzaSyDf91o_zJHk98Qi7kTAVLfA3-5JRL86pRc",
@@ -24,6 +25,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { NewsPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
+import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
+import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
+// import { BuildingAdminSearchPage } from '../pages/atm/admin/search/search'
 import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
@@ -35,6 +39,8 @@ let page =  [
   HomePage,
   NewsPage,
   MapPage,
+  AtmAdminPage,
+  AtmAdminModalPage,
   BuildingAdminPage,
   BuildingAdminModalPage,
   BuildingAdminSearchPage,
@@ -64,6 +70,7 @@ let page =  [
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -2,6 +2,10 @@ Storage
   ionic cordova plugin add cordova-sqlite-storage
   npm install --save @ionic/storage
   
-firebase
+Firebase
   npm install angularfire2 firebase --save
   npm install angularfire2@5.0.0-rc.6 firebase@4.12.1 --save
+
+Camera
+  ionic cordova plugin add cordova-plugin-camera
+  npm install --save @ionic-native/camera

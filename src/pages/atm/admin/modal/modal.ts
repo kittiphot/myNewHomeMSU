@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { Camera, CameraOptions } from '@ionic-native/camera'
 
 declare var google
 
@@ -8,29 +9,31 @@ declare var google
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
-export class BuildingAdminModalPage {
+export class AtmAdminModalPage {
 
   @ViewChild("map") mapElement: ElementRef
   private map
   private itemsRef
   private params
   private key
+  public img
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private camera: Camera
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('atm')
     this.key = navParams.get('key')
     this.params = {
-      buildingName: '',
+      namePlace: '',
+      nameATM: '',
       lat: '',
-      lng: '',
-      initials: '',
-      openClosed: ''
+      lng: ''
     }
+    this.img = ''
   }
 
   ionViewDidLoad() {
@@ -62,14 +65,32 @@ export class BuildingAdminModalPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
-          this.params.buildingName = data.payload.val()['buildingName']
+          this.params.namePlace = data.payload.val()['namePlace']
+          this.params.nameATM = data.payload.val()['nameATM']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
-          this.params.initials = data.payload.val()['initials']
-          this.params.openClosed = data.payload.val()['openClosed']
         }
       })
     })
+  }
+
+  getPhoto() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.img = 'data:image/jpeg;base64,' + imageData
+    }, (err) => {
+      console.log(err)
+    })
+  }
+  
+  upload() {
+    console.log('upload')
   }
 
   onSubmit(myform) {
@@ -80,11 +101,10 @@ export class BuildingAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
-          buildingName: params.buildingName,
+          namePlace: params.namePlace,
+          nameATM: params.nameATM,
           lat: params.lat,
-          lng: params.lng,
-          initials: params.initials,
-          openClosed: params.openClosed
+          lng: params.lng
         }
       )
     }

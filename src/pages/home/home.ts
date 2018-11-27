@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { LoginPage } from '../login/login'
 import { NewsPage } from '../news/user/news/news'
 import { MapPage } from '../map/map'
+import { AtmAdminPage } from '../atm/admin/atm/atm'
 import { BuildingAdminPage } from '../building/admin/building/building'
 
 @Component({
@@ -89,7 +90,7 @@ export class HomePage {
         console.log('Bank Admin')
       }
       if (nameMenu == 'ATM') {
-        console.log('ATM Admin')
+        this.navCtrl.push(AtmAdminPage)
       }
       if (nameMenu == 'bus') {
         console.log('Bus Stop Admin')
