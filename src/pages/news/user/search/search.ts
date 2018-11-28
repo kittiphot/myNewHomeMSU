@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class BuildingUserSearchPage {
+export class NewsUserSearchPage {
 
   public params
   private items
@@ -20,10 +20,10 @@ export class BuildingUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('news')
     this.params = {
-      buildingName: '',
-      initials: ''
+      newsName: '',
+      detail: ''
     }
   }
 
@@ -41,11 +41,8 @@ export class BuildingUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
-          lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          newsName: data.payload.val()['newsName'],
+          detail: data.payload.val()['detail']
         })
       })
     })
@@ -56,18 +53,10 @@ export class BuildingUserSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.newsName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.newsName.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -81,11 +70,8 @@ export class BuildingUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
-        lat: value.lat,
-        lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        newsName: value.newsName,
+        detail: value.detail
       })
     })
   }

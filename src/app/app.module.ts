@@ -52,6 +52,7 @@ import { PasswordPage } from '../pages/member/password/password'
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
+import { NewsUserSearchPage } from '../pages/news/user/search/search'
  
 let page =  [
   LoginPage,
@@ -84,7 +85,8 @@ let page =  [
   PasswordPage,
   NewsAdminPage,
   NewsAdminModalPage,
-  NewsUserModalPage
+  NewsUserModalPage,
+  NewsUserSearchPage
 ]
 
 @NgModule({

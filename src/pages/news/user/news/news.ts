@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, ModalController } from 'io
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { NewsUserModalPage } from '../modal/modal'
+import { NewsUserSearchPage } from '../search/search'
 
 @Component({
   selector: 'page-news',
@@ -49,6 +50,23 @@ export class NewsUserPage {
       key: key
     })
     profileModal.present()
+  }
+
+  search() {
+    let searchModal = this.modalCtrl.create(NewsUserSearchPage)
+    searchModal.onDidDismiss(data => {
+      data.forEach(value => {
+        let params = {
+          key: value.key,
+          buildingName: value.buildingName,
+          lat: value.lat,
+          lng: value.lng,
+          initials: value.initials,
+          openClosed: value.openClosed
+        }
+      })
+    })
+    searchModal.present()
   }
 
 }
