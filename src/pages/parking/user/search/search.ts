@@ -20,10 +20,9 @@ export class ParkingUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('parking')
     this.params = {
-      buildingName: '',
-      initials: ''
+      // buildingName: ''
     }
   }
 
@@ -41,11 +40,9 @@ export class ParkingUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
+          parkingName: data.payload.val()['parkingName'],
           lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          lng: data.payload.val()['lng']
         })
       })
     })
@@ -81,11 +78,9 @@ export class ParkingUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
+        parkingName: value.parkingName,
         lat: value.lat,
-        lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        lng: value.lng
       })
     })
   }

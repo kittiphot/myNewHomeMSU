@@ -20,10 +20,9 @@ export class DormUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('dorm')
     this.params = {
-      buildingName: '',
-      initials: ''
+      dormName: ''
     }
   }
 
@@ -41,11 +40,18 @@ export class DormUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
+          dormName: data.payload.val()['dormName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          openClosed: data.payload.val()['openClosed'],
+          dailyAirConditioner: data.payload.val()['dailyAirConditioner'],
+          monthlyAirConditioner: data.payload.val()['monthlyAirConditioner'],
+          termAirConditioner: data.payload.val()['termAirConditioner'],
+          dailyFan: data.payload.val()['dailyFan'],
+          monthlyFan: data.payload.val()['monthlyFan'],
+          termFan: data.payload.val()['termFan'],
+          phoneNumber: data.payload.val()['phoneNumber'],
+          contact: data.payload.val()['contact']
         })
       })
     })
@@ -56,18 +62,10 @@ export class DormUserSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.dormName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.dormName.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -81,11 +79,18 @@ export class DormUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
+        dormName: value.dormName,
         lat: value.lat,
         lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        openClosed: value.openClosed,
+        dailyAirConditioner: value.dailyAirConditioner,
+        monthlyAirConditioner: value.monthlyAirConditioner,
+        termAirConditioner: value.termAirConditioner,
+        dailyFan: value.dailyFan,
+        monthlyFan: value.monthlyFan,
+        termFan: value.termFan,
+        phoneNumber: value.phoneNumber,
+        contact: value.contact
       })
     })
   }

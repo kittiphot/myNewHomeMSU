@@ -20,10 +20,9 @@ export class ToiletUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('toilet')
     this.params = {
-      buildingName: '',
-      initials: ''
+      buildingName: ''
     }
   }
 
@@ -43,9 +42,7 @@ export class ToiletUserSearchPage {
           key: data.key,
           buildingName: data.payload.val()['buildingName'],
           lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          lng: data.payload.val()['lng']
         })
       })
     })
@@ -63,14 +60,6 @@ export class ToiletUserSearchPage {
       })
       this.add(values)
     }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
     if (this.items == '') {
       this.items = this.temp
     }
@@ -83,9 +72,7 @@ export class ToiletUserSearchPage {
         key: value.key,
         buildingName: value.buildingName,
         lat: value.lat,
-        lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        lng: value.lng
       })
     })
   }

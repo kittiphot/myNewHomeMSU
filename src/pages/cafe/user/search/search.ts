@@ -20,10 +20,9 @@ export class CafeUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('cafe')
     this.params = {
-      buildingName: '',
-      initials: ''
+      cafeName: ''
     }
   }
 
@@ -41,11 +40,13 @@ export class CafeUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
+          cafeName: data.payload.val()['cafeName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          price: data.payload.val()['price'],
+          openClosed: data.payload.val()['openClosed'],
+          phoneNumber: data.payload.val()['phoneNumber'],
+          contact: data.payload.val()['contact']
         })
       })
     })
@@ -56,18 +57,10 @@ export class CafeUserSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.cafeName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.cafeName.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -81,11 +74,13 @@ export class CafeUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
+        cafeName: value.cafeName,
         lat: value.lat,
         lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        price: value.price,
+        openClosed: value.openClosed,
+        phoneNumber: value.phoneNumber,
+        contact: value.contact
       })
     })
   }

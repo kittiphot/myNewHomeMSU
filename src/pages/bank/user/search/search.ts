@@ -20,10 +20,9 @@ export class BankUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('bank')
     this.params = {
-      buildingName: '',
-      initials: ''
+      bankName: ''
     }
   }
 
@@ -41,10 +40,9 @@ export class BankUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
+          bankName: data.payload.val()['bankName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
           openClosed: data.payload.val()['openClosed']
         })
       })
@@ -56,18 +54,10 @@ export class BankUserSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.bankName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.bankName.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -81,10 +71,9 @@ export class BankUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
+        bankName: value.bankName,
         lat: value.lat,
         lng: value.lng,
-        initials: value.initials,
         openClosed: value.openClosed
       })
     })

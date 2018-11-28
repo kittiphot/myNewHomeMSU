@@ -20,10 +20,9 @@ export class BusUserSearchPage {
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController
   ) {
-    this.itemsRef = this.afDatabase.list('building')
+    this.itemsRef = this.afDatabase.list('bus')
     this.params = {
-      buildingName: '',
-      initials: ''
+      nameBus: ''
     }
   }
 
@@ -41,11 +40,10 @@ export class BusUserSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
+          nameBus: data.payload.val()['nameBus'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          detail: data.payload.val()['detail']
         })
       })
     })
@@ -56,10 +54,10 @@ export class BusUserSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.nameBus
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.nameBus.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -81,11 +79,10 @@ export class BusUserSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
+        nameBus: value.nameBus,
         lat: value.lat,
         lng: value.lng,
-        initials: value.initials,
-        openClosed: value.openClosed
+        detail: value.detail
       })
     })
   }

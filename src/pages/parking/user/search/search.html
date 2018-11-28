@@ -18,11 +18,13 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."></ion-input>
-      </ion-row>
-
-      <ion-row>
-        <ion-input type="text" [(ngModel)]="params.initials" name="initials" placeholder="ตัวอักษรย่อเรียกแทนชื่ออาคาร ..."></ion-input>
+        <ion-item style="background-color: gray; color: yellow">
+          <ion-label style="color:#FFDAB9">ประเภทสถานที่จอดรถ</ion-label>
+          <ion-select>
+            <ion-option value="c">รถยนต์</ion-option>
+            <ion-option value="m">จักรยานยนต์</ion-option>
+          </ion-select>
+        </ion-item>
       </ion-row>
 
       <ion-row>

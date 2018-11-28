@@ -18,11 +18,18 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."></ion-input>
+        <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName" placeholder="ชื่อร้านอาหาร/เครื่องดื่ม ..."></ion-input>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.initials" name="initials" placeholder="ตัวอักษรย่อเรียกแทนชื่ออาคาร ..."></ion-input>
+        <ion-item style="background-color: gray; color: yellow">
+          <ion-label style="color:#FFDAB9">ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
+          <ion-select>
+            <ion-option value="p">ร้านส้มตำ</ion-option>
+            <ion-option value="a">อาหารตามสั่ง</ion-option>
+            <ion-option value="m">ร้านนม</ion-option>
+          </ion-select>
+        </ion-item>
       </ion-row>
 
       <ion-row>

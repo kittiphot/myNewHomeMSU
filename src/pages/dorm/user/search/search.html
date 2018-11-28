@@ -18,11 +18,18 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."></ion-input>
+        <ion-input type="text" [(ngModel)]="params.dormName" name="dormName" placeholder="ชื่อหอพัก ..." required></ion-input>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.initials" name="initials" placeholder="ตัวอักษรย่อเรียกแทนชื่ออาคาร ..."></ion-input>
+        <ion-item style="background-color: gray; color: yellow">
+          <ion-label style="color:#FFDAB9">ประเภทหอพัก</ion-label>
+          <ion-select>
+            <ion-option value="f">หญิง</ion-option>
+            <ion-option value="m">ชาย</ion-option>
+            <ion-option value="a">รวม</ion-option>
+          </ion-select>
+        </ion-item>
       </ion-row>
 
       <ion-row>
