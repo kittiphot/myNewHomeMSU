@@ -98,7 +98,7 @@ export class HomePage {
       if (nameMenu == 'bank') {
         this.navCtrl.push(BankAdminPage)
       }
-      if (nameMenu == 'ATM') {
+      if (nameMenu == 'atm') {
         this.navCtrl.push(AtmAdminPage)
       }
       if (nameMenu == 'bus') {
@@ -110,7 +110,7 @@ export class HomePage {
       if (nameMenu == 'parking') {
         this.navCtrl.push(ParkingAdminiPage)
       }
-      if (nameMenu == 'restaurant') {
+      if (nameMenu == 'cafe') {
         this.navCtrl.push(CafeAdminPage)
       }
       if (nameMenu == 'toilet') {
@@ -134,12 +134,12 @@ export class HomePage {
           nameMenu: nameMenu
         })
       }
-      if (nameMenu == 'ATM') {
+      if (nameMenu == 'atm') {
         this.navCtrl.push(MapPage, {
           nameMenu: nameMenu
         })
       }
-      if (nameMenu == 'busStop') {
+      if (nameMenu == 'bus') {
         this.navCtrl.push(MapPage, {
           nameMenu: nameMenu
         })
@@ -154,7 +154,7 @@ export class HomePage {
           nameMenu: nameMenu
         })
       }
-      if (nameMenu == 'restaurant') {
+      if (nameMenu == 'cafe') {
         this.navCtrl.push(MapPage, {
           nameMenu: nameMenu
         })

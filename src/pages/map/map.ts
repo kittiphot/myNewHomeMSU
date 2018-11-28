@@ -57,7 +57,7 @@ export class MapPage {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['buildingName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
             initials: values.payload.val()['initials'],
@@ -73,41 +73,38 @@ export class MapPage {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['bankName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
             openClosed: values.payload.val()['openClosed']
           }
           this.addMarker(params)
         })
       })
     }
-    if (this.nameMenu == "ATM") {
+    if (this.nameMenu == "atm") {
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['placeName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            ATMName: values.payload.val()['ATMName']
           }
           this.addMarker(params)
         })
       })
     }
-    if (this.nameMenu == "busStop") {
+    if (this.nameMenu == "bus") {
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['nameBus'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            detail: values.payload.val()['detail']
           }
           this.addMarker(params)
         })
@@ -118,11 +115,18 @@ export class MapPage {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['dormName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            openClosed: values.payload.val()['openClosed'],
+            dailyAirConditioner: values.payload.val()['dailyAirConditioner'],
+            monthlyAirConditioner: values.payload.val()['monthlyAirConditioner'],
+            termAirConditioner: values.payload.val()['termAirConditioner'],
+            dailyFan: values.payload.val()['dailyFan'],
+            monthlyFan: values.payload.val()['monthlyFan'],
+            termFan: values.payload.val()['termFan'],
+            phoneNumber: values.payload.val()['phoneNumber'],
+            contact: values.payload.val()['contact']
           }
           this.addMarker(params)
         })
@@ -133,26 +137,26 @@ export class MapPage {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['parkingName'],
             lat: values.payload.val()['lat'],
-            lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            lng: values.payload.val()['lng']
           }
           this.addMarker(params)
         })
       })
     }
-    if (this.nameMenu == "restaurant") {
+    if (this.nameMenu == "cafe") {
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['cafeName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            price: values.payload.val()['price'],
+            openClosed: values.payload.val()['openClosed'],
+            phoneNumber: values.payload.val()['phoneNumber'],
+            contact: values.payload.val()['contact']
           }
           this.addMarker(params)
         })
@@ -163,11 +167,9 @@ export class MapPage {
         data.forEach(values => {
           let params = {
             key: values.key,
-            buildingName: values.payload.val()['buildingName'],
+            name: values.payload.val()['buildingName'],
             lat: values.payload.val()['lat'],
-            lng: values.payload.val()['lng'],
-            initials: values.payload.val()['initials'],
-            openClosed: values.payload.val()['openClosed']
+            lng: values.payload.val()['lng']
           }
           this.addMarker(params)
         })
@@ -178,7 +180,7 @@ export class MapPage {
   addMarker(params) {
     let marker = new google.maps.Marker({
       map: this.map,
-      label: { text: params.buildingName, color: "yellow" },
+      label: { text: params.name, color: "yellow" },
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(params.lat, params.lng)
     })
@@ -197,7 +199,7 @@ export class MapPage {
     if (this.nameMenu == 'bank') {
       console.log('Bank Admin')
     }
-    if (this.nameMenu == 'ATM') {
+    if (this.nameMenu == 'atm') {
       console.log('ATM Admin')
     }
     if (this.nameMenu == 'bus') {
@@ -209,8 +211,8 @@ export class MapPage {
     if (this.nameMenu == 'parking') {
       console.log('Parking Admin')
     }
-    if (this.nameMenu == 'restaurant') {
-      console.log('Restaurant Admin')
+    if (this.nameMenu == 'cafe') {
+      console.log('cafe Admin')
     }
     if (this.nameMenu == 'toilet') {
       console.log('Toilet Admin')
@@ -262,7 +264,7 @@ export class MapPage {
     //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "ATM") {
+    // if (this.nameMenu == "atm") {
     //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
     //     nameMenu: this.nameMenu
     //   })
@@ -342,7 +344,7 @@ export class MapPage {
     //   })
     //   searchModal.present()
     // }
-    // if (this.nameMenu == "restaurant") {
+    // if (this.nameMenu == "cafe") {
     //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
     //     nameMenu: this.nameMenu
     //   })
