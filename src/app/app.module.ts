@@ -53,8 +53,36 @@ import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
+import { AtmUserPage } from '../pages/atm/user/atm/atm'
+import { AtmUserSearchPage } from '../pages/atm/user/search/search'
+import { BankUserPage } from '../pages/bank/user/bank/bank'
+import { BankUserSearchPage } from '../pages/bank/user/search/search'
+import { BusUserPage } from '../pages/bus/user/bus/bus'
+import { BusUserSearchPage } from '../pages/bus/user/search/search'
+import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
+import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
+import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
+import { DormUserSearchPage } from '../pages/dorm/user/search/search'
+import { ParkingUserPage } from '../pages/parking/user/parking/parking'
+import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
+import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
+import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
  
 let page =  [
+  ToiletUserSearchPage,
+  ToiletUserPage,
+  ParkingUserSearchPage,
+  ParkingUserPage,
+  DormUserSearchPage,
+  DormUserPage,
+  CafeUserSearchPage,
+  CafeUserPage,
+  BusUserSearchPage,
+  BusUserPage,
+  BankUserSearchPage,
+  BankUserPage,
+  AtmUserSearchPage,
+  AtmUserPage,
   LoginPage,
   HomePage,
   NewsUserPage,

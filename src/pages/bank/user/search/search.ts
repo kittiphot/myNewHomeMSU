@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class BuildingUserSearchPage {
+export class BankUserSearchPage {
 
   public params
   private items

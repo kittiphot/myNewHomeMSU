@@ -2,8 +2,22 @@ import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ModalController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { AtmUserPage } from '../atm/user/atm/atm'
+import { AtmUserSearchPage } from '../atm/user/search/search'
+import { BankUserPage } from '../bank/user/bank/bank'
+import { BankUserSearchPage } from '../bank/user/search/search'
 import { BuildingUserPage } from '../building/user/building/building'
 import { BuildingUserSearchPage } from '../building/user/search/search'
+import { BusUserPage } from '../bus/user/bus/bus'
+import { BusUserSearchPage } from '../bus/user/search/search'
+import { CafeUserPage } from '../cafe/user/cafe/cafe'
+import { CafeUserSearchPage } from '../cafe/user/search/search'
+import { DormUserPage } from '../dorm/user/dorm/dorm'
+import { DormUserSearchPage } from '../dorm/user/search/search'
+import { ParkingUserPage } from '../parking/user/parking/parking'
+import { ParkingUserSearchPage } from '../parking/user/search/search'
+import { ToiletUserPage } from '../toilet/user/toilet/toilet'
+import { ToiletUserSearchPage } from '../toilet/user/search/search'
 
 declare var google
 
@@ -190,32 +204,29 @@ export class MapPage {
 
   addInfoWindow(marker, params) {
     let page
-    if (this.nameMenu == 'news') {
-      console.log('News Admin')
-    }
     if (this.nameMenu == 'building') {
       page = BuildingUserPage
     }
     if (this.nameMenu == 'bank') {
-      console.log('Bank Admin')
+      page = BankUserPage
     }
     if (this.nameMenu == 'atm') {
-      console.log('ATM Admin')
+      page = AtmUserPage
     }
     if (this.nameMenu == 'bus') {
-      console.log('Bus Stop Admin')
+      page = BusUserPage
     }
     if (this.nameMenu == 'dorm') {
-      console.log('Dorm Admin')
+      page = DormUserPage
     }
     if (this.nameMenu == 'parking') {
-      console.log('Parking Admin')
+      page = ParkingUserPage
     }
     if (this.nameMenu == 'cafe') {
-      console.log('cafe Admin')
+      page = CafeUserPage
     }
     if (this.nameMenu == 'toilet') {
-      console.log('Toilet Admin')
+      page = ToiletUserPage
     }
     google.maps.event.addListener(marker, "click", () => {
       let profileModal = this.modalCtrl.create(page, {
@@ -233,7 +244,7 @@ export class MapPage {
         data.forEach(value => {
           let params = {
             key: value.key,
-            buildingName: value.buildingName,
+            name: value.buildingName,
             lat: value.lat,
             lng: value.lng,
             initials: value.initials,
@@ -244,146 +255,148 @@ export class MapPage {
       })
       searchModal.present()
     }
-    // if (this.nameMenu == "bank") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "atm") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "bus") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "dorm") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "parking") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "cafe") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
-    // if (this.nameMenu == "toilet") {
-    //   let searchModal = this.modalCtrl.create(BuildingSearchPage, {
-    //     nameMenu: this.nameMenu
-    //   })
-    //   searchModal.onDidDismiss(data => {
-    //     this.clear()
-    //     data.forEach(value => {
-    //       let params = {
-    //         key: value.key,
-    //         buildingName: value.buildingName,
-    //         lat: value.lat,
-    //         lng: value.lng,
-    //         initials: value.initials,
-    //         openClosed: value.openClosed
-    //       }
-    //       this.addMarker(params)
-    //     })
-    //   })
-    //   searchModal.present()
-    // }
+    if (this.nameMenu == "bank") {
+      let searchModal = this.modalCtrl.create(BankUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.bankName,
+            lat: value.lat,
+            lng: value.lng,
+            openClosed: value.openClosed
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "atm") {
+      let searchModal = this.modalCtrl.create(AtmUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.placeName,
+            lat: value.lat,
+            lng: value.lng,
+            ATMName: value.ATMName
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "bus") {
+      let searchModal = this.modalCtrl.create(BusUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.nameBus,
+            lat: value.lat,
+            lng: value.lng,
+            detail: value.detail
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "dorm") {
+      let searchModal = this.modalCtrl.create(DormUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.dormName,
+            lat: value.lat,
+            lng: value.lng,
+            openClosed: value.openClosed,
+            dailyAirConditioner: value.dailyAirConditioner,
+            monthlyAirConditioner: value.monthlyAirConditioner,
+            termAirConditioner: value.termAirConditioner,
+            dailyFan: value.dailyFan,
+            monthlyFan: value.monthlyFan,
+            termFan: value.termFan,
+            phoneNumber: value.phoneNumber,
+            contact: value.contact
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "parking") {
+      let searchModal = this.modalCtrl.create(ParkingUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.parkingName,
+            lat: value.lat,
+            lng: value.lng
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "cafe") {
+      let searchModal = this.modalCtrl.create(CafeUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.cafeName,
+            lat: value.lat,
+            lng: value.lng,
+            price: value.price,
+            openClosed: value.openClosed,
+            phoneNumber: value.phoneNumber,
+            contact: value.contact
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
+    if (this.nameMenu == "toilet") {
+      let searchModal = this.modalCtrl.create(ToiletUserSearchPage, {
+        nameMenu: this.nameMenu
+      })
+      searchModal.onDidDismiss(data => {
+        this.clear()
+        data.forEach(value => {
+          let params = {
+            key: value.key,
+            name: value.buildingName,
+            lat: value.lat,
+            lng: value.lng
+          }
+          this.addMarker(params)
+        })
+      })
+      searchModal.present()
+    }
   }
 
   clear() {

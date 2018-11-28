@@ -1,24 +1,28 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController } from 'ionic-angular'
 
-/**
- * Generated class for the AtmPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @Component({
   selector: 'page-atm',
   templateUrl: 'atm.html',
 })
-export class AtmPage {
+export class AtmUserPage {
+
+  public star1
+  public star2
+  public star3
+  public star4
+  public star5
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl: ViewController
     ) {
+    this.star1 = "dark"
+    this.star2 = "dark"
+    this.star3 = "dark"
+    this.star4 = "dark"
+    this.star5 = "dark"
   }
 
   ionViewDidLoad() {

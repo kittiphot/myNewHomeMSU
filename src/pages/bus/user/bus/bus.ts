@@ -1,24 +1,36 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams } from 'ionic-angular'
-
-/**
- * Generated class for the BusPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, NavParams, ViewController } from 'ionic-angular'
 
 @Component({
   selector: 'page-bus',
   templateUrl: 'bus.html',
 })
-export class BusPage {
+export class BusUserPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public star1
+  public star2
+  public star3
+  public star4
+  public star5
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController
+    ) {
+    this.star1 = "dark"
+    this.star2 = "dark"
+    this.star3 = "dark"
+    this.star4 = "dark"
+    this.star5 = "dark"
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusPage')
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss('close')
   }
 
 }
