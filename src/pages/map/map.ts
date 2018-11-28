@@ -68,6 +68,111 @@ export class MapPage {
         })
       })
     }
+    if (this.nameMenu == "bank") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "ATM") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "busStop") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "dorm") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "parking") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "restaurant") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
+    if (this.nameMenu == "toilet") {
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          let params = {
+            key: values.key,
+            buildingName: values.payload.val()['buildingName'],
+            lat: values.payload.val()['lat'],
+            lng: values.payload.val()['lng'],
+            initials: values.payload.val()['initials'],
+            openClosed: values.payload.val()['openClosed']
+          }
+          this.addMarker(params)
+        })
+      })
+    }
   }
 
   addMarker(params) {
