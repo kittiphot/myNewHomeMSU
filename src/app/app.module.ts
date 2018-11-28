@@ -12,12 +12,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { Camera } from '@ionic-native/camera'
 
 var config = {
-  apiKey: "AIzaSyDf91o_zJHk98Qi7kTAVLfA3-5JRL86pRc",
-  authDomain: "mynewhomemsu-cf07f.firebaseapp.com",
-  databaseURL: "https://mynewhomemsu-cf07f.firebaseio.com",
-  projectId: "mynewhomemsu-cf07f",
-  storageBucket: "mynewhomemsu-cf07f.appspot.com",
-  messagingSenderId: "844761814782"
+  apiKey: "AIzaSyABx5kQaiWDAUUBb_0Hu-EnGYubxESgOhU",
+  authDomain: "mynewhomemsu-49a0c.firebaseapp.com",
+  databaseURL: "https://mynewhomemsu-49a0c.firebaseio.com",
+  projectId: "mynewhomemsu-49a0c",
+  storageBucket: "mynewhomemsu-49a0c.appspot.com",
+  messagingSenderId: "346341660687"
 }
 
 import { MyApp } from './app.component';

@@ -69,6 +69,7 @@ export class LoginPage {
       this.navCtrl.push(HomePage)
       loading.dismiss()
     }, (err) => {
+      console.log(err)
       loading.dismiss()
     })
   }
