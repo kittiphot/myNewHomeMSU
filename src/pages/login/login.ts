@@ -49,24 +49,37 @@ export class LoginPage {
       this.storage.set('status', "1")
       this.member.UID = res.user.uid
       this.member.status = '1'
-      // this.itemsRef.snapshotChanges().subscribe(data => {
-      //   data.forEach(values => {
-      //     console.log(values.payload.val()['UID'])
-      //     console.log(values.payload.val()['status'])
-      //   })
-      // })
-      // if (typeof this.key == 'undefined') {
-      this.itemsRef.push(this.member)
-      // }
-      // else {
-      //   this.itemsRef.update(
-      //     this.key, {
-      //       UID: member.UID,
-      //       status: member.status
-      //     }
-      //   )
-      // }
-      this.navCtrl.push(HomePage)
+      var items = []
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          items.push({
+            key: values.key,
+            UID: values.payload.val()['UID'],
+            status: values.payload.val()['status']
+          })
+        })
+        var values = []
+        var val = res.user.uid
+        if (val && val.trim() != '') {
+          values = items.filter(item => {
+            return (item.UID.toLowerCase().indexOf(val.toLowerCase()) > -1)
+          })
+          if (values.length == 0) {
+            console.log(values)
+            this.itemsRef.push(this.member)
+          }
+          else {
+            console.log(values)
+            this.itemsRef.update(
+              values['0'].key, {
+                UID: values['0'].UID,
+                status: values['0'].status
+              }
+            )
+          }
+        }
+      })
+      // this.navCtrl.push(HomePage)
       loading.dismiss()
     }, (err) => {
       console.log(err)
