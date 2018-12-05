@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class AtmUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('atm')
     this.params = {
@@ -27,10 +28,10 @@ export class AtmUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getAtm()
   }
 
-  getBuilding() {
+  getAtm() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -43,7 +44,8 @@ export class AtmUserSearchPage {
           placeName: data.payload.val()['placeName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          ATMName: data.payload.val()['ATMName']
+          ATMName: data.payload.val()['ATMName'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -74,13 +76,24 @@ export class AtmUserSearchPage {
         placeName: value.placeName,
         lat: value.lat,
         lng: value.lng,
-        ATMName: value.ATMName
+        ATMName: value.ATMName,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

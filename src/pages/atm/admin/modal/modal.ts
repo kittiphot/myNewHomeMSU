@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
 declare var google
@@ -16,13 +17,13 @@ export class AtmAdminModalPage {
   private itemsRef
   private params
   private key
-  public img
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private viewCtrl: ViewController,
+    private toastCtrl: ToastController,
     private camera: Camera
   ) {
     this.itemsRef = this.afDatabase.list('atm')
@@ -31,9 +32,9 @@ export class AtmAdminModalPage {
       placeName: '',
       ATMName: '',
       lat: '',
-      lng: ''
+      lng: '',
+      img: ''
     }
-    this.img = ''
   }
 
   ionViewDidLoad() {
@@ -81,22 +82,24 @@ export class AtmAdminModalPage {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       saveToPhotoAlbum: false
     }
-
     this.camera.getPicture(options).then((imageData) => {
-      this.img = 'data:image/jpeg;base64,' + imageData
+      this.params.img = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       console.log(err)
-    })
-  }
-  
-  upload() {
-    console.log('upload')
+    });
   }
 
   onSubmit(myform) {
-    let params = myform.value
+    let params = {
+      placeName: myform.value.placeName,
+      lat: myform.value.lat,
+      lng: myform.value.lng,
+      ATMName: myform.value.ATMName,
+      status: '1'
+    }
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
+      this.presentToast('บันทึกสำเร็จ')
     }
     else {
       this.itemsRef.update(
@@ -107,12 +110,22 @@ export class AtmAdminModalPage {
           lng: params.lng
         }
       )
+      this.presentToast('แก้ไขสำเร็จ')
     }
     this.closeModal()
   }
 
   closeModal() {
     this.viewCtrl.dismiss('close')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

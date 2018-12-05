@@ -27,10 +27,10 @@ export class BuildingAdminPage {
   }
 
   ionViewDidLoad() {
-    this.getPlaceProfiles()
+    this.getBuilding()
   }
 
-  getPlaceProfiles() {
+  getBuilding() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })

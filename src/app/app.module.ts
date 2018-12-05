@@ -26,6 +26,12 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
 
+import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
+import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
+import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
+import { AtmUserPage } from '../pages/atm/user/atm/atm'
+import { AtmUserSearchPage } from '../pages/atm/user/search/search'
+
 import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
@@ -39,8 +45,6 @@ import { NewsUserPage } from '../pages/news/user/news/news'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
-import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
-import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BusAdminPage } from '../pages/bus/admin/bus/bus'
@@ -58,8 +62,6 @@ import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
 import { PasswordPage } from '../pages/member/password/password'
-import { AtmUserPage } from '../pages/atm/user/atm/atm'
-import { AtmUserSearchPage } from '../pages/atm/user/search/search'
 import { BankUserPage } from '../pages/bank/user/bank/bank'
 import { BankUserSearchPage } from '../pages/bank/user/search/search'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
@@ -77,12 +79,25 @@ let page =  [
   HomePage,
   LoginPage,
   MapPage,
+
+  AtmAdminPage,
+  AtmAdminModalPage,
+  AtmAdminSearchPage,
+  AtmUserSearchPage,
+  AtmUserPage,
   
   BuildingAdminPage,
   BuildingAdminModalPage,
   BuildingAdminSearchPage,
   BuildingUserPage,
   BuildingUserSearchPage,
+
+  NewsAdminPage,
+  NewsAdminModalPage,
+  NewsAdminSearchPage,
+  NewsUserPage,
+  NewsUserModalPage,
+  NewsUserSearchPage,
 
   ToiletUserSearchPage,
   ToiletUserPage,
@@ -96,10 +111,6 @@ let page =  [
   BusUserPage,
   BankUserSearchPage,
   BankUserPage,
-  AtmUserSearchPage,
-  AtmUserPage,
-  AtmAdminPage,
-  AtmAdminModalPage,
   BankAdminPage,
   BankAdminModalPage,
   BusAdminPage,
@@ -117,13 +128,6 @@ let page =  [
   AdminModalPage,
   UserPage,
   PasswordPage,
-
-  NewsAdminPage,
-  NewsAdminModalPage,
-  NewsAdminSearchPage,
-  NewsUserPage,
-  NewsUserModalPage,
-  NewsUserSearchPage
 ]
 
 @NgModule({
