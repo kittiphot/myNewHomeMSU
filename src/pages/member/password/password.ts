@@ -1,5 +1,8 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, ModalController } from 'ionic-angular'
+import { NavController, LoadingController } from 'ionic-angular'
+
+import { Storage } from '@ionic/storage'
+import { AngularFireDatabase } from 'angularfire2/database'
 
 import { HomePage } from '../../home/home'
 
@@ -9,16 +12,45 @@ import { HomePage } from '../../home/home'
 })
 export class PasswordPage {
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private modalCtrl: ModalController) {
+  private itemsRef
+  private member = {
+    key: '',
+    email: '',
+    password: '',
+    checkPassword: ''
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PasswordPage')
+  constructor(
+    public navCtrl: NavController,
+    private storage: Storage,
+    private loadingCtrl: LoadingController,
+    private afDatabase: AngularFireDatabase
+  ) {
+    this.itemsRef = this.afDatabase.list('member')
+    this.storage.get('email').then((val) => {
+      this.member.email = val
+    })
   }
-  
+
+  onSubmit(myform) {
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        if (this.member.email == data.payload.val()['email']) {
+          this.member.key = data.key
+          this.member.password = data.payload.val()['password']
+        }
+      })
+      if (myform.value.password == myform.value.checkPassword) {
+        this.itemsRef.update(
+          this.member.key, {
+            password: myform.value.password
+          }
+        )
+      }
+    })
+    this.closePage()
+  }
+
   closePage() {
     this.navCtrl.push(HomePage)
   }

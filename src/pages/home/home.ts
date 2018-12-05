@@ -93,6 +93,7 @@ export class HomePage {
     this.afauth.auth.signOut().then(res => {
       this.storage.set('loggedIn', null)
       this.storage.set('UID', null)
+      this.storage.set('email', null)
       this.facebook.loggedIn = false
       this.facebook.img = ''
       this.facebook.UID = ''
