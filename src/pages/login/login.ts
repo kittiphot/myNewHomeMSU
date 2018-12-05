@@ -16,6 +16,7 @@ export class LoginPage {
 
   private member = {
     UID: '',
+    name: '',
     email: '',
     password: '',
     img: '',
@@ -91,6 +92,7 @@ export class LoginPage {
           })
           if (values.length == 0) {
             this.member.UID = res.user.uid
+            this.member.name = res.user.displayName
             this.member.email = res.user.email
             this.member.password = ' '
             this.member.img = res.user.photoURL
