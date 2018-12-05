@@ -16,6 +16,9 @@ export class LoginPage {
 
   private member = {
     UID: '',
+    email: '',
+    password: '',
+    img: '',
     status: ''
   }
   private itemsRef
@@ -28,14 +31,41 @@ export class LoginPage {
     private afauth: AngularFireAuth,
     private afDatabase: AngularFireDatabase
   ) {
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...'
-    // })
-    // loading.present()
-    // this.afauth.authState.subscribe(res => {
-    // loading.dismiss()
-    // })
     this.itemsRef = this.afDatabase.list('member')
+  }
+
+  onSubmit(myform) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    var items = []
+    this.itemsRef.snapshotChanges().subscribe(data => {
+      data.forEach(values => {
+        items.push({
+          key: values.key,
+          UID: values.payload.val()['UID'],
+          email: values.payload.val()['email'],
+          password: values.payload.val()['password'],
+          status: values.payload.val()['status']
+        })
+      })
+      var values = []
+      var val = myform.value.email
+      if (val && val.trim() != '') {
+        values = items.filter(item => {
+          return (item.email.toLowerCase() == val.toLowerCase())
+        })
+      }
+      if (values.length != 0) {
+        if (values['0'].password == myform.value.password) {
+          this.storage.set('loggedIn', true)
+          this.storage.set('UID', values['0'].UID)
+          this.navCtrl.push(HomePage)
+        }
+      }
+    })
+    loading.dismiss()
   }
 
   loginwithfb() {
@@ -44,11 +74,6 @@ export class LoginPage {
     })
     loading.present()
     this.afauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      this.storage.set('loggedIn', true)
-      this.storage.set('UID', res.user.uid)
-      this.storage.set('status', "1")
-      this.member.UID = res.user.uid
-      this.member.status = '1'
       var items = []
       this.itemsRef.snapshotChanges().subscribe(data => {
         data.forEach(values => {
@@ -65,21 +90,18 @@ export class LoginPage {
             return (item.UID.toLowerCase().indexOf(val.toLowerCase()) > -1)
           })
           if (values.length == 0) {
-            console.log(values)
+            this.member.UID = res.user.uid
+            this.member.email = res.user.email
+            this.member.password = ' '
+            this.member.img = res.user.photoURL
+            this.member.status = '2'
             this.itemsRef.push(this.member)
-          }
-          else {
-            console.log(values)
-            this.itemsRef.update(
-              values['0'].key, {
-                UID: values['0'].UID,
-                status: values['0'].status
-              }
-            )
           }
         }
       })
-      // this.navCtrl.push(HomePage)
+      this.storage.set('loggedIn', true)
+      this.storage.set('UID', res.user.uid)
+      this.navCtrl.push(HomePage)
       loading.dismiss()
     }, (err) => {
       console.log(err)

@@ -3,6 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular'
 
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireDatabase } from 'angularfire2/database'
 
 import { LoginPage } from '../login/login'
 import { NewsUserPage } from '../news/user/news/news'
@@ -31,13 +32,16 @@ export class HomePage {
     UID: '',
     status: ''
   }
+  private itemsRef
 
   constructor(
     public navCtrl: NavController,
     private storage: Storage,
     private afauth: AngularFireAuth,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private afDatabase: AngularFireDatabase
   ) {
+    this.itemsRef = this.afDatabase.list('member')
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -52,19 +56,30 @@ export class HomePage {
         if (val != '') {
           this.facebook.UID = val
         }
-        this.storage.get('status').then((val) => {
-          this.facebook.status = ''
-          if (val != '') {
-            this.facebook.status = val
-          }
-          this.afauth.authState.subscribe(res => {
-            if (res != null) {
-              if (res.uid == this.facebook.UID) {
-                this.facebook.img = res.photoURL
-              }
-            }
-            loading.dismiss()
+        var items = []
+        this.itemsRef.snapshotChanges().subscribe(data => {
+          data.forEach(values => {
+            items.push({
+              key: values.key,
+              UID: values.payload.val()['UID'],
+              email: values.payload.val()['email'],
+              password: values.payload.val()['password'],
+              img: values.payload.val()['img'],
+              status: values.payload.val()['status']
+            })
           })
+          var values = []
+          var val = this.facebook.UID
+          if (val && val.trim() != '') {
+            values = items.filter(item => {
+              return (item.UID.toLowerCase() == val.toLowerCase())
+            })
+          }
+          if (values.length != 0) {
+            this.facebook.img = values['0'].img
+            this.facebook.status = values['0'].status
+          }
+          loading.dismiss()
         })
       })
     })
@@ -78,7 +93,6 @@ export class HomePage {
     this.afauth.auth.signOut().then(res => {
       this.storage.set('loggedIn', null)
       this.storage.set('UID', null)
-      this.storage.set('status', null)
       this.facebook.loggedIn = false
       this.facebook.img = ''
       this.facebook.UID = ''
