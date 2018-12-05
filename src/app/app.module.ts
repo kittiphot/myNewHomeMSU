@@ -10,6 +10,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireStorageModule } from 'angularfire2/storage'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { Camera } from '@ionic-native/camera'
+import { ToastController } from 'ionic-angular'
 
 var config = {
   apiKey: "AIzaSyAqR_SZXnH5YgR1ZuMBMFMhzR7hR_K8Uv4",
@@ -23,8 +24,15 @@ var config = {
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
-import { NewsUserPage } from '../pages/news/user/news/news'
 import { MapPage } from '../pages/map/map'
+
+import { NewsAdminPage } from '../pages/news/admin/news/news'
+import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
+import { NewsAdminSearchPage } from '../pages/news/admin/search/search'
+import { NewsUserPage } from '../pages/news/user/news/news'
+import { NewsUserModalPage } from '../pages/news/user/modal/modal'
+import { NewsUserSearchPage } from '../pages/news/user/search/search'
+
 import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
@@ -49,10 +57,6 @@ import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
 import { PasswordPage } from '../pages/member/password/password'
-import { NewsAdminPage } from '../pages/news/admin/news/news'
-import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
-import { NewsUserModalPage } from '../pages/news/user/modal/modal'
-import { NewsUserSearchPage } from '../pages/news/user/search/search'
 import { AtmUserPage } from '../pages/atm/user/atm/atm'
 import { AtmUserSearchPage } from '../pages/atm/user/search/search'
 import { BankUserPage } from '../pages/bank/user/bank/bank'
@@ -69,6 +73,10 @@ import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
  
 let page =  [
+  HomePage,
+  LoginPage,
+  MapPage,
+
   ToiletUserSearchPage,
   ToiletUserPage,
   ParkingUserSearchPage,
@@ -83,10 +91,6 @@ let page =  [
   BankUserPage,
   AtmUserSearchPage,
   AtmUserPage,
-  LoginPage,
-  HomePage,
-  NewsUserPage,
-  MapPage,
   AtmAdminPage,
   AtmAdminModalPage,
   BankAdminPage,
@@ -111,8 +115,11 @@ let page =  [
   AdminModalPage,
   UserPage,
   PasswordPage,
+
   NewsAdminPage,
   NewsAdminModalPage,
+  NewsAdminSearchPage,
+  NewsUserPage,
   NewsUserModalPage,
   NewsUserSearchPage
 ]
@@ -140,6 +147,7 @@ let page =  [
     StatusBar,
     SplashScreen,
     Camera,
+    ToastController,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

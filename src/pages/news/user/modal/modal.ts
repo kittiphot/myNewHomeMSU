@@ -28,17 +28,17 @@ export class NewsUserModalPage {
   }
 
   ionViewDidLoad() {
-    this.getPlaceProfiles()
+    this.getNews()
   }
 
-  getPlaceProfiles() {
+  getNews() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
     loading.present()
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
-        if (data.key == this.key) {
+        if (this.key == data.key) {
           this.items.newsName = data.payload.val()['newsName']
           this.items.detail = data.payload.val()['detail']
         }

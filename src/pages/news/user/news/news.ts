@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { NewsUserModalPage } from '../modal/modal'
@@ -16,7 +16,6 @@ export class NewsUserPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController
@@ -34,12 +33,15 @@ export class NewsUserPage {
       content: 'Please wait...'
     })
     loading.present()
+    this.items = []
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
-        this.items.push({
-          key: data.key,
-          newsName: data.payload.val()['newsName']
-        })
+        if (data.payload.val()['status'] == 1) {
+          this.items.push({
+            key: data.key,
+            newsName: data.payload.val()['newsName']
+          })
+        }
       })
       loading.dismiss()
     })
@@ -53,16 +55,16 @@ export class NewsUserPage {
   }
 
   search() {
+    this.items = []
     let searchModal = this.modalCtrl.create(NewsUserSearchPage)
     searchModal.onDidDismiss(data => {
       data.forEach(value => {
-        let params = {
-          key: value.key,
-          buildingName: value.buildingName,
-          lat: value.lat,
-          lng: value.lng,
-          initials: value.initials,
-          openClosed: value.openClosed
+        if (value.status == 1) {
+          this.items.push({
+            key: value.key,
+            newsName: value.newsName,
+            detail: value.detail
+          })
         }
       })
     })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 @Component({
   selector: 'page-search',
@@ -18,7 +19,8 @@ export class NewsUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('news')
     this.params = {
@@ -28,10 +30,10 @@ export class NewsUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getNews()
   }
 
-  getBuilding() {
+  getNews() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -42,7 +44,8 @@ export class NewsUserSearchPage {
         this.items.push({
           key: data.key,
           newsName: data.payload.val()['newsName'],
-          detail: data.payload.val()['detail']
+          detail: data.payload.val()['detail'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -71,13 +74,24 @@ export class NewsUserSearchPage {
       this.items.push({
         key: value.key,
         newsName: value.newsName,
-        detail: value.detail
+        detail: value.detail,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }
