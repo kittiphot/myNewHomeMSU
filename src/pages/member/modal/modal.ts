@@ -39,7 +39,28 @@ export class AdminModalPage {
     }
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(myform.value.email)) {
-      this.itemsRef.push(params)
+      var items = []
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        data.forEach(values => {
+          items.push({
+            key: values.key,
+            UID: values.payload.val()['UID'],
+            email: values.payload.val()['email'],
+            password: values.payload.val()['password'],
+            status: values.payload.val()['status']
+          })
+        })
+        var values = []
+        var val = myform.value.email
+        if (val && val.trim() != '') {
+          values = items.filter(item => {
+            return (item.email.toLowerCase() == val.toLowerCase())
+          })
+        }
+        if (values.length == 0) {
+          this.itemsRef.push(params)
+        }
+      })
     }
     this.closeModal()
   }
