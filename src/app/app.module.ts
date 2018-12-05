@@ -50,6 +50,12 @@ import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
 
+import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
+import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
+import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
+import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
+import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
+
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsAdminSearchPage } from '../pages/news/admin/search/search'
@@ -57,8 +63,6 @@ import { NewsUserPage } from '../pages/news/user/news/news'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
-import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
-import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
@@ -70,8 +74,6 @@ import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
 import { PasswordPage } from '../pages/member/password/password'
-import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
-import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
 import { DormUserSearchPage } from '../pages/dorm/user/search/search'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
@@ -108,6 +110,12 @@ let page =  [
   BusUserPage,
   BusUserSearchPage,
 
+  CafeAdminPage,
+  CafeAdminModalPage,
+  CafeAdminSearchPage,
+  CafeUserPage,
+  CafeUserSearchPage,
+
   NewsAdminPage,
   NewsAdminModalPage,
   NewsAdminSearchPage,
@@ -121,10 +129,6 @@ let page =  [
   ParkingUserPage,
   DormUserSearchPage,
   DormUserPage,
-  CafeUserSearchPage,
-  CafeUserPage,
-  CafeAdminPage,
-  CafeAdminModalPage,
   DormAdminPage,
   DormAdminModalPage,
   ParkingAdminiPage,

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { CafeAdminModalPage } from '../modal/modal'
+import { CafeAdminSearchPage } from '../search/search'
 
 @Component({
   selector: 'page-cafe',
@@ -17,17 +18,18 @@ export class CafeAdminPage {
     public navCtrl: NavController,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('cafe')
     this.items = []
   }
 
   ionViewDidLoad() {
-    this.getPlaceProfiles()
+    this.getCafe()
   }
 
-  getPlaceProfiles() {
+  getCafe() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -35,10 +37,20 @@ export class CafeAdminPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       this.items = []
       data.forEach(data => {
-        this.items.push({
-          key: data.key,
-          cafeName: data.payload.val()['cafeName']
-        })
+        if (data.payload.val()['status'] == 1) {
+          this.items.push({
+            key: data.key,
+            cafeName: data.payload.val()['cafeName'],
+            status: 'แสดง'
+          })
+        }
+        else {
+          this.items.push({
+            key: data.key,
+            cafeName: data.payload.val()['cafeName'],
+            status: 'ซ่อน'
+          })
+        }
       })
       loading.dismiss()
     })
@@ -57,11 +69,76 @@ export class CafeAdminPage {
   }
 
   delete(key) {
-    this.itemsRef.remove(key);
+    this.itemsRef.remove(key)
+    this.presentToast('ลบสำเร็จ')
   }
 
-  search(){
-    console.log('search')
+  search() {
+    this.items = []
+    let searchModal = this.modalCtrl.create(CafeAdminSearchPage)
+    searchModal.onDidDismiss(data => {
+      data.forEach(value => {
+        if (value.status == 1) {
+          this.items.push({
+            key: value.key,
+            cafeName: value.cafeName,
+            lat: value.lat,
+            lng: value.lng,
+            price: value.price,
+            openClosed: value.openClosed,
+            phoneNumber: value.phoneNumber,
+            contact: value.contact,
+            status: 'แสดง'
+          })
+        }
+        else {
+          this.items.push({
+            key: value.key,
+            cafeName: value.cafeName,
+            lat: value.lat,
+            lng: value.lng,
+            price: value.price,
+            openClosed: value.openClosed,
+            phoneNumber: value.phoneNumber,
+            contact: value.contact,
+            status: 'ซ่อน'
+          })
+        }
+      })
+    })
+    searchModal.present()
+  }
+
+  changeStatus(key, status) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    if (status == 'แสดง') {
+      this.itemsRef.update(
+        key, {
+          status: '0'
+        }
+      )
+    }
+    else {
+      this.itemsRef.update(
+        key, {
+          status: '1'
+        }
+      )
+    }
+    this.presentToast('เปลี่ยนสถานะสำเร็จ')
+    loading.dismiss()
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

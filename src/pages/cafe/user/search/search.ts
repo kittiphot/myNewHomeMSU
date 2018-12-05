@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class CafeUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('cafe')
     this.params = {
@@ -27,10 +28,10 @@ export class CafeUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getCafe()
   }
 
-  getBuilding() {
+  getCafe() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -46,7 +47,8 @@ export class CafeUserSearchPage {
           price: data.payload.val()['price'],
           openClosed: data.payload.val()['openClosed'],
           phoneNumber: data.payload.val()['phoneNumber'],
-          contact: data.payload.val()['contact']
+          contact: data.payload.val()['contact'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -80,13 +82,24 @@ export class CafeUserSearchPage {
         price: value.price,
         openClosed: value.openClosed,
         phoneNumber: value.phoneNumber,
-        contact: value.contact
+        contact: value.contact,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

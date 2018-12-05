@@ -1,18 +1,44 @@
-<!--
-  Generated template for the SearchPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>search</ion-title>
+    <ion-title>ค้นหา</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background-color: gray; color: yellow">
+
+  <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+    <ion-grid>
+
+      <ion-row>
+        <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName" placeholder="ชื่อร้านอาหาร/เครื่องดื่ม ..."></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-item style="background-color: gray; color: yellow">
+          <ion-label style="color:#FFDAB9">ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
+          <ion-select>
+            <ion-option value="p">ร้านส้มตำ</ion-option>
+            <ion-option value="a">อาหารตามสั่ง</ion-option>
+            <ion-option value="m">ร้านนม</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <button ion-button block type="submit" color="secondary">
+          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+        </button>
+      </ion-row>
+
+    </ion-grid>
+  </form>
 
 </ion-content>
