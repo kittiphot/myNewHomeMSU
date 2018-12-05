@@ -26,6 +26,12 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
 
+import { MemberPage } from '../pages/member/member'
+import { AdminPage } from '../pages/member/admin/admin'
+import { AdminModalPage } from '../pages/member/modal/modal'
+import { UserPage } from '../pages/member/user/user'
+import { PasswordPage } from '../pages/member/password/password'
+
 import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
@@ -56,6 +62,12 @@ import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 
+import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
+import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
+import { DormAdminSearchPage } from '../pages/dorm/admin/search/search'
+import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
+import { DormUserSearchPage } from '../pages/dorm/user/search/search'
+
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsAdminSearchPage } from '../pages/news/admin/search/search'
@@ -63,21 +75,13 @@ import { NewsUserPage } from '../pages/news/user/news/news'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
-import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
-import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
-import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
-import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
-import { MemberPage } from '../pages/member/member'
-import { AdminPage } from '../pages/member/admin/admin'
-import { AdminModalPage } from '../pages/member/modal/modal'
-import { UserPage } from '../pages/member/user/user'
-import { PasswordPage } from '../pages/member/password/password'
-import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
-import { DormUserSearchPage } from '../pages/dorm/user/search/search'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
+
+import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
+import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
 import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
  
@@ -85,6 +89,12 @@ let page =  [
   HomePage,
   LoginPage,
   MapPage,
+
+  MemberPage,
+  AdminPage,
+  AdminModalPage,
+  UserPage,
+  PasswordPage,
 
   AtmAdminPage,
   AtmAdminModalPage,
@@ -116,6 +126,12 @@ let page =  [
   CafeUserPage,
   CafeUserSearchPage,
 
+  DormAdminPage,
+  DormAdminModalPage,
+  DormAdminSearchPage,
+  DormUserPage,
+  DormUserSearchPage,
+
   NewsAdminPage,
   NewsAdminModalPage,
   NewsAdminSearchPage,
@@ -123,23 +139,15 @@ let page =  [
   NewsUserModalPage,
   NewsUserSearchPage,
 
-  ToiletUserSearchPage,
-  ToiletUserPage,
-  ParkingUserSearchPage,
-  ParkingUserPage,
-  DormUserSearchPage,
-  DormUserPage,
-  DormAdminPage,
-  DormAdminModalPage,
   ParkingAdminiPage,
   ParkingAdminModalPage,
+  ParkingUserPage,
+  ParkingUserSearchPage,
+
   ToiletAdminPage,
   ToiletAdminModalPage,
-  MemberPage,
-  AdminPage,
-  AdminModalPage,
-  UserPage,
-  PasswordPage,
+  ToiletUserPage,
+  ToiletUserSearchPage,
 ]
 
 @NgModule({
