@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class ToiletUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController 
   ) {
     this.itemsRef = this.afDatabase.list('toilet')
     this.params = {
@@ -27,10 +28,10 @@ export class ToiletUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getToilet()
   }
 
-  getBuilding() {
+  getToilet() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -42,7 +43,9 @@ export class ToiletUserSearchPage {
           key: data.key,
           buildingName: data.payload.val()['buildingName'],
           lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng']
+          lng: data.payload.val()['lng'],
+          detail: data.payload.val()['detail'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -72,13 +75,25 @@ export class ToiletUserSearchPage {
         key: value.key,
         buildingName: value.buildingName,
         lat: value.lat,
-        lng: value.lng
+        lng: value.lng,
+        detail: value.detail,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

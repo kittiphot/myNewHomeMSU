@@ -23,8 +23,7 @@
         </button>
       </ion-col>
       <ion-col col-6>
-        <button ion-button block color="secondary" (click)="upload()">
-          <!-- <button ion-button block (click)="upload()" *ngIf="img"> -->
+        <button ion-button block color="secondary" *ngIf="this.params.img">
           <ion-icon name="ios-cloud-upload"></ion-icon>
         </button>
       </ion-col>
@@ -33,7 +32,7 @@
     <ion-row>
       <ion-col col-12 text-center>
         <!-- <img [src]="img" *ngIf="img" /> -->
-        <img src="./assets/imgs/default.png" style="width: 200px; height: 200px">
+        <img src="./assets/imgs/default.png" *ngIf="this.params.img" style="width: 200px; height: 200px">
       </ion-col>
     </ion-row>
 
@@ -52,9 +51,15 @@
           <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
         </ion-col>
       </ion-row>
+
       <ion-row>
         <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."
           required></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-textarea type="text" [(ngModel)]="params.detail " name="detail" placeholder="รายละเอียดของห้องน้ำในอาคาร ..."
+          required></ion-textarea>
       </ion-row>
 
       <ion-row>
