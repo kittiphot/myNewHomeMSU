@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
-import { NavController, NavParams, ViewController } from 'ionic-angular'
+import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
-import { ToastController } from 'ionic-angular'
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
 declare var google
@@ -83,10 +82,10 @@ export class AtmAdminModalPage {
       saveToPhotoAlbum: false
     }
     this.camera.getPicture(options).then((imageData) => {
-      this.params.img = 'data:image/jpeg;base64,' + imageData;
+      this.params.img = 'data:image/jpeg;base64,' + imageData
     }, (err) => {
       console.log(err)
-    });
+    })
   }
 
   onSubmit(myform) {

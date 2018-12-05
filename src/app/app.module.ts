@@ -32,6 +32,12 @@ import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
 import { AtmUserPage } from '../pages/atm/user/atm/atm'
 import { AtmUserSearchPage } from '../pages/atm/user/search/search'
 
+import { BankAdminPage } from '../pages/bank/admin/bank/bank'
+import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
+import { BankAdminSearchPage } from '../pages/bank/admin/search/search'
+import { BankUserPage } from '../pages/bank/user/bank/bank'
+import { BankUserSearchPage } from '../pages/bank/user/search/search'
+
 import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
@@ -45,8 +51,6 @@ import { NewsUserPage } from '../pages/news/user/news/news'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
-import { BankAdminPage } from '../pages/bank/admin/bank/bank'
-import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BusAdminPage } from '../pages/bus/admin/bus/bus'
 import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
@@ -62,8 +66,6 @@ import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
 import { PasswordPage } from '../pages/member/password/password'
-import { BankUserPage } from '../pages/bank/user/bank/bank'
-import { BankUserSearchPage } from '../pages/bank/user/search/search'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
@@ -83,8 +85,14 @@ let page =  [
   AtmAdminPage,
   AtmAdminModalPage,
   AtmAdminSearchPage,
-  AtmUserSearchPage,
   AtmUserPage,
+  AtmUserSearchPage,
+  
+  BankAdminPage,
+  BankAdminModalPage,
+  BankAdminSearchPage,
+  BankUserPage,
+  BankUserSearchPage,
   
   BuildingAdminPage,
   BuildingAdminModalPage,
@@ -109,10 +117,6 @@ let page =  [
   CafeUserPage,
   BusUserSearchPage,
   BusUserPage,
-  BankUserSearchPage,
-  BankUserPage,
-  BankAdminPage,
-  BankAdminModalPage,
   BusAdminPage,
   BusAdminModalPage,
   CafeAdminPage,

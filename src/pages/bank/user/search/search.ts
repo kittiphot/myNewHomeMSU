@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class BankUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('bank')
     this.params = {
@@ -27,10 +28,10 @@ export class BankUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getBank()
   }
 
-  getBuilding() {
+  getBank() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -43,7 +44,8 @@ export class BankUserSearchPage {
           bankName: data.payload.val()['bankName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          openClosed: data.payload.val()['openClosed']
+          openClosed: data.payload.val()['openClosed'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -74,13 +76,24 @@ export class BankUserSearchPage {
         bankName: value.bankName,
         lat: value.lat,
         lng: value.lng,
-        openClosed: value.openClosed
+        openClosed: value.openClosed,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

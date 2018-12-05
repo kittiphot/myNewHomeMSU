@@ -1,8 +1,9 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BankAdminModalPage } from '../modal/modal'
+import { BankAdminSearchPage } from '../search/search'
 
 @Component({
   selector: 'page-bank',
@@ -17,17 +18,18 @@ export class BankAdminPage {
     public navCtrl: NavController,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('bank')
     this.items = []
   }
 
   ionViewDidLoad() {
-    this.getPlaceProfiles()
+    this.getBank()
   }
 
-  getPlaceProfiles() {
+  getBank() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -35,10 +37,20 @@ export class BankAdminPage {
     this.itemsRef.snapshotChanges().subscribe(data => {
       this.items = []
       data.forEach(data => {
-        this.items.push({
-          key: data.key,
-          bankName: data.payload.val()['bankName']
-        })
+        if (data.payload.val()['status'] == 1) {
+          this.items.push({
+            key: data.key,
+            bankName: data.payload.val()['bankName'],
+            status: 'แสดง'
+          })
+        }
+        else {
+          this.items.push({
+            key: data.key,
+            bankName: data.payload.val()['bankName'],
+            status: 'ซ่อน'
+          })
+        }
       })
       loading.dismiss()
     })
@@ -57,11 +69,70 @@ export class BankAdminPage {
   }
 
   delete(key) {
-    this.itemsRef.remove(key);
+    this.itemsRef.remove(key)
+    this.presentToast('ลบสำเร็จ')
   }
 
-  search(){
-    console.log('search')
+  search() {
+    this.items = []
+    let searchModal = this.modalCtrl.create(BankAdminSearchPage)
+    searchModal.onDidDismiss(data => {
+      data.forEach(value => {
+        if (value.status == 1) {
+          this.items.push({
+            key: value.key,
+            bankName: value.bankName,
+            lat: value.lat,
+            lng: value.lng,
+            openClosed: value.openClosed,
+            status: 'แสดง'
+          })
+        }
+        else {
+          this.items.push({
+            key: value.key,
+            bankName: value.bankName,
+            lat: value.lat,
+            lng: value.lng,
+            openClosed: value.openClosed,
+            status: 'ซ่อน'
+          })
+        }
+      })
+    })
+    searchModal.present()
+  }
+
+  changeStatus(key, status) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    if (status == 'แสดง') {
+      this.itemsRef.update(
+        key, {
+          status: '0'
+        }
+      )
+    }
+    else {
+      this.itemsRef.update(
+        key, {
+          status: '1'
+        }
+      )
+    }
+    this.presentToast('เปลี่ยนสถานะสำเร็จ')
+    loading.dismiss()
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }
