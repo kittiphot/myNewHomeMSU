@@ -133,6 +133,15 @@ export class HomePage {
       if (nameMenu == 'member') {
         this.navCtrl.push(MemberPage)
       }
+      if (nameMenu == 'buildingName') {
+        // this.navCtrl.push(MemberPage)
+      }
+      if (nameMenu == 'cafeType') {
+        // this.navCtrl.push(MemberPage)
+      }
+      if (nameMenu == 'bankName') {
+        // this.navCtrl.push(MemberPage)
+      }
     }
     else {
       if (nameMenu == 'news') {

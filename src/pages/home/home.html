@@ -90,5 +90,26 @@
       </ion-col>
     </ion-row>
 
+    <ion-row>
+      <ion-col col-6 text-center (click)="goToPage('buildingName')" *ngIf="facebook.status=='0'||facebook.status=='1'">
+        <!-- <ion-icon name="pin" (click)="goToMapPage('t')"></ion-icon> -->
+        <img src="../../assets/imgs/buil.png" style="width: 80px; height: 80px"> 
+        <ion-label>ชื่ออาคาร</ion-label>
+      </ion-col>
+      <ion-col col-6 text-center (click)="goToPage('cafeType')" *ngIf="facebook.status=='0'||facebook.status=='1'">
+        <!-- <ion-icon name="pin" (click)="goToMapPage('t')"></ion-icon> -->
+        <img src="../../assets/imgs/res.png" style="width: 80px; height: 80px">
+        <ion-label>ประเภทร้านอาหาร/เครื่องดื่ม </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6 text-center (click)="goToPage('bankName')" *ngIf="facebook.status=='0'||facebook.status=='1'">
+        <!-- <ion-icon name="pin" (click)="goToMapPage('t')"></ion-icon> -->
+        <img src="../../assets/imgs/bank.png" style="width: 80px; height: 80px"> 
+        <ion-label>ชื่อสำนักงานธนาคาร</ion-label>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>
