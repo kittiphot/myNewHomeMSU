@@ -77,11 +77,13 @@ import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
 import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
+import { ParkingAdminSearchPage } from '../pages/parking/admin/search/search'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
 
 import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
 import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
+import { ToiletAdminSearchPage } from '../pages/toilet/admin/search/search'
 import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
  
@@ -141,11 +143,13 @@ let page =  [
 
   ParkingAdminiPage,
   ParkingAdminModalPage,
+  ParkingAdminSearchPage,
   ParkingUserPage,
   ParkingUserSearchPage,
 
   ToiletAdminPage,
   ToiletAdminModalPage,
+  ToiletAdminSearchPage,
   ToiletUserPage,
   ToiletUserSearchPage,
 ]

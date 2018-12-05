@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class ParkingUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController 
   ) {
     this.itemsRef = this.afDatabase.list('parking')
     this.params = {
@@ -27,10 +28,10 @@ export class ParkingUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getParking()
   }
 
-  getBuilding() {
+  getParking() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -42,7 +43,8 @@ export class ParkingUserSearchPage {
           key: data.key,
           parkingName: data.payload.val()['parkingName'],
           lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng']
+          lng: data.payload.val()['lng'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -51,26 +53,18 @@ export class ParkingUserSearchPage {
   }
 
   onSubmit(myform) {
-    var values = []
-    this.items = []
-    var val = myform.value.buildingName
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
-    if (this.items == '') {
-      this.items = this.temp
-    }
+    // var values = []
+    // this.items = []
+    // var val = myform.value.buildingName
+    // if (val && val.trim() != '') {
+    //   values = this.temp.filter(item => {
+    //     return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+    //   })
+    //   this.add(values)
+    // }
+    // if (this.items == '') {
+    //   this.items = this.temp
+    // }
     this.closeModal()
   }
 
@@ -80,13 +74,24 @@ export class ParkingUserSearchPage {
         key: value.key,
         parkingName: value.parkingName,
         lat: value.lat,
-        lng: value.lng
+        lng: value.lng,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

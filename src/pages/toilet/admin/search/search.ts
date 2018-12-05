@@ -12,7 +12,7 @@ import { NavController, NavParams } from 'ionic-angular'
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class BuildingAdminSearchPage {
+export class ToiletAdminSearchPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
