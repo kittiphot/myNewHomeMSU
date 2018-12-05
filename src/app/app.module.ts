@@ -44,6 +44,12 @@ import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
 
+import { BusAdminPage } from '../pages/bus/admin/bus/bus'
+import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
+import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
+import { BusUserPage } from '../pages/bus/user/bus/bus'
+import { BusUserSearchPage } from '../pages/bus/user/search/search'
+
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsAdminSearchPage } from '../pages/news/admin/search/search'
@@ -51,8 +57,6 @@ import { NewsUserPage } from '../pages/news/user/news/news'
 import { NewsUserModalPage } from '../pages/news/user/modal/modal'
 import { NewsUserSearchPage } from '../pages/news/user/search/search'
 
-import { BusAdminPage } from '../pages/bus/admin/bus/bus'
-import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
@@ -66,8 +70,6 @@ import { AdminPage } from '../pages/member/admin/admin'
 import { AdminModalPage } from '../pages/member/modal/modal'
 import { UserPage } from '../pages/member/user/user'
 import { PasswordPage } from '../pages/member/password/password'
-import { BusUserPage } from '../pages/bus/user/bus/bus'
-import { BusUserSearchPage } from '../pages/bus/user/search/search'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
@@ -99,6 +101,12 @@ let page =  [
   BuildingAdminSearchPage,
   BuildingUserPage,
   BuildingUserSearchPage,
+  
+  BusAdminPage,
+  BusAdminModalPage,
+  BusAdminSearchPage,
+  BusUserPage,
+  BusUserSearchPage,
 
   NewsAdminPage,
   NewsAdminModalPage,
@@ -115,10 +123,6 @@ let page =  [
   DormUserPage,
   CafeUserSearchPage,
   CafeUserPage,
-  BusUserSearchPage,
-  BusUserPage,
-  BusAdminPage,
-  BusAdminModalPage,
   CafeAdminPage,
   CafeAdminModalPage,
   DormAdminPage,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
-import { ToastController } from 'ionic-angular'
 
 import { BuildingAdminModalPage } from '../modal/modal'
 import { BuildingAdminSearchPage } from '../search/search'

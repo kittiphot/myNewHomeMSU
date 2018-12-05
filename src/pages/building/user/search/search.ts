@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
-import { ToastController } from 'ionic-angular'
 
 @Component({
   selector: 'page-search',

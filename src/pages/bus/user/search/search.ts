@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 @Component({
@@ -18,7 +18,8 @@ export class BusUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('bus')
     this.params = {
@@ -27,10 +28,10 @@ export class BusUserSearchPage {
   }
 
   ionViewDidLoad() {
-    this.getBuilding()
+    this.getBus()
   }
 
-  getBuilding() {
+  getBus() {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     })
@@ -43,7 +44,8 @@ export class BusUserSearchPage {
           nameBus: data.payload.val()['nameBus'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
-          detail: data.payload.val()['detail']
+          detail: data.payload.val()['detail'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -61,14 +63,6 @@ export class BusUserSearchPage {
       })
       this.add(values)
     }
-    values = []
-    val = myform.value.initials
-    if (val && val.trim() != '') {
-      values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      })
-      this.add(values)
-    }
     if (this.items == '') {
       this.items = this.temp
     }
@@ -82,13 +76,24 @@ export class BusUserSearchPage {
         nameBus: value.nameBus,
         lat: value.lat,
         lng: value.lng,
-        detail: value.detail
+        detail: value.detail,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }
