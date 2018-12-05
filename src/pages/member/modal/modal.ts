@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController } from 'ionic-angular'
 
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 @Component({
   selector: 'page-modal',
@@ -23,7 +24,8 @@ export class AdminModalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
   }
@@ -59,14 +61,27 @@ export class AdminModalPage {
         }
         if (values.length == 0) {
           this.itemsRef.push(params)
+          this.presentToast('เพิ่มผู้ดูแลระบบสำเร็จ')
+          this.closeModal()
+        }
+        else {
+          this.presentToast('Email มีในระบบแล้ว')
         }
       })
     }
-    this.closeModal()
   }
 
   closeModal() {
     this.viewCtrl.dismiss('close')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

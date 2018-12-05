@@ -29,7 +29,7 @@ export class HomePage {
   private facebook = {
     loggedIn: false,
     img: '',
-    UID: '',
+    email: '',
     status: ''
   }
   private itemsRef
@@ -51,10 +51,10 @@ export class HomePage {
       if (val == true) {
         this.facebook.loggedIn = val
       }
-      this.storage.get('UID').then((val) => {
-        this.facebook.UID = ''
+      this.storage.get('email').then((val) => {
+        this.facebook.email = ''
         if (val != '') {
-          this.facebook.UID = val
+          this.facebook.email = val
         }
         var items = []
         this.itemsRef.snapshotChanges().subscribe(data => {
@@ -69,10 +69,10 @@ export class HomePage {
             })
           })
           var values = []
-          var val = this.facebook.UID
+          var val = this.facebook.email
           if (val && val.trim() != '') {
             values = items.filter(item => {
-              return (item.UID.toLowerCase() == val.toLowerCase())
+              return (item.email.toLowerCase() == val.toLowerCase())
             })
           }
           if (values.length != 0) {
@@ -96,7 +96,6 @@ export class HomePage {
       this.storage.set('email', null)
       this.facebook.loggedIn = false
       this.facebook.img = ''
-      this.facebook.UID = ''
       this.facebook.status = ''
       this.navCtrl.setRoot(this.navCtrl.getActive().component)
     })

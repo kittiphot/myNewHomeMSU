@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 @Component({
   selector: 'page-search',
@@ -18,7 +19,8 @@ export class BuildingUserSearchPage {
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('building')
     this.params = {
@@ -45,7 +47,8 @@ export class BuildingUserSearchPage {
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
           initials: data.payload.val()['initials'],
-          openClosed: data.payload.val()['openClosed']
+          openClosed: data.payload.val()['openClosed'],
+          status: data.payload.val()['status']
         })
       })
     })
@@ -85,13 +88,24 @@ export class BuildingUserSearchPage {
         lat: value.lat,
         lng: value.lng,
         initials: value.initials,
-        openClosed: value.openClosed
+        openClosed: value.openClosed,
+        status: value.status
       })
     })
   }
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
+    this.presentToast('ค้นหาสำเร็จ')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

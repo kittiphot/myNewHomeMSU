@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular'
 
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 import { AdminModalPage } from '../modal/modal'
 
@@ -19,7 +20,8 @@ export class AdminPage {
     public navParams: NavParams,
     private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
-    private afDatabase: AngularFireDatabase
+    private afDatabase: AngularFireDatabase,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.items = []
@@ -65,12 +67,23 @@ export class AdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    this.itemsRef.update(
-      key, {
-        status: '2'
-      }
-    )
+    // this.itemsRef.update(
+    //   key, {
+    //     status: '2'
+    //   }
+    // )
+    console.log(key)
+    this.presentToast('เปลี่ยนสถานะสำเร็จ')
     loading.dismiss()
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

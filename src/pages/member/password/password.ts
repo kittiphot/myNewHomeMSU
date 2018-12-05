@@ -3,6 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular'
 
 import { Storage } from '@ionic/storage'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 import { HomePage } from '../../home/home'
 
@@ -24,7 +25,8 @@ export class PasswordPage {
     public navCtrl: NavController,
     private storage: Storage,
     private loadingCtrl: LoadingController,
-    private afDatabase: AngularFireDatabase
+    private afDatabase: AngularFireDatabase,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.storage.get('email').then((val) => {
@@ -46,6 +48,7 @@ export class PasswordPage {
             password: myform.value.password
           }
         )
+        this.presentToast('เปลี่ยนรหัสผ่านสำเร็จ')
       }
     })
     this.closePage()
@@ -53,6 +56,15 @@ export class PasswordPage {
 
   closePage() {
     this.navCtrl.push(HomePage)
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

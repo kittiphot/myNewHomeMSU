@@ -1,6 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
+import { Camera, CameraOptions } from '@ionic-native/camera'
 
 declare var google
 
@@ -20,7 +22,9 @@ export class BuildingAdminModalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private toastCtrl: ToastController,
+    private camera: Camera
   ) {
     this.itemsRef = this.afDatabase.list('building')
     this.key = navParams.get('key')
@@ -29,6 +33,7 @@ export class BuildingAdminModalPage {
       lat: '',
       lng: '',
       initials: '',
+      img: '',
       openClosed: ''
     }
   }
@@ -72,10 +77,32 @@ export class BuildingAdminModalPage {
     })
   }
 
+  getPhoto() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.params.img = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err)
+    });
+  }
+
   onSubmit(myform) {
-    let params = myform.value
+    let params = {
+      buildingName: myform.value.buildingName,
+      lat: myform.value.lat,
+      lng: myform.value.lng,
+      initials: myform.value.initials,
+      openClosed: myform.value.openClosed,
+      status: '1'
+    }
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
+      this.presentToast('บันทึกสำเร็จ')
     }
     else {
       this.itemsRef.update(
@@ -87,12 +114,22 @@ export class BuildingAdminModalPage {
           openClosed: params.openClosed
         }
       )
+      this.presentToast('แก้ไขสำเร็จ')
     }
     this.closeModal()
   }
 
   closeModal() {
     this.viewCtrl.dismiss('close')
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

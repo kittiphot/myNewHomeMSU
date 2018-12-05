@@ -61,7 +61,6 @@ export class LoginPage {
       if (values.length != 0) {
         if (values['0'].password == myform.value.password) {
           this.storage.set('loggedIn', true)
-          this.storage.set('UID', values['0'].UID)
           this.storage.set('email', values['0'].email)
           this.navCtrl.push(HomePage)
         }
@@ -103,7 +102,6 @@ export class LoginPage {
         }
       })
       this.storage.set('loggedIn', true)
-      this.storage.set('UID', res.user.uid)
       this.storage.set('email', res.user.email)
       this.navCtrl.push(HomePage)
       loading.dismiss()

@@ -26,6 +26,12 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
 
+import { BuildingAdminPage } from '../pages/building/admin/building/building'
+import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
+import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
+import { BuildingUserPage } from '../pages/building/user/building/building'
+import { BuildingUserSearchPage } from '../pages/building/user/search/search'
+
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
 import { NewsAdminSearchPage } from '../pages/news/admin/search/search'
@@ -37,11 +43,6 @@ import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
-import { BuildingAdminPage } from '../pages/building/admin/building/building'
-import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
-import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
-import { BuildingUserPage } from '../pages/building/user/building/building'
-import { BuildingUserSearchPage } from '../pages/building/user/search/search'
 import { BusAdminPage } from '../pages/bus/admin/bus/bus'
 import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
@@ -76,6 +77,12 @@ let page =  [
   HomePage,
   LoginPage,
   MapPage,
+  
+  BuildingAdminPage,
+  BuildingAdminModalPage,
+  BuildingAdminSearchPage,
+  BuildingUserPage,
+  BuildingUserSearchPage,
 
   ToiletUserSearchPage,
   ToiletUserPage,
@@ -95,11 +102,6 @@ let page =  [
   AtmAdminModalPage,
   BankAdminPage,
   BankAdminModalPage,
-  BuildingAdminPage,
-  BuildingAdminModalPage,
-  BuildingAdminSearchPage,
-  BuildingUserPage,
-  BuildingUserSearchPage,
   BusAdminPage,
   BusAdminModalPage,
   CafeAdminPage,

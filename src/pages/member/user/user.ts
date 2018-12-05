@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController } from 'ionic-angular'
 
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 @Component({
   selector: 'page-user',
@@ -16,7 +17,8 @@ export class UserPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private loadingCtrl: LoadingController,
-    private afDatabase: AngularFireDatabase
+    private afDatabase: AngularFireDatabase,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.items = []
@@ -62,7 +64,17 @@ export class UserPage {
         status: '1'
       }
     )
+    this.presentToast('เปลี่ยนสถานะสำเร็จ')
     loading.dismiss()
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

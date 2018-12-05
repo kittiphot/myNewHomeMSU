@@ -77,8 +77,9 @@ export class MapPage {
             initials: values.payload.val()['initials'],
             openClosed: values.payload.val()['openClosed']
           }
-          // let distance = this.getDistanceBetweenPoints(params).toFixed(2)
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -92,7 +93,9 @@ export class MapPage {
             lng: values.payload.val()['lng'],
             openClosed: values.payload.val()['openClosed']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -106,7 +109,9 @@ export class MapPage {
             lng: values.payload.val()['lng'],
             ATMName: values.payload.val()['ATMName']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -120,7 +125,9 @@ export class MapPage {
             lng: values.payload.val()['lng'],
             detail: values.payload.val()['detail']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -142,7 +149,9 @@ export class MapPage {
             phoneNumber: values.payload.val()['phoneNumber'],
             contact: values.payload.val()['contact']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -155,7 +164,9 @@ export class MapPage {
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -172,7 +183,9 @@ export class MapPage {
             phoneNumber: values.payload.val()['phoneNumber'],
             contact: values.payload.val()['contact']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -185,7 +198,9 @@ export class MapPage {
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng']
           }
-          this.addMarker(params)
+          if (values.payload.val()['status'] == 1) {
+            this.addMarker(params)
+          }
         })
       })
     }
@@ -250,7 +265,9 @@ export class MapPage {
             initials: value.initials,
             openClosed: value.openClosed
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -269,7 +286,9 @@ export class MapPage {
             lng: value.lng,
             openClosed: value.openClosed
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -288,7 +307,9 @@ export class MapPage {
             lng: value.lng,
             ATMName: value.ATMName
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -307,7 +328,9 @@ export class MapPage {
             lng: value.lng,
             detail: value.detail
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -334,7 +357,9 @@ export class MapPage {
             phoneNumber: value.phoneNumber,
             contact: value.contact
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -352,7 +377,9 @@ export class MapPage {
             lat: value.lat,
             lng: value.lng
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -374,7 +401,9 @@ export class MapPage {
             phoneNumber: value.phoneNumber,
             contact: value.contact
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
@@ -392,7 +421,9 @@ export class MapPage {
             lat: value.lat,
             lng: value.lng
           }
-          this.addMarker(params)
+          if (value.status == 1) {
+            this.addMarker(params)
+          }
         })
       })
       searchModal.present()
