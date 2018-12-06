@@ -22,9 +22,9 @@ export class BankNameSearchPage {
     private viewCtrl: ViewController,
     private toastCtrl: ToastController
   ) {
-    this.itemsRef = this.afDatabase.list('buildingName')
+    this.itemsRef = this.afDatabase.list('bankName')
     this.params = {
-      buildingName: ''
+      bankName: ''
     }
   }
 
@@ -42,9 +42,7 @@ export class BankNameSearchPage {
       data.forEach(data => {
         this.items.push({
           key: data.key,
-          buildingName: data.payload.val()['buildingName'],
-          lat: data.payload.val()['lat'],
-          lng: data.payload.val()['lng']
+          bankName: data.payload.val()['bankName']
         })
       })
     })
@@ -55,10 +53,10 @@ export class BankNameSearchPage {
   onSubmit(myform) {
     var values = []
     this.items = []
-    var val = myform.value.buildingName
+    var val = myform.value.bankName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.bankName.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }
@@ -72,9 +70,7 @@ export class BankNameSearchPage {
     values.forEach(value => {
       this.items.push({
         key: value.key,
-        buildingName: value.buildingName,
-        lat: value.lat,
-        lng: value.lng
+        bankName: value.bankName
       })
     })
   }
