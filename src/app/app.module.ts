@@ -38,7 +38,6 @@ import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
 import { AtmUserPage } from '../pages/atm/user/atm/atm'
 import { AtmUserSearchPage } from '../pages/atm/user/search/search'
 
-// import { BankNamePage } from '../pages/bank/admin/name/name'
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BankAdminSearchPage } from '../pages/bank/admin/search/search'
@@ -61,7 +60,6 @@ import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
 
-// import { CafeTypePage } from '../pages/cafe/admin/type/type'
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
@@ -110,7 +108,6 @@ let page =  [
   AtmUserPage,
   AtmUserSearchPage,
   
-  // BankNamePage,
   BankAdminPage,
   BankAdminModalPage,
   BankAdminSearchPage,
@@ -133,7 +130,6 @@ let page =  [
   BusUserPage,
   BusUserSearchPage,
 
-  // CafeTypePage,
   CafeAdminPage,
   CafeAdminModalPage,
   CafeAdminSearchPage,
