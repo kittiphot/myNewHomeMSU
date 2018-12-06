@@ -10,9 +10,12 @@ import { NewsUserPage } from '../news/user/news/news'
 import { NewsAdminPage } from '../news/admin/news/news'
 import { MapPage } from '../map/map'
 import { AtmAdminPage } from '../atm/admin/atm/atm'
+// import { BankNamePage } from '../bank/admin/name/name'
 import { BankAdminPage } from '../bank/admin/bank/bank'
+import { BuildingNamePage } from '../building-name/building-name/building-name'
 import { BuildingAdminPage } from '../building/admin/building/building'
 import { BusAdminPage } from '../bus/admin/bus/bus'
+// import { CafeTypePage } from '../cafe/admin/type/type'
 import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 import { ParkingAdminiPage } from '../parking/admin/parking/parking'
@@ -134,13 +137,13 @@ export class HomePage {
         this.navCtrl.push(MemberPage)
       }
       if (nameMenu == 'buildingName') {
-        // this.navCtrl.push(MemberPage)
-      }
-      if (nameMenu == 'cafeType') {
-        // this.navCtrl.push(MemberPage)
+        this.navCtrl.push(BuildingNamePage)
       }
       if (nameMenu == 'bankName') {
-        // this.navCtrl.push(MemberPage)
+        // this.navCtrl.push(BankNamePage)
+      }
+      if (nameMenu == 'cafeType') {
+        // this.navCtrl.push(CafeTypePage)
       }
     }
     else {
