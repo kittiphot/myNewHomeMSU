@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ชื่ออาคาร</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: gray; color: yellow">
+
+  <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+    <ion-grid>
+
+      <ion-row>
+        <ion-input type="text" [(ngModel)]="params.CafeType" name="CafeType" placeholder="ประเภทร้านอาหาร/เครื่องดื่ม ..."
+          required></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

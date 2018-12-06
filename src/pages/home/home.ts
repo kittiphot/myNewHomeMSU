@@ -15,7 +15,7 @@ import { BankAdminPage } from '../bank/admin/bank/bank'
 import { BuildingNamePage } from '../building-name/building-name/building-name'
 import { BuildingAdminPage } from '../building/admin/building/building'
 import { BusAdminPage } from '../bus/admin/bus/bus'
-// import { CafeTypePage } from '../cafe/admin/type/type'
+import { CafeTypePage } from '../cafe-type/cafe-type/cafe-type'
 import { CafeAdminPage } from '../cafe/admin/cafe/cafe'
 import { DormAdminPage } from '../dorm/admin/dorm/dorm'
 import { ParkingAdminiPage } from '../parking/admin/parking/parking'
@@ -143,7 +143,7 @@ export class HomePage {
         this.navCtrl.push(BankNamePage)
       }
       if (nameMenu == 'cafeType') {
-        // this.navCtrl.push(CafeTypePage)
+        this.navCtrl.push(CafeTypePage)
       }
     }
     else {

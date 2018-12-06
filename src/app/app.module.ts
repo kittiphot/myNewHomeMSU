@@ -70,6 +70,10 @@ import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 
+import { CafeTypePage } from '../pages/cafe-type/cafe-type/cafe-type'
+import { CafeTypeModalPage } from '../pages/cafe-type/modal/modal'
+import { CafeTypeSearchPage } from '../pages/cafe-type/search/search'
+
 import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { DormAdminSearchPage } from '../pages/dorm/admin/search/search'
@@ -143,6 +147,10 @@ let page =  [
   CafeAdminSearchPage,
   CafeUserPage,
   CafeUserSearchPage,
+
+  CafeTypePage,
+  CafeTypeModalPage,
+  CafeTypeSearchPage,
 
   DormAdminPage,
   DormAdminModalPage,
