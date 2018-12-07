@@ -21,7 +21,7 @@ export class CafeTypePage {
     private modalCtrl: ModalController,
     private toastCtrl: ToastController
   ) {
-    this.itemsRef = this.afDatabase.list('CafeType')
+    this.itemsRef = this.afDatabase.list('cafeType')
     this.items = []
   }
 

@@ -22,7 +22,7 @@ export class CafeTypeSearchPage {
     private viewCtrl: ViewController,
     private toastCtrl: ToastController
   ) {
-    this.itemsRef = this.afDatabase.list('CafeType')
+    this.itemsRef = this.afDatabase.list('cafeType')
     this.params = {
       CafeType: ''
     }

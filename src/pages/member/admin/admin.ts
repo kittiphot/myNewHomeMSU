@@ -67,11 +67,11 @@ export class AdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    // this.itemsRef.update(
-    //   key, {
-    //     status: '2'
-    //   }
-    // )
+    this.itemsRef.update(
+      key, {
+        status: '2'
+      }
+    )
     console.log(key)
     this.presentToast('เปลี่ยนสถานะสำเร็จ')
     loading.dismiss()

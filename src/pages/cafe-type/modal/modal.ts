@@ -25,7 +25,7 @@ export class CafeTypeModalPage {
     private toastCtrl: ToastController,
     private camera: Camera
   ) {
-    this.itemsRef = this.afDatabase.list('CafeType')
+    this.itemsRef = this.afDatabase.list('cafeType')
     this.key = navParams.get('key')
     this.params = {
       CafeType: ''
