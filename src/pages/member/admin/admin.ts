@@ -4,8 +4,6 @@ import { NavController, NavParams, ModalController, LoadingController } from 'io
 import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'
 
-import { AdminModalPage } from '../modal/modal'
-
 @Component({
   selector: 'page-admin',
   templateUrl: 'admin.html',
@@ -18,7 +16,6 @@ export class AdminPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private modalCtrl: ModalController,
     private loadingCtrl: LoadingController,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController
@@ -57,11 +54,6 @@ export class AdminPage {
     })
   }
 
-  create() {
-    let profileModal = this.modalCtrl.create(AdminModalPage)
-    profileModal.present()
-  }
-
   changeStatus(key) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -72,7 +64,6 @@ export class AdminPage {
         status: '2'
       }
     )
-    console.log(key)
     this.presentToast('เปลี่ยนสถานะสำเร็จ')
     loading.dismiss()
   }

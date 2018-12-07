@@ -2,6 +2,11 @@
 
   <ion-navbar>
     <ion-title>สมาชิก</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="create()" *ngIf="page == 0">
+        <ion-icon name="ios-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +14,7 @@
 
 <ion-content padding>
 
-  <ion-tabs>
+  <ion-tabs #myTabs (click)="changePage()">
     <ion-tab [root]="tab1Root" tabTitle="ผู้ดูแลระบบ"></ion-tab>
     <ion-tab [root]="tab2Root" tabTitle="ผู้ใช้งาน"></ion-tab>
   </ion-tabs>

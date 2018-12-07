@@ -1,8 +1,10 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, ViewController } from 'ionic-angular'
+import { NavController, NavParams } from 'ionic-angular'
 
 import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'
+
+import { MemberPage } from '../member'
 
 @Component({
   selector: 'page-modal',
@@ -24,7 +26,6 @@ export class AdminModalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    private viewCtrl: ViewController,
     private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
@@ -41,8 +42,8 @@ export class AdminModalPage {
     }
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(myform.value.email)) {
-      var items = []
       this.itemsRef.snapshotChanges().subscribe(data => {
+        var items = []
         data.forEach(values => {
           items.push({
             key: values.key,
@@ -72,7 +73,7 @@ export class AdminModalPage {
   }
 
   closeModal() {
-    this.viewCtrl.dismiss('close')
+    this.navCtrl.push(MemberPage)
   }
 
   presentToast(message) {
