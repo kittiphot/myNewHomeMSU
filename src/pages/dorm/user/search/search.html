@@ -18,24 +18,33 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.dormName" name="dormName" placeholder="ชื่อหอพัก ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อหอพัก</ion-label>
+            <ion-input type="text" [(ngModel)]="params.dormName" name="dormName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทหอพัก</ion-label>
-          <ion-select>
-            <ion-option value="f">หญิง</ion-option>
-            <ion-option value="m">ชาย</ion-option>
-            <ion-option value="a">รวม</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทหอพัก</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option value="ชาย">ชาย</ion-option>
+              <ion-option value="หญิง">หญิง</ion-option>
+              <ion-option value="รวม">รวม</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary">
-          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
-        </button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary">
+            <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+          </button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

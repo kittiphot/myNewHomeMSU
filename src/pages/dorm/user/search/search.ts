@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class DormUserSearchPage {
+export class DormAdminSearchPage {
 
   public params
   private items
@@ -23,7 +23,8 @@ export class DormUserSearchPage {
   ) {
     this.itemsRef = this.afDatabase.list('dorm')
     this.params = {
-      dormName: ''
+      dormName: '',
+      type: ''
     }
   }
 
@@ -53,6 +54,7 @@ export class DormUserSearchPage {
           termFan: data.payload.val()['termFan'],
           phoneNumber: data.payload.val()['phoneNumber'],
           contact: data.payload.val()['contact'],
+          type: data.payload.val()['type'],
           status: data.payload.val()['status']
         })
       })
@@ -68,6 +70,14 @@ export class DormUserSearchPage {
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
         return (item.dormName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+      })
+      this.add(values)
+    }
+    values = []
+    var val = myform.value.type
+    if (val && val.trim() != '') {
+      values = this.temp.filter(item => {
+        return (item.type.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }

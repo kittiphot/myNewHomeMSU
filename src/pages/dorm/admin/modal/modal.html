@@ -32,7 +32,7 @@
     <ion-row>
       <ion-col col-12 text-center>
         <!-- <img [src]="img" *ngIf="img" /> -->
-                 <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
+        <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
       </ion-col>
     </ion-row>
 
@@ -44,76 +44,128 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="ละติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ละติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lat" name="lat" required></ion-input>
+          </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ลองติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lng" name="lng" required></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.dormName" name="dormName" placeholder="ชื่อหอพัก ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อหอพัก</ion-label>
+            <ion-input type="text" [(ngModel)]="params.dormName" name="dormName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทหอพัก</ion-label>
-          <ion-select>
-            <ion-option value="f">หญิง</ion-option>
-            <ion-option value="m">ชาย</ion-option>
-            <ion-option value="a">รวม</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทหอพัก</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option value="ชาย">ชาย</ion-option>
+              <ion-option value="หญิง">หญิง</ion-option>
+              <ion-option value="รวม">รวม</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" placeholder="เวลาเปิด-ปิดหอพัก ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>เวลาเปิด-ปิดหอพัก</ion-label>
+            <ion-label style="color:#FFDAB9" floating>HH.mm - HH.mm น. หรือ HH ชม.</ion-label>
+            <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.dailyAirConditioner" name="dailyAirConditioner" placeholder="ราคาห้องแอร์รายวัน ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องแอร์รายวัน</ion-label>
+            <ion-input type="text" [(ngModel)]="params.dailyAirConditioner" name="dailyAirConditioner" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.monthlyAirConditioner" name="monthlyAirConditioner" placeholder="ราคาห้องแอร์รายเดือน ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องแอร์รายเดือน</ion-label>
+            <ion-input type="text" [(ngModel)]="params.monthlyAirConditioner" name="monthlyAirConditioner" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.termAirConditioner" name="termAirConditioner" placeholder="ราคาห้องแอร์รายเทอม ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องแอร์รายเทอม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.termAirConditioner" name="termAirConditioner" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.dailyFan" name="dailyFan" placeholder="ราคาห้องพัดลมรายวัน ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องพัดลมรายวัน</ion-label>
+            <ion-input type="text" [(ngModel)]="params.dailyFan" name="dailyFan" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.monthlyFan" name="monthlyFan" placeholder="ราคาห้องพัดลมรายเดือน ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องพัดลมรายเดือน</ion-label>
+            <ion-input type="text" [(ngModel)]="params.monthlyFan" name="monthlyFan" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.termFan" name="termFan" placeholder="ราคาห้องพัดลมรายเทอม ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาห้องพัดลมรายเทอม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.termFan" name="termFan" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.phoneNumber" name="phoneNumber" placeholder="เบอร์โทรศัพท์ ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>เบอร์โทรศัพท์</ion-label>
+            <ion-input type="text" [(ngModel)]="params.phoneNumber" name="phoneNumber" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.contact" name="contact" placeholder="ช่องทางติดต่อเพิ่มเติม ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ช่องทางติดต่อเพิ่มเติม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.contact" name="contact" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

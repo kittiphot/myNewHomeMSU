@@ -40,6 +40,7 @@ export class DormAdminModalPage {
       termFan: '',
       phoneNumber: '',
       contact: '',
+      type: '',
       img: ''
     }
   }
@@ -85,6 +86,7 @@ export class DormAdminModalPage {
           this.params.termFan = data.payload.val()['termFan']
           this.params.phoneNumber = data.payload.val()['phoneNumber']
           this.params.contact = data.payload.val()['contact']
+          this.params.type = data.payload.val()['type']
         }
       })
     })
@@ -109,7 +111,7 @@ export class DormAdminModalPage {
       dormName: myform.value.dormName,
       lat: myform.value.lat,
       lng: myform.value.lng,
-      openClosed: myform.value.openClosed,
+      openClosed: '',
       dailyAirConditioner: myform.value.dailyAirConditioner,
       monthlyAirConditioner: myform.value.monthlyAirConditioner,
       termAirConditioner: myform.value.termAirConditioner,
@@ -118,32 +120,47 @@ export class DormAdminModalPage {
       termFan: myform.value.termFan,
       phoneNumber: myform.value.phoneNumber,
       contact: myform.value.contact,
+      type: myform.value.type,
       status: '1'
     }
-    if (typeof this.key == 'undefined') {
-      this.itemsRef.push(params)
-      this.presentToast('บันทึกสำเร็จ')
+    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    var re = /^[0-9]{2} ชม.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    if (params.openClosed != '') {
+      if (typeof this.key == 'undefined') {
+        this.itemsRef.push(params)
+        this.presentToast('บันทึกสำเร็จ')
+      }
+      else {
+        this.itemsRef.update(
+          this.key, {
+            dormName: params.dormName,
+            lat: params.lat,
+            lng: params.lng,
+            openClosed: params.openClosed,
+            dailyAirConditioner: params.dailyAirConditioner,
+            monthlyAirConditioner: params.monthlyAirConditioner,
+            termAirConditioner: params.termAirConditioner,
+            dailyFan: params.dailyFan,
+            monthlyFan: params.monthlyFan,
+            termFan: params.termFan,
+            phoneNumber: params.phoneNumber,
+            type: params.type,
+            contact: params.contact
+          }
+        )
+        this.presentToast('แก้ไขสำเร็จ')
+      }
+      this.closeModal()
     }
     else {
-      this.itemsRef.update(
-        this.key, {
-          dormName: params.dormName,
-          lat: params.lat,
-          lng: params.lng,
-          openClosed: params.openClosed,
-          dailyAirConditioner: params.dailyAirConditioner,
-          monthlyAirConditioner: params.monthlyAirConditioner,
-          termAirConditioner: params.termAirConditioner,
-          dailyFan: params.dailyFan,
-          monthlyFan: params.monthlyFan,
-          termFan: params.termFan,
-          phoneNumber: params.phoneNumber,
-          contact: params.contact
-        }
-      )
-      this.presentToast('แก้ไขสำเร็จ')
+      this.presentToast('รูปแบบเวลาเปิด – ปิดอาคารไม่ถูกต้อง')
     }
-    this.closeModal()
   }
 
   closeModal() {
