@@ -12,6 +12,7 @@ export class CafeUserSearchPage {
   private items
   private itemsRef
   private temp
+  private types
 
   constructor(
     public navCtrl: NavController,
@@ -23,12 +24,14 @@ export class CafeUserSearchPage {
   ) {
     this.itemsRef = this.afDatabase.list('cafe')
     this.params = {
-      cafeName: ''
+      cafeName: '',
+      type: ''
     }
   }
 
   ionViewDidLoad() {
     this.getCafe()
+    this.getType()
   }
 
   getCafe() {
@@ -56,13 +59,39 @@ export class CafeUserSearchPage {
     this.temp = this.items
   }
 
+  getType() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.types = []
+    this.afDatabase.list('cafeType').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.types.push({
+          key: data.key,
+          CafeType: data.payload.val()['CafeType']
+        })
+      })
+    })
+    loading.dismiss()
+  }
+
   onSubmit(myform) {
+    console.log(myform.value)
     var values = []
     this.items = []
     var val = myform.value.cafeName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
         return (item.cafeName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+      })
+      this.add(values)
+    }
+    values = []
+    val = myform.value.initials
+    if (val && val.trim() != '') {
+      values = this.temp.filter(item => {
+        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }

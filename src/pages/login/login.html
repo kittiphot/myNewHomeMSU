@@ -14,7 +14,8 @@
       <ion-row>
         <ion-col col-12 text-center>
           <ion-item style="background-color: gray; color: yellow">
-            <ion-input type="text" [(ngModel)]="member.email" name="email" placeholder="Email ..." required></ion-input>
+            <ion-label style="color:#FFDAB9" floating>Email</ion-label>
+            <ion-input type="text" [(ngModel)]="member.email" name="email" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -22,7 +23,8 @@
       <ion-row>
         <ion-col col-12 text-center>
           <ion-item style="background-color: gray; color: yellow">
-            <ion-input type="text" [(ngModel)]="member.password" name="password" placeholder="รหัสผ่าน ..." required></ion-input>
+            <ion-label style="color:#FFDAB9" floating>รหัสผ่าน</ion-label>
+            <ion-input type="text" [(ngModel)]="member.password" name="password" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -43,6 +45,15 @@
         <button ion-button block style="background: #395697" (click)="loginwithfb()">
           <ion-icon name="logo-facebook"></ion-icon>
           &nbsp;Login With Facebook
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button block color="primary" *ngIf="recentLogin" (click)="loginRecentLogin()">
+          เข้าสู่ระบบล่าสุด <br>
+          {{ recentLogin }}
         </button>
       </ion-col>
     </ion-row>
