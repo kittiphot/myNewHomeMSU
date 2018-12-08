@@ -32,7 +32,7 @@
     <ion-row>
       <ion-col col-12 text-center>
         <!-- <img [src]="img" *ngIf="img" /> -->
-                 <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
+        <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
       </ion-col>
     </ion-row>
 
@@ -44,54 +44,81 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="ละติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ละติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lat" name="lat" required></ion-input>
+          </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ลองติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lng" name="lng" required></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName" placeholder="ชื่อร้านอาหาร/เครื่องดื่ม ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อร้านอาหาร/เครื่องดื่ม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
-          <ion-select>
-            <ion-option value="p">เครื่องดื่ม</ion-option>
-            <ion-option value="a">อาหารประเภทเส้น </ion-option>
-            <ion-option value="b">อาหารอีสาน</ion-option>
-            <ion-option value="v">อาหารอีสาน</ion-option>
-            <ion-option value="c">อาหารตามสั่ง</ion-option>
-            <ion-option value="m">ประเภทข้าวห่อ</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option *ngFor="let type of types" [value]="type.CafeType">{{ type.CafeType }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.price" name="price" placeholder="ราคาอาหาร/เครื่องดื่ม โดยประมาณ ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ราคาอาหาร/เครื่องดื่ม โดยประมาณ</ion-label>
+            <ion-input type="text" [(ngModel)]="params.price" name="price" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" placeholder="เวลาเปิด-ปิด ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>เวลาเปิด – ปิดอาคาร</ion-label>
+            <ion-label style="color:#FFDAB9" floating>HH.mm - HH.mm น. หรือ HH ชม.</ion-label>
+            <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.phoneNumber" name="phoneNumber" placeholder="เบอร์โทรศัพท์ ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>เบอร์โทรศัพท์</ion-label>
+            <ion-input type="text" [(ngModel)]="params.phoneNumber" name="phoneNumber" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.contact" name="contact" placeholder="ช่องทางติดต่อเพิ่มเติม ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ช่องทางติดต่อเพิ่มเติม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.contact" name="contact" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

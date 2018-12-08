@@ -18,24 +18,31 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName" placeholder="ชื่อร้านอาหาร/เครื่องดื่ม ..."></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อร้านอาหาร/เครื่องดื่ม</ion-label>
+            <ion-input type="text" [(ngModel)]="params.cafeName" name="cafeName"></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
-          <ion-select>
-            <ion-option value="p">ร้านส้มตำ</ion-option>
-            <ion-option value="a">อาหารตามสั่ง</ion-option>
-            <ion-option value="m">ร้านนม</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option *ngFor="let type of types" [value]="type.CafeType">{{ type.CafeType }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary">
-          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
-        </button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary">
+            <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+          </button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

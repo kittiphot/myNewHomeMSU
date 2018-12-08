@@ -77,7 +77,6 @@ export class CafeUserSearchPage {
   }
 
   onSubmit(myform) {
-    console.log(myform.value)
     var values = []
     this.items = []
     var val = myform.value.cafeName

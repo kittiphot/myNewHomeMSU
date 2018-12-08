@@ -16,6 +16,7 @@ export class CafeAdminModalPage {
   private itemsRef
   private params
   private key
+  private types
 
   constructor(
     public navCtrl: NavController,
@@ -35,12 +36,14 @@ export class CafeAdminModalPage {
       openClosed: '',
       phoneNumber: '',
       contact: '',
+      type: '',
       img: ''
     }
   }
 
   ionViewDidLoad() {
     this.loadMap()
+    this.getType()
   }
 
   loadMap() {
@@ -75,7 +78,20 @@ export class CafeAdminModalPage {
           this.params.openClosed = data.payload.val()['openClosed']
           this.params.phoneNumber = data.payload.val()['phoneNumber']
           this.params.contact = data.payload.val()['contact']
+          this.params.type = data.payload.val()['type']
         }
+      })
+    })
+  }
+
+  getType() {
+    this.types = []
+    this.afDatabase.list('cafeType').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.types.push({
+          key: data.key,
+          CafeType: data.payload.val()['CafeType']
+        })
       })
     })
   }
@@ -100,30 +116,52 @@ export class CafeAdminModalPage {
       lat: myform.value.lat,
       lng: myform.value.lng,
       price: myform.value.price,
-      openClosed: myform.value.openClosed,
+      openClosed: '',
       phoneNumber: myform.value.phoneNumber,
       contact: myform.value.contact,
+      type: myform.value.type,
+      typeKey: '',
       status: '1'
     }
-    if (typeof this.key == 'undefined') {
-      this.itemsRef.push(params)
-      this.presentToast('บันทึกสำเร็จ')
+    this.types.forEach(data => {
+      if (params.type == data.CafeType) {
+        params.typeKey = data.key
+      }
+    })
+    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    var re = /^[0-9]{2} ชม.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    if (params.openClosed != '') {
+      if (typeof this.key == 'undefined') {
+        this.itemsRef.push(params)
+        this.presentToast('บันทึกสำเร็จ')
+      }
+      else {
+        this.itemsRef.update(
+          this.key, {
+            typeKey: params.typeKey,
+            cafeName: params.cafeName,
+            lat: params.lat,
+            lng: params.lng,
+            price: params.price,
+            openClosed: params.openClosed,
+            phoneNumber: params.phoneNumber,
+            contact: params.contact,
+            type: params.type
+          }
+        )
+        this.presentToast('แก้ไขสำเร็จ')
+      }
+      this.closeModal()
     }
     else {
-      this.itemsRef.update(
-        this.key, {
-          cafeName: params.cafeName,
-          lat: params.lat,
-          lng: params.lng,
-          price: params.price,
-          openClosed: params.openClosed,
-          phoneNumber: params.phoneNumber,
-          contact: params.contact
-        }
-      )
-      this.presentToast('แก้ไขสำเร็จ')
+      this.presentToast('รูปแบบเวลาเปิด – ปิดอาคารไม่ถูกต้อง')
     }
-    this.closeModal()
   }
 
   closeModal() {

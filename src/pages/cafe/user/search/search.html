@@ -29,7 +29,7 @@
       <ion-row>
         <ion-col col-12 text-center>
           <ion-item style="background-color: gray; color: yellow">
-            <ion-label style="color:#FFDAB9">ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
+            <ion-label style="color:#FFDAB9" floating>ประเภทร้านอาหาร/เครื่องดื่ม</ion-label>
             <ion-select [(ngModel)]="params.type" name="type">
               <ion-option *ngFor="let type of types" [value]="type.CafeType">{{ type.CafeType }}</ion-option>
             </ion-select>
