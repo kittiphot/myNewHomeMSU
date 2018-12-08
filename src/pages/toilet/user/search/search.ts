@@ -12,6 +12,7 @@ export class ToiletUserSearchPage {
   private items
   private itemsRef
   private temp
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -19,7 +20,7 @@ export class ToiletUserSearchPage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
-    private toastCtrl: ToastController 
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('toilet')
     this.params = {
@@ -29,6 +30,7 @@ export class ToiletUserSearchPage {
 
   ionViewDidLoad() {
     this.getToilet()
+    this.getName()
   }
 
   getToilet() {
@@ -44,6 +46,7 @@ export class ToiletUserSearchPage {
           buildingName: data.payload.val()['buildingName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
+          type: data.payload.val()['type'],
           detail: data.payload.val()['detail'],
           status: data.payload.val()['status']
         })
@@ -53,13 +56,35 @@ export class ToiletUserSearchPage {
     this.temp = this.items
   }
 
+  getName() {
+    this.names = []
+    this.afDatabase.list('buildingName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          buildingName: data.payload.val()['buildingName'],
+          lat: data.payload.val()['lat'],
+          lng: data.payload.val()['lng']
+        })
+      })
+    })
+  }
+
   onSubmit(myform) {
-    var values = []
     this.items = []
+    var values = []
     var val = myform.value.buildingName
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.buildingName.toLowerCase() == val.toLowerCase())
+      })
+      this.add(values)
+    }
+    values = []
+    var val = myform.value.type
+    if (val && val.trim() != '') {
+      values = this.temp.filter(item => {
+        return (item.type.toLowerCase() == val.toLowerCase())
       })
       this.add(values)
     }
@@ -76,6 +101,7 @@ export class ToiletUserSearchPage {
         buildingName: value.buildingName,
         lat: value.lat,
         lng: value.lng,
+        type: value.type,
         detail: value.detail,
         status: value.status
       })

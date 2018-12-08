@@ -18,13 +18,36 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName" placeholder="ชื่ออาคาร ..."></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่ออาคาร</ion-label>
+            <ion-select [(ngModel)]="params.buildingName" name="buildingName">
+              <ion-option *ngFor="let name of names" [value]="name.buildingName">{{ name.buildingName }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary">
-          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
-        </button>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทห้องน้ำ</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option value="ชาย">ชาย</ion-option>
+              <ion-option value="หญิง">หญิง</ion-option>
+              <ion-option value="ชาย & หญิง">ชาย & หญิง</ion-option>
+              <ion-option value="คนพิการ">คนพิการ</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary">
+            <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+          </button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

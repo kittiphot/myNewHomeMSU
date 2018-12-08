@@ -85,8 +85,8 @@ export class BuildingAdminModalPage {
     let params = {
       nameKey: '',
       buildingName: myform.value.buildingName,
-      lat: myform.value.lat,
-      lng: myform.value.lng,
+      lat: '',
+      lng: '',
       initials: myform.value.initials,
       openClosed: '',
       status: '1'

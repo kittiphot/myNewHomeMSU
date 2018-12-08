@@ -1,21 +1,18 @@
-import { Component, ViewChild, ElementRef } from '@angular/core'
+import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
-
-declare var google
 
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
 export class ToiletAdminModalPage {
-
-  @ViewChild("map") mapElement: ElementRef
-  private map
+  
   private itemsRef
   private params
   private key
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -31,34 +28,15 @@ export class ToiletAdminModalPage {
       buildingName: '',
       lat: '',
       lng: '',
+      type: '',
       detail: '',
       img: ''
     }
   }
 
   ionViewDidLoad() {
-    this.loadMap()
-  }
-
-  loadMap() {
-    let latLng = new google.maps.LatLng(16.245616, 103.250208)
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.SATELLITE,
-      zoomControl: true,
-      mapTypeControl: true,
-      scaleControl: true,
-      streetViewControl: false,
-      rotateControl: true,
-      fullscreenControl: false
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
     this.getPlaceProfiles()
-    google.maps.event.addListener(this.map, "click", (event) => {
-      this.params.lat = event.latLng.lat()
-      this.params.lng = event.latLng.lng()
-    })
+    this.getName()
   }
 
   getPlaceProfiles() {
@@ -68,8 +46,23 @@ export class ToiletAdminModalPage {
           this.params.buildingName = data.payload.val()['buildingName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
+          this.params.type = data.payload.val()['type']
           this.params.detail = data.payload.val()['detail']
         }
+      })
+    })
+  }
+
+  getName() {
+    this.names = []
+    this.afDatabase.list('buildingName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          buildingName: data.payload.val()['buildingName'],
+          lat: data.payload.val()['lat'],
+          lng: data.payload.val()['lng']
+        })
       })
     })
   }
@@ -90,12 +83,21 @@ export class ToiletAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      nameKey: '',
       buildingName: myform.value.buildingName,
-      lat: myform.value.lat,
-      lng: myform.value.lng,
+      lat: '',
+      lng: '',
+      type: myform.value.type,
       detail: myform.value.detail,
       status: '1'
     }
+    this.names.forEach(data => {
+      if (params.buildingName == data.buildingName) {
+        params.nameKey = data.key
+        params.lat = data.lat
+        params.lng = data.lng
+      }
+    })
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
       this.presentToast('บันทึกสำเร็จ')
@@ -103,9 +105,11 @@ export class ToiletAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
+          nameKey: params.nameKey,
           buildingName: params.buildingName,
           lat: params.lat,
           lng: params.lng,
+          type: params.type,
           detail: params.detail
         }
       )
