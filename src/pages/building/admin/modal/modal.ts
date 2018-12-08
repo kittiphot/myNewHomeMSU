@@ -1,9 +1,7 @@
-import { Component, ViewChild, ElementRef } from '@angular/core'
+import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
-
-declare var google
 
 @Component({
   selector: 'page-modal',
@@ -11,11 +9,10 @@ declare var google
 })
 export class BuildingAdminModalPage {
 
-  @ViewChild("map") mapElement: ElementRef
-  private map
   private itemsRef
   private params
   private key
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -38,28 +35,8 @@ export class BuildingAdminModalPage {
   }
 
   ionViewDidLoad() {
-    this.loadMap()
-  }
-
-  loadMap() {
-    let latLng = new google.maps.LatLng(16.245616, 103.250208)
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.SATELLITE,
-      zoomControl: true,
-      mapTypeControl: true,
-      scaleControl: true,
-      streetViewControl: false,
-      rotateControl: true,
-      fullscreenControl: false
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
     this.getPlaceProfiles()
-    google.maps.event.addListener(this.map, "click", (event) => {
-      this.params.lat = event.latLng.lat()
-      this.params.lng = event.latLng.lng()
-    })
+    this.getName()
   }
 
   getPlaceProfiles() {
@@ -72,6 +49,20 @@ export class BuildingAdminModalPage {
           this.params.initials = data.payload.val()['initials']
           this.params.openClosed = data.payload.val()['openClosed']
         }
+      })
+    })
+  }
+
+  getName() {
+    this.names = []
+    this.afDatabase.list('buildingName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          buildingName: data.payload.val()['buildingName'],
+          lat: data.payload.val()['lat'],
+          lng: data.payload.val()['lng']
+        })
       })
     })
   }
@@ -92,30 +83,52 @@ export class BuildingAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      nameKey: '',
       buildingName: myform.value.buildingName,
       lat: myform.value.lat,
       lng: myform.value.lng,
       initials: myform.value.initials,
-      openClosed: myform.value.openClosed,
+      openClosed: '',
       status: '1'
     }
-    if (typeof this.key == 'undefined') {
-      this.itemsRef.push(params)
-      this.presentToast('บันทึกสำเร็จ')
+    this.names.forEach(data => {
+      if (params.buildingName == data.buildingName) {
+        params.nameKey = data.key
+        params.lat = data.lat
+        params.lng = data.lng
+      }
+    })
+    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    var re = /^[0-9]{2} ชม.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    if (params.openClosed != '') {
+      if (typeof this.key == 'undefined') {
+        this.itemsRef.push(params)
+        this.presentToast('บันทึกสำเร็จ')
+      }
+      else {
+        this.itemsRef.update(
+          this.key, {
+            nameKey: params.nameKey,
+            buildingName: params.buildingName,
+            lat: params.lat,
+            lng: params.lng,
+            initials: params.initials,
+            openClosed: params.openClosed
+          }
+        )
+        this.presentToast('แก้ไขสำเร็จ')
+      }
+      this.closeModal()
     }
     else {
-      this.itemsRef.update(
-        this.key, {
-          buildingName: params.buildingName,
-          lat: params.lat,
-          lng: params.lng,
-          initials: params.initials,
-          openClosed: params.openClosed
-        }
-      )
-      this.presentToast('แก้ไขสำเร็จ')
+      this.presentToast('รูปแบบเวลาเปิด – ปิดอาคารไม่ถูกต้อง')
     }
-    this.closeModal()
   }
 
   closeModal() {
