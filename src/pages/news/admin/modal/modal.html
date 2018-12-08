@@ -18,16 +18,27 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="items.newsName" name="newsName" placeholder="หัวข้อข่าวสาร ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>หัวข้อข่าวสาร</ion-label>
+            <ion-input type="text" [(ngModel)]="items.newsName" name="newsName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-textarea type="text" [(ngModel)]="items.detail " name="detail" placeholder="รายละเอียดของหัวข้อข่าวสาร ..."
-          required></ion-textarea>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>รายละเอียดของหัวข้อข่าวสาร</ion-label>
+            <ion-textarea type="text" rows="5" [(ngModel)]="items.detail " name="detail" required></ion-textarea>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>
