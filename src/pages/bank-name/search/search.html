@@ -18,13 +18,20 @@
     <ion-grid>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.bankName" name="bankName" placeholder="ชื่อสำนักงานธนาคาร ..."></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อสำนักงานธนาคาร</ion-label>
+            <ion-input type="text" [(ngModel)]="params.bankName" name="bankName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary">
-          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
-        </button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary">
+            <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+          </button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>
