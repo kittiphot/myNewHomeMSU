@@ -32,7 +32,7 @@
     <ion-row>
       <ion-col col-12 text-center>
         <!-- <img [src]="img" *ngIf="img" /> -->
-                 <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
+        <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
       </ion-col>
     </ion-row>
 
@@ -44,30 +44,45 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="ละติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ละติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lat" name="lat" required></ion-input>
+          </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ลองติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lng" name="lng" required></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.parkingName" name="parkingName" placeholder="ชื่อสถานทีจอดรถ ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อสถานทีจอดรถ</ion-label>
+            <ion-input type="text" [(ngModel)]="params.parkingName" name="parkingName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทสถานที่จอดรถ</ion-label>
-          <ion-select>
-            <ion-option value="c">รถยนต์</ion-option>
-            <ion-option value="m">จักรยานยนต์</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทสถานที่จอดรถ</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option value="รถยนต์">รถยนต์</ion-option>
+              <ion-option value="จักรยานยนต์">จักรยานยนต์</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

@@ -31,6 +31,7 @@ export class ParkingAdminModalPage {
       parkingName: '',
       lat: '',
       lng: '',
+      type: '',
       img: ''
     }
   }
@@ -67,6 +68,7 @@ export class ParkingAdminModalPage {
           this.params.parkingName = data.payload.val()['parkingName']
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
+          this.params.type = data.payload.val()['type']
         }
       })
     })
@@ -91,6 +93,7 @@ export class ParkingAdminModalPage {
       parkingName: myform.value.parkingName,
       lat: myform.value.lat,
       lng: myform.value.lng,
+      type: myform.value.type,
       status: '1'
     }
     if (typeof this.key == 'undefined') {
@@ -102,7 +105,8 @@ export class ParkingAdminModalPage {
         this.key, {
           parkingName: params.parkingName,
           lat: params.lat,
-          lng: params.lng
+          lng: params.lng,
+          type: params.type
         }
       )
       this.presentToast('แก้ไขสำเร็จ')

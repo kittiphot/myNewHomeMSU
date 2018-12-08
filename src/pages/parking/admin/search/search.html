@@ -18,19 +18,23 @@
     <ion-grid>
 
       <ion-row>
-        <ion-item style="background-color: gray; color: yellow">
-          <ion-label style="color:#FFDAB9">ประเภทสถานที่จอดรถ</ion-label>
-          <ion-select>
-            <ion-option value="c">รถยนต์</ion-option>
-            <ion-option value="m">จักรยานยนต์</ion-option>
-          </ion-select>
-        </ion-item>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ประเภทสถานที่จอดรถ</ion-label>
+            <ion-select [(ngModel)]="params.type" name="type">
+              <ion-option value="รถยนต์">รถยนต์</ion-option>
+              <ion-option value="จักรยานยนต์">จักรยานยนต์</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary">
-          <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
-        </button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary">
+            <ion-icon name="ios-search"></ion-icon>&nbsp;ค้นหา
+          </button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, ModalController, LoadingController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController } from 'ionic-angular'
 
 import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'

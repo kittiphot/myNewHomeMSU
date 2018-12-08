@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core'
 import { NavController, NavParams, Tabs } from 'ionic-angular'
 
 import { AdminPage } from '../member/admin/admin'
-import { UserPage } from '../member/user/user'
 import { AdminModalPage } from '../member/modal/modal'
+import { UserPage } from '../member/user/user'
+import { HomePage } from '../home/home'
 
 @Component({
   selector: 'page-member',
@@ -29,6 +30,10 @@ export class MemberPage {
 
   create() {
     this.navCtrl.push(AdminModalPage)
+  }
+
+  closePage() {
+    this.navCtrl.push(HomePage)
   }
 
 }

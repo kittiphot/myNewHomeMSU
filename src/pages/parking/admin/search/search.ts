@@ -23,7 +23,7 @@ export class ParkingAdminSearchPage {
   ) {
     this.itemsRef = this.afDatabase.list('parking')
     this.params = {
-      // buildingName: ''
+      type: ''
     }
   }
 
@@ -44,6 +44,7 @@ export class ParkingAdminSearchPage {
           parkingName: data.payload.val()['parkingName'],
           lat: data.payload.val()['lat'],
           lng: data.payload.val()['lng'],
+          type: data.payload.val()['type'],
           status: data.payload.val()['status']
         })
       })
@@ -53,18 +54,18 @@ export class ParkingAdminSearchPage {
   }
 
   onSubmit(myform) {
-    // var values = []
-    // this.items = []
-    // var val = myform.value.buildingName
-    // if (val && val.trim() != '') {
-    //   values = this.temp.filter(item => {
-    //     return (item.buildingName.toLowerCase().indexOf(val.toLowerCase()) > -1)
-    //   })
-    //   this.add(values)
-    // }
-    // if (this.items == '') {
-    //   this.items = this.temp
-    // }
+    var values = []
+    this.items = []
+    var val = myform.value.type
+    if (val && val.trim() != '') {
+      values = this.temp.filter(item => {
+        return (item.type.toLowerCase().indexOf(val.toLowerCase()) > -1)
+      })
+      this.add(values)
+    }
+    if (this.items == '') {
+      this.items = this.temp
+    }
     this.closeModal()
   }
 
@@ -75,6 +76,7 @@ export class ParkingAdminSearchPage {
         parkingName: value.parkingName,
         lat: value.lat,
         lng: value.lng,
+        type: value.type,
         status: value.status
       })
     })
