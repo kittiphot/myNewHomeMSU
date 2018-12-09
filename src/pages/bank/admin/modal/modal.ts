@@ -16,6 +16,7 @@ export class BankAdminModalPage {
   private itemsRef
   private params
   private key
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -38,6 +39,7 @@ export class BankAdminModalPage {
 
   ionViewDidLoad() {
     this.loadMap()
+    this.getName()
   }
 
   loadMap() {
@@ -74,6 +76,18 @@ export class BankAdminModalPage {
     })
   }
 
+  getName() {
+    this.names = []
+    this.afDatabase.list('bankName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          bankName: data.payload.val()['bankName']
+        })
+      })
+    })
+  }
+
   getPhoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -90,28 +104,48 @@ export class BankAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      nameKey: '',
       bankName: myform.value.bankName,
       lat: myform.value.lat,
       lng: myform.value.lng,
-      openClosed: myform.value.openClosed,
+      openClosed: '',
       status: '1'
     }
-    if (typeof this.key == 'undefined') {
-      this.itemsRef.push(params)
-      this.presentToast('บันทึกสำเร็จ')
+    this.names.forEach(data => {
+      if (params.bankName == data.bankName) {
+        params.nameKey = data.key
+      }
+    })
+    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    var re = /^[0-9]{2} ชม.$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    if (params.openClosed != '') {
+      if (typeof this.key == 'undefined') {
+        this.itemsRef.push(params)
+        this.presentToast('บันทึกสำเร็จ')
+      }
+      else {
+        this.itemsRef.update(
+          this.key, {
+            nameKey: params.nameKey,
+            bankName: params.bankName,
+            lat: params.lat,
+            lng: params.lng,
+            openClosed: params.openClosed
+          }
+        )
+        this.presentToast('แก้ไขสำเร็จ')
+      }
+      this.closeModal()
     }
     else {
-      this.itemsRef.update(
-        this.key, {
-          bankName: params.bankName,
-          lat: params.lat,
-          lng: params.lng,
-          openClosed: params.openClosed
-        }
-      )
-      this.presentToast('แก้ไขสำเร็จ')
+      this.presentToast('รูปแบบเวลาเปิด – ปิดอาคารไม่ถูกต้อง')
     }
-    this.closeModal()
   }
 
   closeModal() {

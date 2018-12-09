@@ -32,38 +32,57 @@
     <ion-row>
       <ion-col col-12 text-center>
         <!-- <img [src]="img" *ngIf="img" /> -->
-                 <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
+        <img [src]="this.params.img" *ngIf="this.params.img" style="width: 200px; height: 200px">
       </ion-col>
     </ion-row>
 
   </ion-grid>
 
   <div #map id="map"></div>
-  
+
   <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
     <ion-grid>
 
       <ion-row>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="ละติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ละติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lat" name="lat" required></ion-input>
+          </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ลองติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lng" name="lng" required></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.bankName" name="bankName" placeholder="ชื่อสานักงานธนาคาร ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อสานักงานธนาคาร</ion-label>
+            <ion-select [(ngModel)]="params.bankName" name="bankName">
+              <ion-option *ngFor="let name of names" [value]="name.bankName">{{ name.bankName }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" placeholder="เวลาเปิด – ปิดสานักงานธนาคาร ..."
-          required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>เวลาเปิด – ปิดสานักงานธนาคาร</ion-label>
+            <ion-label style="color:#FFDAB9" floating>HH.mm - HH.mm น. หรือ HH ชม.</ion-label>
+            <ion-input type="text" [(ngModel)]="params.openClosed" name="openClosed" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

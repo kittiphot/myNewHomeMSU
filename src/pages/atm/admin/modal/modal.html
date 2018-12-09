@@ -44,24 +44,44 @@
     <ion-grid>
 
       <ion-row>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lat" name="lat" placeholder="ละติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ละติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lat" name="lat" required></ion-input>
+          </ion-item>
         </ion-col>
-        <ion-col col-6>
-          <ion-input type="text" [(ngModel)]="params.lng" name="lng" placeholder="ลองติจูด ..." required></ion-input>
+        <ion-col col-6 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ลองติจูด</ion-label>
+            <ion-input type="text" [(ngModel)]="params.lng" name="lng" required></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.placeName" name="placeName" placeholder="ชื่อสถานที่ ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อสถานที่</ion-label>
+            <ion-input type="text" [(ngModel)]="params.placeName" name="placeName" required></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-input type="text" [(ngModel)]="params.ATMName" name="ATMName" placeholder="ชื่อตู้เอทีเอ็ม ..." required></ion-input>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่อธนาคาร</ion-label>
+            <ion-select [(ngModel)]="params.ATMName" name="ATMName">
+              <ion-option *ngFor="let name of names" [value]="name.bankName">{{ name.bankName }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
       </ion-row>
 
       <ion-row>
-        <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        <ion-col col-12 text-center>
+          <button ion-button block type="submit" color="secondary" [disabled]="!myform.valid">บันทึก</button>
+        </ion-col>
       </ion-row>
 
     </ion-grid>

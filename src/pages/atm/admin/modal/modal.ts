@@ -16,6 +16,7 @@ export class AtmAdminModalPage {
   private itemsRef
   private params
   private key
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -38,6 +39,7 @@ export class AtmAdminModalPage {
 
   ionViewDidLoad() {
     this.loadMap()
+    this.getName()
   }
 
   loadMap() {
@@ -70,6 +72,18 @@ export class AtmAdminModalPage {
           this.params.lat = data.payload.val()['lat']
           this.params.lng = data.payload.val()['lng']
         }
+      })
+    })
+  }
+
+  getName() {
+    this.names = []
+    this.afDatabase.list('bankName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          bankName: data.payload.val()['bankName']
+        })
       })
     })
   }
