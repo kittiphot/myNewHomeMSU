@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
-import { NavController, NavParams, ModalController } from 'ionic-angular'
+import { NavController, NavParams, ModalController, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { AtmUserPage } from '../atm/user/atm/atm'
@@ -18,6 +18,7 @@ import { ParkingUserPage } from '../parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../parking/user/search/search'
 import { ToiletUserPage } from '../toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../toilet/user/search/search'
+import { HomePage } from '../home/home'
 
 declare var google
 
@@ -37,7 +38,8 @@ export class MapPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private viewCtrl: ViewController
   ) {
     this.nameMenu = navParams.get('nameMenu')
     this.itemsRef = this.afDatabase.list(this.nameMenu)
@@ -46,6 +48,10 @@ export class MapPage {
 
   ionViewDidLoad() {
     this.loadMap()
+  }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false)
   }
 
   loadMap() {
@@ -435,6 +441,10 @@ export class MapPage {
       this.markers[i].setMap(null)
     }
     this.markers = []
+  }
+
+  closeModal() {
+    this.navCtrl.push(HomePage)
   }
 
 }

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { Storage } from '@ionic/storage'
+
+import { LoginPage } from '../../../login/login'
+import { MapPage } from '../../../map/map'
 
 @Component({
   selector: 'page-building',
@@ -8,7 +12,6 @@ import { AngularFireDatabase } from 'angularfire2/database'
 })
 export class BuildingUserPage {
 
-  public params
   public star1
   public star2
   public star3
@@ -17,14 +20,22 @@ export class BuildingUserPage {
   private items
   private itemsRef
   private key
+  private score = 0
+  private email
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private storage: Storage
   ) {
+    this.itemsRef = this.afDatabase.list('member')
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
     this.itemsRef = this.afDatabase.list('building')
     this.items = {
       buildingName: '',
@@ -34,19 +45,23 @@ export class BuildingUserPage {
       openClosed: ''
     }
     this.key = navParams.get('key')
-    this.params = {
-      buildingName: 'คณะวิทยาการสารสนเทศ',
-      lat: '16.24658423965131',
-      lng: '103.25198898678582',
-      initials: '',
-      openClosed: ''
-    }
+    this.storage.get('email').then((val) => {
+      this.email = ''
+      if (val != '') {
+        this.email = val
+        loading.dismiss()
+      }
+    })
     this.star1 = "dark"
     this.star2 = "dark"
-    this.star3 = "dark" 
+    this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.getBuilding()
+  }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false)
   }
 
   getBuilding() {
@@ -79,6 +94,7 @@ export class BuildingUserPage {
       this.star3 = "dark"
       this.star4 = "dark"
       this.star5 = "dark"
+      this.score = 1
     }
     if (point == 2) {
       this.star1 = "light"
@@ -86,6 +102,7 @@ export class BuildingUserPage {
       this.star3 = "dark"
       this.star4 = "dark"
       this.star5 = "dark"
+      this.score = 2
     }
     if (point == 3) {
       this.star1 = "light"
@@ -93,6 +110,7 @@ export class BuildingUserPage {
       this.star3 = "light"
       this.star4 = "dark"
       this.star5 = "dark"
+      this.score = 3
     }
     if (point == 4) {
       this.star1 = "light"
@@ -100,6 +118,7 @@ export class BuildingUserPage {
       this.star3 = "light"
       this.star4 = "light"
       this.star5 = "dark"
+      this.score = 4
     }
     if (point == 5) {
       this.star1 = "light"
@@ -107,11 +126,33 @@ export class BuildingUserPage {
       this.star3 = "light"
       this.star4 = "light"
       this.star5 = "light"
+      this.score = 5
     }
     loading.dismiss()
   }
 
+  saveScore() {
+    if (this.email == null) {
+      this.navCtrl.push(LoginPage, {
+        key: this.key,
+        page: BuildingUserPage
+      })
+    }
+    let Ref = this.afDatabase.list('score/building')
+    let params = {
+      eamil: this.email,
+      score: this.score
+    }
+    console.log(params)
+    // Ref.push(params)
+  }
+
   closeModal() {
+    if (this.navParams.get('before') == 'LoginPage') {
+      this.navCtrl.push(MapPage, {
+        nameMenu: 'building'
+      })
+    }
     this.viewCtrl.dismiss('close')
   }
 

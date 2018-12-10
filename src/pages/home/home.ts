@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController } from 'ionic-angular'
+import { NavController, LoadingController, ViewController } from 'ionic-angular'
 
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
@@ -42,7 +42,8 @@ export class HomePage {
     private storage: Storage,
     private afauth: AngularFireAuth,
     private loadingCtrl: LoadingController,
-    private afDatabase: AngularFireDatabase
+    private afDatabase: AngularFireDatabase,
+    private viewCtrl: ViewController
   ) {
     this.itemsRef = this.afDatabase.list('member')
     let loading = this.loadingCtrl.create({
@@ -86,6 +87,10 @@ export class HomePage {
         })
       })
     })
+  }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false)
   }
 
   goToLoginPage() {

@@ -24,6 +24,10 @@ export class LoginPage {
   }
   private itemsRef
   private recentLogin
+  private beforePage = {
+    key: '',
+    page: ''
+  }
 
   constructor(
     public navCtrl: NavController,
@@ -35,8 +39,15 @@ export class LoginPage {
     private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
+    this.beforePage.key = navParams.get('key')
+    this.beforePage.page = navParams.get('page')
     this.storage.get('member').then((val) => {
       this.recentLogin = val
+    })
+    this.storage.get('loggedIn').then((val) => {
+      if (val != null) {
+        this.navCtrl.push(HomePage)
+      }
     })
   }
 
@@ -68,7 +79,7 @@ export class LoginPage {
           this.storage.set('loggedIn', true)
           this.storage.set('email', values['0'].email)
           this.storage.set('member', values['0'].email)
-          this.navCtrl.push(HomePage)
+          this.checkBeforePage()
         }
         else {
           this.presentToast('รหัสผ่านไม่ถูกต้อง')
@@ -116,7 +127,7 @@ export class LoginPage {
       this.storage.set('loggedIn', true)
       this.storage.set('email', res.user.email)
       this.storage.set('member', res.user.email)
-      this.navCtrl.push(HomePage)
+      this.checkBeforePage()
       loading.dismiss()
     }, (err) => {
       console.log(err)
@@ -150,10 +161,22 @@ export class LoginPage {
       if (values.length != 0) {
         this.storage.set('loggedIn', true)
         this.storage.set('email', values['0'].email)
-        this.navCtrl.push(HomePage)
+        this.checkBeforePage()
       }
     })
     loading.dismiss()
+  }
+
+  checkBeforePage() {
+    if (this.beforePage.page != undefined) {
+      this.navCtrl.push(this.beforePage.page, {
+        key: this.beforePage.key,
+        before: 'LoginPage'
+      })
+    }
+    else {
+      this.navCtrl.push(HomePage)
+    }
   }
 
   presentToast(message) {
