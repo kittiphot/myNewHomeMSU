@@ -67,6 +67,7 @@ export class LoginPage {
         if (values['0'].password == myform.value.password) {
           this.storage.set('loggedIn', true)
           this.storage.set('email', values['0'].email)
+          this.storage.set('member', values['0'].email)
           this.navCtrl.push(HomePage)
         }
         else {

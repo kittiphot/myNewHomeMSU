@@ -2,12 +2,10 @@
 
   <ion-navbar>
     <ion-buttons left>
-      <a target='_blank' jstcache='6' href="geo:{{ items.lat }},{{ items.lng }}?q={{ items.buildingName }}">
-        <button ion-button icon-only>
-          <ion-icon name="ios-navigate">
-          </ion-icon>
-        </button>
-      </a>
+      <button ion-button icon-only (click)="navigate()">
+        <ion-icon name="ios-navigate">
+        </ion-icon>
+      </button>
     </ion-buttons>
     <ion-title text-center>
       {{ items.buildingName }}

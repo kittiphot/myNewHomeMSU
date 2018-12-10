@@ -43,7 +43,7 @@ export class BuildingUserPage {
     }
     this.star1 = "dark"
     this.star2 = "dark"
-    this.star3 = "dark"
+    this.star3 = "dark" 
     this.star4 = "dark"
     this.star5 = "dark"
     this.getBuilding()
@@ -113,6 +113,10 @@ export class BuildingUserPage {
 
   closeModal() {
     this.viewCtrl.dismiss('close')
+  }
+
+  navigate() {
+    window.open("geo:" + this.items.lat + "," + this.items.lng + "?q=" + this.items.buildingName)
   }
 
 }

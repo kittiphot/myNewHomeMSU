@@ -106,6 +106,10 @@ export class BuildingAdminModalPage {
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }
+    var re = /^-$/;
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
     if (params.openClosed != '') {
       if (typeof this.key == 'undefined') {
         this.itemsRef.push(params)
