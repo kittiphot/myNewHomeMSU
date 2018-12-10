@@ -22,6 +22,8 @@ export class BuildingUserPage {
   private key
   private score = 0
   private email
+  private scores
+  private average = 0
 
   constructor(
     public navCtrl: NavController,
@@ -58,6 +60,7 @@ export class BuildingUserPage {
     this.star4 = "dark"
     this.star5 = "dark"
     this.getBuilding()
+    this.getScores()
   }
 
   ionViewWillEnter() {
@@ -80,6 +83,29 @@ export class BuildingUserPage {
         }
       })
       loading.dismiss()
+    })
+  }
+
+  getScores() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.scores = []
+    let sum = 0
+    let count = 0
+    this.afDatabase.list('score/building/' + this.key).snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.scores.push({
+          key: data.key,
+          eamil: data.payload.val()['eamil'],
+          score: data.payload.val()['score']
+        })
+        count++
+        sum = sum + data.payload.val()['score']
+      })
+      loading.dismiss()
+      this.average = (sum / count).toFixed(2)
     })
   }
 
@@ -138,13 +164,37 @@ export class BuildingUserPage {
         page: BuildingUserPage
       })
     }
-    let Ref = this.afDatabase.list('score/building')
-    let params = {
-      eamil: this.email,
-      score: this.score
+    else {
+      let Ref = this.afDatabase.list('score/building/' + this.key)
+      let params = {
+        eamil: this.email,
+        score: this.score
+      }
+      let base = {
+        eamil: '',
+        score: ''
+      }
+      let key = ''
+      let check = false
+      this.scores.forEach(value => {
+        if (params.eamil == value.eamil) {
+          key = value.key
+          base.eamil = value.eamil
+          base.score = value.score
+          check = true
+        }
+      })
+      if (check == false) {
+        Ref.push(params)
+      }
+      else {
+        Ref.update(
+          key, {
+            score: params.score
+          }
+        )
+      }
     }
-    console.log(params)
-    // Ref.push(params)
   }
 
   closeModal() {
