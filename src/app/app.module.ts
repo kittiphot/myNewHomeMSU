@@ -11,6 +11,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { Camera } from '@ionic-native/camera'
 import { ToastController } from 'ionic-angular'
+import { Facebook } from '@ionic-native/facebook'
 
 var config = {
   apiKey: "AIzaSyAqR_SZXnH5YgR1ZuMBMFMhzR7hR_K8Uv4",
@@ -234,6 +235,7 @@ let page =  [
     SplashScreen,
     Camera,
     ToastController,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

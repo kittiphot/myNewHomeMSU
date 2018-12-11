@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ToastController, ViewController } from 'ionic-angular'
 
+import { Facebook } from '@ionic-native/facebook'
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
@@ -36,7 +37,8 @@ export class LoginPage {
     private afauth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
     private toastCtrl: ToastController,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private fb: Facebook
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.beforePage.key = navParams.get('key')
