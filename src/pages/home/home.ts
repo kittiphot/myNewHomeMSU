@@ -4,6 +4,7 @@ import { NavController, LoadingController, ViewController } from 'ionic-angular'
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { Facebook } from '@ionic-native/facebook'
 
 import { LoginPage } from '../login/login'
 import { NewsUserPage } from '../news/user/news/news'
@@ -43,7 +44,8 @@ export class HomePage {
     private afauth: AngularFireAuth,
     private loadingCtrl: LoadingController,
     private afDatabase: AngularFireDatabase,
-    private viewCtrl: ViewController
+    private viewCtrl: ViewController,
+    private fb: Facebook
   ) {
     this.itemsRef = this.afDatabase.list('member')
     let loading = this.loadingCtrl.create({
@@ -96,15 +98,18 @@ export class HomePage {
     this.navCtrl.push(LoginPage)
   }
 
-  logoutwithfb() {
-    this.afauth.auth.signOut().then(res => {
-      this.storage.set('loggedIn', null)
-      this.storage.set('email', null)
-      this.facebook.loggedIn = false
-      this.facebook.img = ''
-      this.facebook.status = ''
-      this.navCtrl.setRoot(this.navCtrl.getActive().component)
-    })
+  logout() {
+    this.fb.logout()
+      .then(res => {
+        
+      })
+      .catch(e => console.log('Error logout from Facebook', e))
+    this.storage.set('loggedIn', null)
+    this.storage.set('email', null)
+    this.facebook.loggedIn = false
+    this.facebook.img = ''
+    this.facebook.status = ''
+    this.navCtrl.setRoot(this.navCtrl.getActive().component)
   }
 
   goToPage(nameMenu) {
