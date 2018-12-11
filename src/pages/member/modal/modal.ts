@@ -14,7 +14,6 @@ export class AdminModalPage {
 
   private itemsRef
   private member = {
-    UID: '',
     name: '',
     email: '',
     password: '',
@@ -33,7 +32,6 @@ export class AdminModalPage {
 
   onSubmit(myform) {
     let params = {
-      UID: '',
       name: '',
       email: myform.value.email,
       password: myform.value.password,
@@ -47,7 +45,6 @@ export class AdminModalPage {
         data.forEach(values => {
           items.push({
             key: values.key,
-            UID: values.payload.val()['UID'],
             email: values.payload.val()['email'],
             password: values.payload.val()['password'],
             status: values.payload.val()['status']

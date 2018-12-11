@@ -65,7 +65,6 @@ export class HomePage {
           data.forEach(values => {
             items.push({
               key: values.key,
-              UID: values.payload.val()['UID'],
               email: values.payload.val()['email'],
               password: values.payload.val()['password'],
               img: values.payload.val()['img'],
@@ -100,7 +99,6 @@ export class HomePage {
   logoutwithfb() {
     this.afauth.auth.signOut().then(res => {
       this.storage.set('loggedIn', null)
-      this.storage.set('UID', null)
       this.storage.set('email', null)
       this.facebook.loggedIn = false
       this.facebook.img = ''

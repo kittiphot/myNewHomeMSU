@@ -9,3 +9,7 @@ Firebase
 Camera
   ionic cordova plugin add cordova-plugin-camera
   npm install --save @ionic-native/camera
+
+Facebook
+  ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="1803200809805858" --variable APP_NAME="MyNewHomeMSU"
+  npm install --save @ionic-native/facebook

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ToastController, ViewController } from 'ionic-angular'
 
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
@@ -15,7 +15,6 @@ import { HomePage } from '../home/home'
 export class LoginPage {
 
   private member = {
-    UID: '',
     name: '',
     email: '',
     password: '',
@@ -36,7 +35,8 @@ export class LoginPage {
     private loadingCtrl: LoadingController,
     private afauth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private viewCtrl: ViewController
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.beforePage.key = navParams.get('key')
@@ -51,6 +51,10 @@ export class LoginPage {
     })
   }
 
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false)
+  }
+
   onSubmit(myform) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
@@ -61,7 +65,6 @@ export class LoginPage {
       data.forEach(values => {
         items.push({
           key: values.key,
-          UID: values.payload.val()['UID'],
           email: values.payload.val()['email'],
           password: values.payload.val()['password'],
           status: values.payload.val()['status']
@@ -103,18 +106,16 @@ export class LoginPage {
         data.forEach(values => {
           items.push({
             key: values.key,
-            UID: values.payload.val()['UID'],
-            status: values.payload.val()['status']
+            email: values.payload.val()['email']
           })
         })
         var values = []
-        var val = res.user.uid
+        var val = res.user.email
         if (val && val.trim() != '') {
           values = items.filter(item => {
-            return (item.UID.toLowerCase().indexOf(val.toLowerCase()) > -1)
+            return (item.email.toLowerCase().indexOf(val.toLowerCase()) > -1)
           })
           if (values.length == 0) {
-            this.member.UID = res.user.uid
             this.member.name = res.user.displayName
             this.member.email = res.user.email
             this.member.password = ' '
@@ -145,7 +146,6 @@ export class LoginPage {
       data.forEach(values => {
         items.push({
           key: values.key,
-          UID: values.payload.val()['UID'],
           email: values.payload.val()['email'],
           password: values.payload.val()['password'],
           status: values.payload.val()['status']
@@ -177,6 +177,10 @@ export class LoginPage {
     else {
       this.navCtrl.push(HomePage)
     }
+  }
+
+  closeModal() {
+    this.navCtrl.push(HomePage)
   }
 
   presentToast(message) {
