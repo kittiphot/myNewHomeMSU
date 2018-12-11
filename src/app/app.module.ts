@@ -112,6 +112,8 @@ import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
 import { ToiletAdminSearchPage } from '../pages/toilet/admin/search/search'
 import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
+import { ToiletCommentPage } from '../pages/toilet/user/comment/comment/comment'
+import { ToiletCommentModalPage } from '../pages/toilet/user/comment/modal/modal'
  
 let page =  [
   HomePage,
@@ -204,6 +206,8 @@ let page =  [
   ToiletAdminSearchPage,
   ToiletUserPage,
   ToiletUserSearchPage,
+  ToiletCommentPage,
+  ToiletCommentModalPage
 ]
 
 @NgModule({
