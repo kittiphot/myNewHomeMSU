@@ -42,14 +42,14 @@ export class NewsAdminPage {
           this.items.push({
             key: data.key,
             newsName: data.payload.val()['newsName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             newsName: data.payload.val()['newsName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -84,7 +84,7 @@ export class NewsAdminPage {
             key: value.key,
             newsName: value.newsName,
             detail: value.detail,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -92,7 +92,7 @@ export class NewsAdminPage {
             key: value.key,
             newsName: value.newsName,
             detail: value.detail,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -105,7 +105,7 @@ export class NewsAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

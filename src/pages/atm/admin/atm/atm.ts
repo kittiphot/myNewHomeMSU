@@ -41,14 +41,14 @@ export class AtmAdminPage {
           this.items.push({
             key: data.key,
             placeName: data.payload.val()['placeName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             placeName: data.payload.val()['placeName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -85,7 +85,7 @@ export class AtmAdminPage {
             lat: value.lat,
             lng: value.lng,
             ATMName: value.ATMName,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -95,7 +95,7 @@ export class AtmAdminPage {
             lat: value.lat,
             lng: value.lng,
             ATMName: value.ATMName,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -108,7 +108,7 @@ export class AtmAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

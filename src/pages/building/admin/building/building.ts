@@ -41,14 +41,14 @@ export class BuildingAdminPage {
           this.items.push({
             key: data.key,
             buildingName: data.payload.val()['buildingName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             buildingName: data.payload.val()['buildingName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -86,7 +86,7 @@ export class BuildingAdminPage {
             lng: value.lng,
             initials: value.initials,
             openClosed: value.openClosed,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -97,7 +97,7 @@ export class BuildingAdminPage {
             lng: value.lng,
             initials: value.initials,
             openClosed: value.openClosed,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -110,7 +110,7 @@ export class BuildingAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

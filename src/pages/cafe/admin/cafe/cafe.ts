@@ -41,14 +41,14 @@ export class CafeAdminPage {
           this.items.push({
             key: data.key,
             cafeName: data.payload.val()['cafeName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             cafeName: data.payload.val()['cafeName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -88,7 +88,7 @@ export class CafeAdminPage {
             openClosed: value.openClosed,
             phoneNumber: value.phoneNumber,
             contact: value.contact,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -101,7 +101,7 @@ export class CafeAdminPage {
             openClosed: value.openClosed,
             phoneNumber: value.phoneNumber,
             contact: value.contact,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -114,7 +114,7 @@ export class CafeAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

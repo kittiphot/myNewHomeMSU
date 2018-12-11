@@ -41,14 +41,14 @@ export class ToiletAdminPage {
           this.items.push({
             key: data.key,
             buildingName: data.payload.val()['buildingName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             buildingName: data.payload.val()['buildingName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -85,7 +85,7 @@ export class ToiletAdminPage {
             lat: value.lat,
             lng: value.lng,
             detail: value.detail,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -95,7 +95,7 @@ export class ToiletAdminPage {
             lat: value.lat,
             lng: value.lng,
             detail: value.detail,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -108,7 +108,7 @@ export class ToiletAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

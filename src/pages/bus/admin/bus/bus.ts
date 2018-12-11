@@ -41,14 +41,14 @@ export class BusAdminPage {
           this.items.push({
             key: data.key,
             nameBus: data.payload.val()['nameBus'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             nameBus: data.payload.val()['nameBus'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -85,7 +85,7 @@ export class BusAdminPage {
             lat: value.lat,
             lng: value.lng,
             detail: value.detail,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -95,7 +95,7 @@ export class BusAdminPage {
             lat: value.lat,
             lng: value.lng,
             detail: value.detail,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -108,7 +108,7 @@ export class BusAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

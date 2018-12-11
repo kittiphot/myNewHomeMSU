@@ -77,7 +77,7 @@
             <h2>{{ comment.eamil }}</h2>
             <h3>&nbsp;&nbsp;{{ comment.comment }}</h3>
             <button ion-button clear item-end style="color: #f0ad4e" (click)="update(comment.key)" *ngIf="comment.eamil==email">แก้ไข</button>
-            <button ion-button clear item-end style="color: #d9534f" (click)="delete(comment.key)" *ngIf="comment.eamil==email">ลบ</button>
+            <button ion-button clear item-end style="color: #ff0800" (click)="delete(comment.key)" *ngIf="comment.eamil==email">ลบ</button>
           </ion-item>
         </ion-list>
       </ion-col>

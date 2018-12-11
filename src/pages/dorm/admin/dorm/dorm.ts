@@ -41,14 +41,14 @@ export class DormAdminPage {
           this.items.push({
             key: data.key,
             dormName: data.payload.val()['dormName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             dormName: data.payload.val()['dormName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -93,7 +93,7 @@ export class DormAdminPage {
             termFan: value.termFan,
             phoneNumber: value.phoneNumber,
             contact: value.contact,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -111,7 +111,7 @@ export class DormAdminPage {
             termFan: value.termFan,
             phoneNumber: value.phoneNumber,
             contact: value.contact,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -124,7 +124,7 @@ export class DormAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

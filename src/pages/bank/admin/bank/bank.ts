@@ -41,14 +41,14 @@ export class BankAdminPage {
           this.items.push({
             key: data.key,
             bankName: data.payload.val()['bankName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             bankName: data.payload.val()['bankName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -85,7 +85,7 @@ export class BankAdminPage {
             lat: value.lat,
             lng: value.lng,
             openClosed: value.openClosed,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -95,7 +95,7 @@ export class BankAdminPage {
             lat: value.lat,
             lng: value.lng,
             openClosed: value.openClosed,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -108,7 +108,7 @@ export class BankAdminPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'

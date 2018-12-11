@@ -41,14 +41,14 @@ export class ParkingAdminiPage {
           this.items.push({
             key: data.key,
             parkingName: data.payload.val()['parkingName'],
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
           this.items.push({
             key: data.key,
             parkingName: data.payload.val()['parkingName'],
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -84,7 +84,7 @@ export class ParkingAdminiPage {
             parkingName: value.parkingName,
             lat: value.lat,
             lng: value.lng,
-            status: 'แสดง'
+            status: 'ใช้งาน'
           })
         }
         else {
@@ -93,7 +93,7 @@ export class ParkingAdminiPage {
             parkingName: value.parkingName,
             lat: value.lat,
             lng: value.lng,
-            status: 'ซ่อน'
+            status: 'ยกเลิกการใช้งาน'
           })
         }
       })
@@ -106,7 +106,7 @@ export class ParkingAdminiPage {
       content: 'Please wait...'
     })
     loading.present()
-    if (status == 'แสดง') {
+    if (status == 'ใช้งาน') {
       this.itemsRef.update(
         key, {
           status: '0'
