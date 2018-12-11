@@ -1,10 +1,12 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
+import { BuildingCommentPage } from '../../user/comment/comment/comment'
+import { BuildingCommentModalPage } from '../../user/comment//modal/modal'
 
 @Component({
   selector: 'page-building',
@@ -20,10 +22,12 @@ export class BuildingUserPage {
   private items
   private itemsRef
   private key
-  private score = 0
   private email
+  private score = 0
   private scores
-  private average = 0
+  private comment
+  private comments
+  private average = '0'
 
   constructor(
     public navCtrl: NavController,
@@ -31,13 +35,11 @@ export class BuildingUserPage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private viewCtrl: ViewController,
-    private storage: Storage
+    private storage: Storage,
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.itemsRef = this.afDatabase.list('building')
     this.items = {
       buildingName: '',
@@ -51,7 +53,6 @@ export class BuildingUserPage {
       this.email = ''
       if (val != '') {
         this.email = val
-        loading.dismiss()
       }
     })
     this.star1 = "dark"
@@ -59,8 +60,10 @@ export class BuildingUserPage {
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
+    this.comment = ''
     this.getBuilding()
     this.getScores()
+    this.getComments()
   }
 
   ionViewWillEnter() {
@@ -93,7 +96,6 @@ export class BuildingUserPage {
     loading.present()
     this.scores = []
     let sum = 0
-    let count = 0
     this.afDatabase.list('score/building/' + this.key).snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.scores.push({
@@ -101,11 +103,39 @@ export class BuildingUserPage {
           eamil: data.payload.val()['eamil'],
           score: data.payload.val()['score']
         })
-        count++
         sum = sum + data.payload.val()['score']
       })
       loading.dismiss()
-      this.average = (sum / count).toFixed(2)
+      this.average = (sum / this.scores.length).toFixed(2)
+    })
+  }
+
+  getComments() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.afDatabase.list('comment/building/' + this.key).snapshotChanges().subscribe(data => {
+      this.comments = []
+      let temp = []
+      data.forEach(data => {
+        temp.push({
+          key: data.key,
+          eamil: data.payload.val()['eamil'],
+          comment: data.payload.val()['comment']
+        })
+      })
+      if (temp.length > 5) {
+        for (let index = temp.length - 5; index < temp.length; index++) {
+          this.comments.push(temp[index])
+        }
+      }
+      else {
+        for (let index = 0; index < temp.length; index++) {
+          this.comments.push(temp[index])
+        }
+      }
+      loading.dismiss()
     })
   }
 
@@ -194,7 +224,47 @@ export class BuildingUserPage {
           }
         )
       }
+      this.presentToast('บันทึกสำเร็จ')
     }
+  }
+
+  goToBuildingCommentPage() {
+    let profileModal = this.modalCtrl.create(BuildingCommentPage, {
+      key: this.key
+    })
+    profileModal.present()
+  }
+
+  update(key) {
+    let profileModal = this.modalCtrl.create(BuildingCommentModalPage, {
+      key: this.key,
+      commentKey: key
+    })
+    profileModal.present()
+  }
+
+  delete(key) {
+    this.afDatabase.list('comment/building/' + this.key).remove(key)
+    this.presentToast('ลบสำเร็จ')
+  }
+
+  onSubmit(myform) {
+    if (this.email == null) {
+      this.navCtrl.push(LoginPage, {
+        key: this.key,
+        page: BuildingUserPage
+      })
+    }
+    else {
+      let Ref = this.afDatabase.list('comment/building/' + this.key)
+      let params = {
+        eamil: this.email,
+        comment: myform.value.comment
+      }
+      Ref.push(params)
+      this.presentToast('บันทึกสำเร็จ')
+    }
+    this.comment = ''
   }
 
   closeModal() {
@@ -208,6 +278,15 @@ export class BuildingUserPage {
 
   navigate() {
     window.open("geo:" + this.items.lat + "," + this.items.lng + "?q=" + this.items.buildingName)
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    })
+    toast.present()
   }
 
 }

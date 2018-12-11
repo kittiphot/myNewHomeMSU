@@ -38,7 +38,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center style="font-size: 150%">
+      <ion-col col-12 text-center style="font-size: 125%">
         คะแนนเฉลี่ยประมาณ {{ average }} / 5 คะแนน
       </ion-col>
     </ion-row>
@@ -65,27 +65,40 @@
     </ion-row>
 
     <ion-row>
-      <ion-col col-12>
-        <ion-list>
-          <ion-item style="background-color: gray; color: yellow">
-            <h2>moothong</h2>
-            <h3>&nbsp;&nbsp;Don't Know What To Do!</h3>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-
-    <ion-row style="background-color: white; color: black">
-      <ion-col col-12>
-        <ion-textarea type="text" name="detail" placeholder="แสดงความคิดเห็น ..."></ion-textarea>
+      <ion-col col-12 text-center>
+        <button ion-button color="primary" (click)="goToBuildingCommentPage()">แสดงความคิดเห็นทั้งหมด</button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-12>
-        <button ion-button block type="submit" color="secondary">บันทึกความคิดเห็น</button>
+        <ion-list>
+          <ion-item style="background-color: gray; color: yellow" *ngFor="let comment of comments">
+            <h2>{{ comment.eamil }}</h2>
+            <h3>&nbsp;&nbsp;{{ comment.comment }}</h3>
+            <button ion-button clear item-end style="color: #f0ad4e" (click)="update(comment.key)" *ngIf="comment.eamil==email">แก้ไข</button>
+            <button ion-button clear item-end style="color: #d9534f" (click)="delete(comment.key)" *ngIf="comment.eamil==email">ลบ</button>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
+
+    <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+      <ion-row>
+        <ion-col col-12>
+          <ion-item style="background-color: white; color: black">
+            <ion-label style="color:black" floating>แสดงความคิดเห็น</ion-label>
+            <ion-textarea type="text" rows="3" [(ngModel)]="comment" name="comment"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button block type="submit" color="secondary">บันทึกความคิดเห็น</button>
+        </ion-col>
+      </ion-row>
+    </form>
 
   </ion-grid>
 

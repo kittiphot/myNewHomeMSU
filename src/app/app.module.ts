@@ -53,6 +53,8 @@ import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
+import { BuildingCommentPage } from '../pages/building/user/comment/comment/comment'
+import { BuildingCommentModalPage } from '../pages/building/user/comment/modal/modal'
 
 import { BuildingNamePage } from '../pages/building-name/building-name/building-name'
 import { BuildingNameModalPage } from '../pages/building-name/modal/modal'
@@ -131,6 +133,8 @@ let page =  [
   BuildingAdminSearchPage,
   BuildingUserPage,
   BuildingUserSearchPage,
+  BuildingCommentPage,
+  BuildingCommentModalPage,
 
   BuildingNamePage,
   BuildingNameModalPage,

@@ -122,7 +122,7 @@ export class BuildingAdminModalPage {
             buildingName: params.buildingName,
             lat: params.lat,
             lng: params.lng,
-            initials: params.initials,
+            initials: params.initials.toUpperCase(),
             openClosed: params.openClosed
           }
         )
