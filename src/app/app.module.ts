@@ -45,6 +45,7 @@ import { AtmCommentModalPage } from '../pages/atm/user/comment/modal/modal'
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BankAdminSearchPage } from '../pages/bank/admin/search/search'
+import { BankAdminCommentPage } from '../pages/bank/admin/comment/comment'
 import { BankUserPage } from '../pages/bank/user/bank/bank'
 import { BankUserSearchPage } from '../pages/bank/user/search/search'
 import { BankCommentPage } from '../pages/bank/user/comment/comment/comment'
@@ -57,6 +58,7 @@ import { BankNameSearchPage } from '../pages/bank-name/search/search'
 import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
+import { BuildingAdminCommentPage } from '../pages/building/admin/comment/comment'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
 import { BuildingCommentPage } from '../pages/building/user/comment/comment/comment'
@@ -69,6 +71,7 @@ import { BuildingNameSearchPage } from '../pages/building-name/search/search'
 import { BusAdminPage } from '../pages/bus/admin/bus/bus'
 import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
+import { BusAdminCommentPage } from '../pages/bus/admin/comment/comment'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
 import { BusCommentPage } from '../pages/bus/user/comment/comment/comment'
@@ -77,6 +80,7 @@ import { BusCommentModalPage } from '../pages/bus/user/comment/modal/modal'
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
+import { CafeAdminCommentPage } from '../pages/cafe/admin/comment/comment'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 import { CafeCommentPage } from '../pages/cafe/user/comment/comment/comment'
@@ -89,6 +93,7 @@ import { CafeTypeSearchPage } from '../pages/cafe-type/search/search'
 import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { DormAdminSearchPage } from '../pages/dorm/admin/search/search'
+import { DormAdminCommentPage } from '../pages/dorm/admin/comment/comment'
 import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
 import { DormUserSearchPage } from '../pages/dorm/user/search/search'
 import { DormCommentPage } from '../pages/dorm/user/comment/comment/comment'
@@ -104,6 +109,7 @@ import { NewsUserSearchPage } from '../pages/news/user/search/search'
 import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
 import { ParkingAdminSearchPage } from '../pages/parking/admin/search/search'
+import { ParkingAdminCommentPage } from '../pages/parking/admin/comment/comment'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
 import { ParkingCommentPage } from '../pages/parking/user/comment/comment/comment'
@@ -112,6 +118,7 @@ import { ParkingCommentModalPage } from '../pages/parking/user/comment/modal/mod
 import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
 import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
 import { ToiletAdminSearchPage } from '../pages/toilet/admin/search/search'
+import { ToiletAdminCommentPage } from '../pages/toilet/admin/comment/comment'
 import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
 import { ToiletCommentPage } from '../pages/toilet/user/comment/comment/comment'
@@ -140,6 +147,7 @@ let page =  [
   BankAdminPage,
   BankAdminModalPage,
   BankAdminSearchPage,
+  BankAdminCommentPage,
   BankUserPage,
   BankUserSearchPage,
   BankCommentPage,
@@ -152,6 +160,7 @@ let page =  [
   BuildingAdminPage,
   BuildingAdminModalPage,
   BuildingAdminSearchPage,
+  BuildingAdminCommentPage,
   BuildingUserPage,
   BuildingUserSearchPage,
   BuildingCommentPage,
@@ -164,6 +173,7 @@ let page =  [
   BusAdminPage,
   BusAdminModalPage,
   BusAdminSearchPage,
+  BusAdminCommentPage,
   BusUserPage,
   BusUserSearchPage,
   BusCommentPage,
@@ -172,6 +182,7 @@ let page =  [
   CafeAdminPage,
   CafeAdminModalPage,
   CafeAdminSearchPage,
+  CafeAdminCommentPage,
   CafeUserPage,
   CafeUserSearchPage,
   CafeCommentPage,
@@ -184,6 +195,7 @@ let page =  [
   DormAdminPage,
   DormAdminModalPage,
   DormAdminSearchPage,
+  DormAdminCommentPage,
   DormUserPage,
   DormUserSearchPage,
   DormCommentPage,
@@ -199,6 +211,7 @@ let page =  [
   ParkingAdminiPage,
   ParkingAdminModalPage,
   ParkingAdminSearchPage,
+  ParkingAdminCommentPage,
   ParkingUserPage,
   ParkingUserSearchPage,
   ParkingCommentPage,
@@ -207,6 +220,7 @@ let page =  [
   ToiletAdminPage,
   ToiletAdminModalPage,
   ToiletAdminSearchPage,
+  ToiletAdminCommentPage,
   ToiletUserPage,
   ToiletUserSearchPage,
   ToiletCommentPage,
