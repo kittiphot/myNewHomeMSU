@@ -89,6 +89,8 @@ import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { DormAdminSearchPage } from '../pages/dorm/admin/search/search'
 import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
 import { DormUserSearchPage } from '../pages/dorm/user/search/search'
+import { DormCommentPage } from '../pages/dorm/user/comment/comment/comment'
+import { DormCommentModalPage } from '../pages/dorm/user/comment/modal/modal'
 
 import { NewsAdminPage } from '../pages/news/admin/news/news'
 import { NewsAdminModalPage } from '../pages/news/admin/modal/modal'
@@ -102,6 +104,8 @@ import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
 import { ParkingAdminSearchPage } from '../pages/parking/admin/search/search'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
+import { ParkingCommentPage } from '../pages/parking/user/comment/comment/comment'
+import { ParkingCommentModalPage } from '../pages/parking/user/comment/modal/modal'
 
 import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
 import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
@@ -177,6 +181,8 @@ let page =  [
   DormAdminSearchPage,
   DormUserPage,
   DormUserSearchPage,
+  DormCommentPage,
+  DormCommentModalPage,
 
   NewsAdminPage,
   NewsAdminModalPage,
@@ -190,6 +196,8 @@ let page =  [
   ParkingAdminSearchPage,
   ParkingUserPage,
   ParkingUserSearchPage,
+  ParkingCommentPage,
+  ParkingCommentModalPage,
 
   ToiletAdminPage,
   ToiletAdminModalPage,
