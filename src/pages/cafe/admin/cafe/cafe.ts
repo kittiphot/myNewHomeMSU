@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { CafeAdminModalPage } from '../modal/modal'
 import { CafeAdminSearchPage } from '../search/search'
+import { CafeAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-cafe',
@@ -54,6 +55,13 @@ export class CafeAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(CafeAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {

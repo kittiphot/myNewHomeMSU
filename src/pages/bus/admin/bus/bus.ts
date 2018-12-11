@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BusAdminModalPage } from '../modal/modal'
 import { BusAdminSearchPage } from '../search/search'
+import { BusAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-bus',
@@ -54,6 +55,13 @@ export class BusAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(BusAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {

@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { DormAdminModalPage } from '../modal/modal'
 import { DormAdminSearchPage } from '../search/search'
+import { DormAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-dorm',
@@ -54,6 +55,13 @@ export class DormAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(DormAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {

@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { ToiletAdminModalPage } from '../modal/modal'
 import { ToiletAdminSearchPage } from '../search/search'
+import { ToiletAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-toilet',
@@ -54,6 +55,13 @@ export class ToiletAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(ToiletAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {

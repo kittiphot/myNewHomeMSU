@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BuildingAdminModalPage } from '../modal/modal'
 import { BuildingAdminSearchPage } from '../search/search'
+import { BuildingAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-building',
@@ -54,6 +55,13 @@ export class BuildingAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(BuildingAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {
