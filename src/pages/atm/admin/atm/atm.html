@@ -23,6 +23,7 @@
         <img src="./assets/imgs/default.png">
       </ion-avatar>
       <h2>{{ item.placeName }}</h2>
+      <div style="font-size:50%" (click)="goToCommentPage(item.key)">ความคิดเห็นทั้งหมด</div>
       <button ion-button clear item-end style="color: #69dcff" (click)="changeStatus(item.key, item.status)">{{ item.status }}</button>
       <button ion-button clear item-end style="color: #f0ad4e" (click)="update(item.key)">แก้ไข</button>
       <button ion-button clear item-end style="color: #ff0800" (click)="delete(item.key)">ลบ</button>

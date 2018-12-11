@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { AtmAdminModalPage } from '../modal/modal'
 import { AtmAdminSearchPage } from '../search/search'
+import { AtmAdminCommentPage } from '../comment/comment'
 
 @Component({
   selector: 'page-atm',
@@ -54,6 +55,13 @@ export class AtmAdminPage {
       })
       loading.dismiss()
     })
+  }
+
+  goToCommentPage(key) {
+    let profileModal = this.modalCtrl.create(AtmAdminCommentPage, {
+      key: key
+    })
+    profileModal.present()
   }
 
   create() {
