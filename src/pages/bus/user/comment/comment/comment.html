@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ความคิดเห็น</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color: gray; color: yellow">
+
+  <ion-list>
+    <ion-item style="background-color: gray; color: yellow" *ngFor="let comment of comments">
+      <h2>{{ comment.eamil }}</h2>
+      <h3>&nbsp;&nbsp;{{ comment.comment }}</h3>
+      <button ion-button clear item-end style="color: #f0ad4e" (click)="update(comment.key)" *ngIf="comment.eamil==email">แก้ไข</button>
+      <button ion-button clear item-end style="color: #d9534f" (click)="delete(comment.key)" *ngIf="comment.eamil==email">ลบ</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

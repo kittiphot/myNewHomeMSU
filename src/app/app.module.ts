@@ -69,12 +69,16 @@ import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
+import { BusCommentPage } from '../pages/bus/user/comment/comment/comment'
+import { BusCommentModalPage } from '../pages/bus/user/comment/modal/modal'
 
 import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
+import { CafeCommentPage } from '../pages/cafe/user/comment/comment/comment'
+import { CafeCommentModalPage } from '../pages/cafe/user/comment/modal/modal'
 
 import { CafeTypePage } from '../pages/cafe-type/cafe-type/cafe-type'
 import { CafeTypeModalPage } from '../pages/cafe-type/modal/modal'
@@ -153,12 +157,16 @@ let page =  [
   BusAdminSearchPage,
   BusUserPage,
   BusUserSearchPage,
+  BusCommentPage,
+  BusCommentModalPage,
 
   CafeAdminPage,
   CafeAdminModalPage,
   CafeAdminSearchPage,
   CafeUserPage,
   CafeUserSearchPage,
+  CafeCommentPage,
+  CafeCommentModalPage,
 
   CafeTypePage,
   CafeTypeModalPage,
