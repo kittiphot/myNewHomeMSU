@@ -37,6 +37,8 @@ import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
 import { AtmUserPage } from '../pages/atm/user/atm/atm'
 import { AtmUserSearchPage } from '../pages/atm/user/search/search'
+import { AtmCommentPage } from '../pages/atm/user/comment/comment/comment'
+import { AtmCommentModalPage } from '../pages/atm/user/comment/modal/modal'
 
 import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
@@ -117,6 +119,8 @@ let page =  [
   AtmAdminSearchPage,
   AtmUserPage,
   AtmUserSearchPage,
+  AtmCommentPage,
+  AtmCommentModalPage,
   
   BankAdminPage,
   BankAdminModalPage,

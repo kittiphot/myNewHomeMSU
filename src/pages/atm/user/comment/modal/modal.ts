@@ -6,7 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
-export class BuildingCommentModalPage {
+export class AtmCommentModalPage {
 
   private itemsRef
   private key
@@ -22,7 +22,7 @@ export class BuildingCommentModalPage {
   ) {
     this.key = navParams.get('key')
     this.commentKey = navParams.get('commentKey')
-    this.itemsRef = this.afDatabase.list('comment/building/' + this.key)
+    this.itemsRef = this.afDatabase.list('comment/atm/' + this.key)
     this.comment = ''
   }
 

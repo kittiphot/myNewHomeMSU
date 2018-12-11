@@ -27,7 +27,7 @@ export class BuildingUserPage {
   private scores
   private comment
   private comments
-  private average = '0'
+  private average
 
   constructor(
     public navCtrl: NavController,
@@ -94,9 +94,10 @@ export class BuildingUserPage {
       content: 'Please wait...'
     })
     loading.present()
-    this.scores = []
-    let sum = 0
     this.afDatabase.list('score/building/' + this.key).snapshotChanges().subscribe(data => {
+      this.scores = []
+      let sum = 0
+      this.average = 0
       data.forEach(data => {
         this.scores.push({
           key: data.key,
@@ -107,6 +108,9 @@ export class BuildingUserPage {
       })
       loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
+      if (this.average == 'NaN') {
+        this.average = '0'
+      }
     })
   }
 
@@ -228,7 +232,7 @@ export class BuildingUserPage {
     }
   }
 
-  goToBuildingCommentPage() {
+  goToCommentPage() {
     let profileModal = this.modalCtrl.create(BuildingCommentPage, {
       key: this.key
     })
