@@ -45,6 +45,8 @@ import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BankAdminSearchPage } from '../pages/bank/admin/search/search'
 import { BankUserPage } from '../pages/bank/user/bank/bank'
 import { BankUserSearchPage } from '../pages/bank/user/search/search'
+import { BankCommentPage } from '../pages/bank/user/comment/comment/comment'
+import { BankCommentModalPage } from '../pages/bank/user/comment/modal/modal'
 
 import { BankNamePage } from '../pages/bank-name/bank-name/bank-name'
 import { BankNameModalPage } from '../pages/bank-name/modal/modal'
@@ -127,6 +129,8 @@ let page =  [
   BankAdminSearchPage,
   BankUserPage,
   BankUserSearchPage,
+  BankCommentPage,
+  BankCommentModalPage,
 
   BankNamePage,
   BankNameModalPage,
