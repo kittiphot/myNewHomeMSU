@@ -112,6 +112,7 @@ export class CafeAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      key: '',
       cafeName: myform.value.cafeName,
       lat: myform.value.lat,
       lng: myform.value.lng,
@@ -124,6 +125,7 @@ export class CafeAdminModalPage {
     }
     this.types.forEach(data => {
       if (params.type == data.CafeType) {
+        params.key = data.key
       }
     })
     var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
@@ -141,6 +143,16 @@ export class CafeAdminModalPage {
     if (params.openClosed != '') {
       if (typeof this.key == 'undefined') {
         this.itemsRef.push(params)
+        let count = 0
+        this.itemsRef.snapshotChanges().subscribe(data => {
+          if (count == 0) {
+            let key = {
+              key: data[data.length - 1].key
+            }
+            this.afDatabase.list('buildingName/' + params.key + '/cafe').push(key)
+          }
+          count++
+        })
         this.presentToast('บันทึกสำเร็จ')
       }
       else {

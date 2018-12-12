@@ -59,6 +59,20 @@ export class BankNamePage {
   }
 
   delete(key) {
+    this.afDatabase.list('bankName/' + key + '/atm').snapshotChanges().subscribe(data => {
+      data.forEach(value => {
+        this.afDatabase.list('atm').remove(value.payload.val()['key'])
+        this.afDatabase.list('score/atm').remove(value.payload.val()['key'])
+        this.afDatabase.list('comment/atm').remove(value.payload.val()['key'])
+      })
+    })
+    this.afDatabase.list('bankName/' + key + '/bank').snapshotChanges().subscribe(data => {
+      data.forEach(value => {
+        this.afDatabase.list('bank').remove(value.payload.val()['key'])
+        this.afDatabase.list('score/bank').remove(value.payload.val()['key'])
+        this.afDatabase.list('comment/bank').remove(value.payload.val()['key'])
+      })
+    })
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

@@ -104,12 +104,18 @@ export class BankAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      key: '',
       bankName: myform.value.bankName,
       lat: myform.value.lat,
       lng: myform.value.lng,
       openClosed: '',
       status: '1'
     }
+    this.names.forEach(data => {
+      if (params.bankName == data.bankName) {
+        params.key = data.key
+      }
+    })
     var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
@@ -125,6 +131,16 @@ export class BankAdminModalPage {
     if (params.openClosed != '') {
       if (typeof this.key == 'undefined') {
         this.itemsRef.push(params)
+        let count = 0
+        this.itemsRef.snapshotChanges().subscribe(data => {
+          if (count == 0) {
+            let key = {
+              key: data[data.length - 1].key
+            }
+            this.afDatabase.list('buildingName/' + params.key + '/bank').push(key)
+          }
+          count++
+        })
         this.presentToast('บันทึกสำเร็จ')
       }
       else {

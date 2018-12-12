@@ -104,14 +104,30 @@ export class AtmAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      key: '',
       placeName: myform.value.placeName,
       lat: myform.value.lat,
       lng: myform.value.lng,
       ATMName: myform.value.ATMName,
       status: '1'
     }
+    this.names.forEach(data => {
+      if (params.ATMName == data.bankName) {
+        params.key = data.key
+      }
+    })
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
+      let count = 0
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        if (count == 0) {
+          let key = {
+            key: data[data.length - 1].key
+          }
+          this.afDatabase.list('buildingName/' + params.key + '/atm').push(key)
+        }
+        count++
+      })
       this.presentToast('บันทึกสำเร็จ')
     }
     else {
