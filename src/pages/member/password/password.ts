@@ -33,6 +33,10 @@ export class PasswordPage {
       this.member.email = val
     })
   }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
+  }
 
   onSubmit(myform) {
     this.itemsRef.snapshotChanges().subscribe(data => {

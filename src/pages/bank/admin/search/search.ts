@@ -2,6 +2,8 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
@@ -29,6 +31,10 @@ export class BankAdminSearchPage {
 
   ionViewDidLoad() {
     this.getBank()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBank() {
@@ -65,6 +71,10 @@ export class BankAdminSearchPage {
     }
     if (this.items == '') {
       this.items = this.temp
+      this.presentToast('ไม่พบข้อมูลในระบบ')
+    }
+    else {
+      this.presentToast('ค้นหาสำเร็จ')
     }
     this.closeModal()
   }
@@ -84,7 +94,6 @@ export class BankAdminSearchPage {
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
-    this.presentToast('ค้นหาสำเร็จ')
   }
 
   presentToast(message) {

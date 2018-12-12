@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { BusAdminModalPage } from '../modal/modal'
 import { BusAdminSearchPage } from '../search/search'
 import { BusAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-bus',
@@ -28,6 +29,10 @@ export class BusAdminPage {
 
   ionViewDidLoad() {
     this.getBus()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBus() {

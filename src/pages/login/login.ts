@@ -57,6 +57,10 @@ export class LoginPage {
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
   }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
+  }
 
   onSubmit(myform) {
     let loading = this.loadingCtrl.create({

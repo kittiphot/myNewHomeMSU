@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { ParkingAdminModalPage } from '../modal/modal'
 import { ParkingAdminSearchPage } from '../search/search'
 import { ParkingAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-parking',
@@ -28,6 +29,10 @@ export class ParkingAdminiPage {
 
   ionViewDidLoad() {
     this.getParking()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getParking() {

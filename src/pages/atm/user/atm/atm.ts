@@ -7,6 +7,7 @@ import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
 import { AtmCommentPage } from '../../user/comment/comment/comment'
 import { AtmCommentModalPage } from '../../user/comment//modal/modal'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-atm',
@@ -67,6 +68,10 @@ export class AtmUserPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getAtm() {

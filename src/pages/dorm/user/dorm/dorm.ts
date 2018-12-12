@@ -7,6 +7,7 @@ import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
 import { DormCommentPage } from '../../user/comment/comment/comment'
 import { DormCommentModalPage } from '../../user/comment//modal/modal'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-dorm',
@@ -76,6 +77,10 @@ export class DormUserPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getDorm() {

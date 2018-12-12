@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { BankAdminModalPage } from '../modal/modal'
 import { BankAdminSearchPage } from '../search/search'
 import { BankAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-bank',
@@ -28,6 +29,10 @@ export class BankAdminPage {
 
   ionViewDidLoad() {
     this.getBank()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBank() {

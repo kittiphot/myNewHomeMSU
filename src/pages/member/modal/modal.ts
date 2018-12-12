@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'
 
 import { MemberPage } from '../member'
+import { HomePage } from '../../home/home'
 
 @Component({
   selector: 'page-modal',
@@ -28,6 +29,10 @@ export class AdminModalPage {
     private toastCtrl: ToastController
   ) {
     this.itemsRef = this.afDatabase.list('member')
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   onSubmit(myform) {

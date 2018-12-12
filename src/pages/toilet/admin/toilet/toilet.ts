@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { ToiletAdminModalPage } from '../modal/modal'
 import { ToiletAdminSearchPage } from '../search/search'
 import { ToiletAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-toilet',
@@ -28,6 +29,10 @@ export class ToiletAdminPage {
 
   ionViewDidLoad() {
     this.getToilet()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getToilet() {

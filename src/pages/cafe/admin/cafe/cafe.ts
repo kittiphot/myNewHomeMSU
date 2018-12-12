@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { CafeAdminModalPage } from '../modal/modal'
 import { CafeAdminSearchPage } from '../search/search'
 import { CafeAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-cafe',
@@ -28,6 +29,10 @@ export class CafeAdminPage {
 
   ionViewDidLoad() {
     this.getCafe()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getCafe() {

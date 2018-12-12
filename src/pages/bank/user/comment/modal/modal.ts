@@ -2,6 +2,8 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { HomePage } from '../../../../home/home'
+
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -32,6 +34,10 @@ export class BankCommentModalPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getComments() {

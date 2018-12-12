@@ -7,6 +7,7 @@ import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
 import { CafeCommentPage } from '../../user/comment/comment/comment'
 import { CafeCommentModalPage } from '../../user/comment//modal/modal'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-cafe',
@@ -71,6 +72,10 @@ export class CafeUserPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getCafe() {

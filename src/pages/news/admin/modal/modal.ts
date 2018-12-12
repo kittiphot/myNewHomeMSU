@@ -3,6 +3,8 @@ import { NavController, NavParams, ViewController, LoadingController } from 'ion
 import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -31,6 +33,10 @@ export class NewsAdminModalPage {
 
   ionViewDidLoad() {
     this.getNews()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getNews() {

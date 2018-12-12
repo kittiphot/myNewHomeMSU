@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { DormAdminModalPage } from '../modal/modal'
 import { DormAdminSearchPage } from '../search/search'
 import { DormAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-dorm',
@@ -28,6 +29,10 @@ export class DormAdminPage {
 
   ionViewDidLoad() {
     this.getDorm()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getDorm() {

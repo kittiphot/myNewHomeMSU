@@ -7,6 +7,7 @@ import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
 import { BankCommentPage } from '../../user/comment/comment/comment'
 import { BankCommentModalPage } from '../../user/comment//modal/modal'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-bank',
@@ -67,6 +68,10 @@ export class BankUserPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBank() {
@@ -279,7 +284,7 @@ export class BankUserPage {
   }
 
   navigate() {
-    window.open("geo:" + this.items.lat + "," + this.items.lng + "?q=" + this.items.placeName)
+    window.open("geo:" + this.items.lat + "," + this.items.lng + "?q=" + this.items.bankName)
   }
 
   presentToast(message) {

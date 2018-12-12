@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { NewsUserModalPage } from '../modal/modal'
 import { NewsUserSearchPage } from '../search/search'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-news',
@@ -26,6 +27,10 @@ export class NewsUserPage {
 
   ionViewDidLoad() {
     this.getNews()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getNews() {

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core'
-import { NavController, NavParams, Tabs } from 'ionic-angular'
+import { NavController, NavParams, Tabs, ViewController } from 'ionic-angular'
 
 import { AdminPage } from '../member/admin/admin'
 import { AdminModalPage } from '../member/modal/modal'
@@ -20,8 +20,17 @@ export class MemberPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private viewCtrl: ViewController
   ) {
+  }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   changePage() {

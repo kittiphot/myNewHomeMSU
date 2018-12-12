@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
 
 import { ParkingCommentModalPage } from '../modal/modal'
+import { HomePage } from '../../../../home/home'
 
 @Component({
   selector: 'page-comment',
@@ -39,6 +40,10 @@ export class ParkingCommentPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getComments() {

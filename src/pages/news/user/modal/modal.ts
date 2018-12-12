@@ -2,6 +2,8 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, LoadingController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -29,6 +31,10 @@ export class NewsUserModalPage {
 
   ionViewDidLoad() {
     this.getNews()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getNews() {

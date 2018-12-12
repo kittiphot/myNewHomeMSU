@@ -3,6 +3,8 @@ import { NavController, NavParams, ViewController, ToastController } from 'ionic
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
@@ -37,6 +39,10 @@ export class ToiletAdminModalPage {
   ionViewDidLoad() {
     this.getPlaceProfiles()
     this.getName()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getPlaceProfiles() {

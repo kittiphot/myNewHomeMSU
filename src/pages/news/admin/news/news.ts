@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular'
 
 import { NewsAdminModalPage } from '../modal/modal'
 import { NewsAdminSearchPage } from '../search/search'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-news',
@@ -28,6 +29,10 @@ export class NewsAdminPage {
 
   ionViewDidLoad() {
     this.getNews()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getNews() {

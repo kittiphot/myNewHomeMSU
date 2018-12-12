@@ -2,6 +2,8 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
@@ -30,6 +32,10 @@ export class DormUserSearchPage {
 
   ionViewDidLoad() {
     this.getDorm()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getDorm() {
@@ -83,6 +89,10 @@ export class DormUserSearchPage {
     }
     if (this.items == '') {
       this.items = this.temp
+      this.presentToast('ไม่พบข้อมูลในระบบ')
+    }
+    else {
+      this.presentToast('ค้นหาสำเร็จ')
     }
     this.closeModal()
   }
@@ -110,7 +120,6 @@ export class DormUserSearchPage {
 
   closeModal() {
     this.viewCtrl.dismiss(this.items)
-    this.presentToast('ค้นหาสำเร็จ')
   }
 
   presentToast(message) {

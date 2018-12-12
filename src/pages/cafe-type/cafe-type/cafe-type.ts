@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { CafeTypeModalPage } from '../modal/modal'
 import { CafeTypeSearchPage } from '../search/search'
+import { HomePage } from '../../home/home'
 
 @Component({
   selector: 'page-cafe-type',
@@ -27,6 +28,10 @@ export class CafeTypePage {
 
   ionViewDidLoad() {
     this.getCafeType()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getCafeType() {

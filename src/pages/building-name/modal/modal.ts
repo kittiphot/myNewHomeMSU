@@ -3,6 +3,8 @@ import { NavController, NavParams, ViewController, ToastController } from 'ionic
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
+import { HomePage } from '../../home/home'
+
 declare var google
 
 @Component({
@@ -37,6 +39,10 @@ export class BuildingNameModalPage {
 
   ionViewDidLoad() {
     this.loadMap()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   loadMap() {

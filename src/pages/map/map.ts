@@ -53,6 +53,10 @@ export class MapPage {
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
   }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
+  }
 
   loadMap() {
     let latLng = new google.maps.LatLng(16.245616, 103.250208)

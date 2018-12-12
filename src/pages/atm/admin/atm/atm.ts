@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { AtmAdminModalPage } from '../modal/modal'
 import { AtmAdminSearchPage } from '../search/search'
 import { AtmAdminCommentPage } from '../comment/comment'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-atm',
@@ -28,6 +29,10 @@ export class AtmAdminPage {
 
   ionViewDidLoad() {
     this.getAtm()
+  }
+
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getAtm() {

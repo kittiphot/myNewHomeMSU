@@ -7,6 +7,7 @@ import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
 import { BusCommentPage } from '../../user/comment/comment/comment'
 import { BusCommentModalPage } from '../../user/comment//modal/modal'
+import { HomePage } from '../../../home/home'
 
 @Component({
   selector: 'page-bus',
@@ -67,6 +68,10 @@ export class BusUserPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBus() {

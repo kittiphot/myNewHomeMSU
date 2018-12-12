@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BuildingNameModalPage } from '../modal/modal'
 import { BuildingNameSearchPage } from '../search/search'
+import { HomePage } from '../../home/home'
 
 @Component({
   selector: 'page-building-name',
@@ -27,6 +28,10 @@ export class BuildingNamePage {
 
   ionViewDidLoad() {
     this.getBuilding()
+  }
+  
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getBuilding() {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
+import { HomePage } from '../../../home/home'
+
 @Component({
   selector: 'page-comment',
   templateUrl: 'comment.html',
@@ -27,6 +29,10 @@ export class AtmAdminCommentPage {
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
+  }
+
+  goToHomePage() {
+    this.navCtrl.push(HomePage)
   }
 
   getComments() {
