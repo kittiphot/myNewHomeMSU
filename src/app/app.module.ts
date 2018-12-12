@@ -76,6 +76,7 @@ import { BusAdminPage } from '../pages/bus/admin/bus/bus'
 import { BusAdminModalPage } from '../pages/bus/admin/modal/modal'
 import { BusAdminSearchPage } from '../pages/bus/admin/search/search'
 import { BusAdminCommentPage } from '../pages/bus/admin/comment/comment'
+import { ShowBusPage } from '../pages/bus/admin/show/show'
 import { BusUserPage } from '../pages/bus/user/bus/bus'
 import { BusUserSearchPage } from '../pages/bus/user/search/search'
 import { BusCommentPage } from '../pages/bus/user/comment/comment/comment'
@@ -85,6 +86,7 @@ import { CafeAdminPage } from '../pages/cafe/admin/cafe/cafe'
 import { CafeAdminModalPage } from '../pages/cafe/admin/modal/modal'
 import { CafeAdminSearchPage } from '../pages/cafe/admin/search/search'
 import { CafeAdminCommentPage } from '../pages/cafe/admin/comment/comment'
+import { ShowCafePage } from '../pages/cafe/admin/show/show'
 import { CafeUserPage } from '../pages/cafe/user/cafe/cafe'
 import { CafeUserSearchPage } from '../pages/cafe/user/search/search'
 import { CafeCommentPage } from '../pages/cafe/user/comment/comment/comment'
@@ -98,6 +100,7 @@ import { DormAdminPage } from '../pages/dorm/admin/dorm/dorm'
 import { DormAdminModalPage } from '../pages/dorm/admin/modal/modal'
 import { DormAdminSearchPage } from '../pages/dorm/admin/search/search'
 import { DormAdminCommentPage } from '../pages/dorm/admin/comment/comment'
+import { ShowDormPage } from '../pages/dorm/admin/show/show'
 import { DormUserPage } from '../pages/dorm/user/dorm/dorm'
 import { DormUserSearchPage } from '../pages/dorm/user/search/search'
 import { DormCommentPage } from '../pages/dorm/user/comment/comment/comment'
@@ -114,6 +117,7 @@ import { ParkingAdminiPage } from '../pages/parking/admin/parking/parking'
 import { ParkingAdminModalPage } from '../pages/parking/admin/modal/modal'
 import { ParkingAdminSearchPage } from '../pages/parking/admin/search/search'
 import { ParkingAdminCommentPage } from '../pages/parking/admin/comment/comment'
+import { ShowParkingPage } from '../pages/parking/admin/show/show'
 import { ParkingUserPage } from '../pages/parking/user/parking/parking'
 import { ParkingUserSearchPage } from '../pages/parking/user/search/search'
 import { ParkingCommentPage } from '../pages/parking/user/comment/comment/comment'
@@ -123,6 +127,7 @@ import { ToiletAdminPage } from '../pages/toilet/admin/toilet/toilet'
 import { ToiletAdminModalPage } from '../pages/toilet/admin/modal/modal'
 import { ToiletAdminSearchPage } from '../pages/toilet/admin/search/search'
 import { ToiletAdminCommentPage } from '../pages/toilet/admin/comment/comment'
+import { ShowToiletPage } from '../pages/toilet/admin/show/show'
 import { ToiletUserPage } from '../pages/toilet/user/toilet/toilet'
 import { ToiletUserSearchPage } from '../pages/toilet/user/search/search'
 import { ToiletCommentPage } from '../pages/toilet/user/comment/comment/comment'
@@ -182,6 +187,7 @@ let page =  [
   BusAdminModalPage,
   BusAdminSearchPage,
   BusAdminCommentPage,
+  ShowBusPage,
   BusUserPage,
   BusUserSearchPage,
   BusCommentPage,
@@ -191,6 +197,7 @@ let page =  [
   CafeAdminModalPage,
   CafeAdminSearchPage,
   CafeAdminCommentPage,
+  ShowCafePage,
   CafeUserPage,
   CafeUserSearchPage,
   CafeCommentPage,
@@ -204,6 +211,7 @@ let page =  [
   DormAdminModalPage,
   DormAdminSearchPage,
   DormAdminCommentPage,
+  ShowDormPage,
   DormUserPage,
   DormUserSearchPage,
   DormCommentPage,
@@ -220,6 +228,7 @@ let page =  [
   ParkingAdminModalPage,
   ParkingAdminSearchPage,
   ParkingAdminCommentPage,
+  ShowParkingPage,
   ParkingUserPage,
   ParkingUserSearchPage,
   ParkingCommentPage,
@@ -229,6 +238,7 @@ let page =  [
   ToiletAdminModalPage,
   ToiletAdminSearchPage,
   ToiletAdminCommentPage,
+  ShowToiletPage,
   ToiletUserPage,
   ToiletUserSearchPage,
   ToiletCommentPage,

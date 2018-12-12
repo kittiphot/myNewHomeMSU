@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, LoadingController, ViewController, ToastController } from 'ionic-angular'
+import { NavController, NavParams, LoadingController, ViewController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { ToastController } from 'ionic-angular'
 
 import { HomePage } from '../../../home/home'
 
@@ -14,6 +15,8 @@ export class BuildingUserSearchPage {
   private items
   private itemsRef
   private temp
+  private buildingNames
+  private initials
 
   constructor(
     public navCtrl: NavController,
@@ -44,6 +47,8 @@ export class BuildingUserSearchPage {
     })
     loading.present()
     this.items = []
+    this.buildingNames = []
+    this.initials = []
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.items.push({
@@ -54,6 +59,12 @@ export class BuildingUserSearchPage {
           initials: data.payload.val()['initials'],
           openClosed: data.payload.val()['openClosed'],
           status: data.payload.val()['status']
+        })
+        this.buildingNames.push({
+          buildingName: data.payload.val()['buildingName']
+        })
+        this.initials.push({
+          initials: data.payload.val()['initials']
         })
       })
     })

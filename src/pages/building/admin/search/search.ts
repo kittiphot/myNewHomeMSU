@@ -15,6 +15,8 @@ export class BuildingAdminSearchPage {
   private items
   private itemsRef
   private temp
+  private buildingNames
+  private initials
 
   constructor(
     public navCtrl: NavController,
@@ -45,6 +47,8 @@ export class BuildingAdminSearchPage {
     })
     loading.present()
     this.items = []
+    this.buildingNames = []
+    this.initials = []
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.items.push({
@@ -55,6 +59,12 @@ export class BuildingAdminSearchPage {
           initials: data.payload.val()['initials'],
           openClosed: data.payload.val()['openClosed'],
           status: data.payload.val()['status']
+        })
+        this.buildingNames.push({
+          buildingName: data.payload.val()['buildingName']
+        })
+        this.initials.push({
+          initials: data.payload.val()['initials']
         })
       })
     })

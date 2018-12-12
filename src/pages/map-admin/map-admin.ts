@@ -25,6 +25,10 @@ import { ShowAtmPage } from '../atm/admin/show/show'
 import { ShowBankPage } from '../bank/admin/show/show'
 import { ShowBuildingPage } from '../building/admin/show/show'
 import { ShowBusPage } from '../bus/admin/show/show'
+import { ShowCafePage } from '../cafe/admin/show/show'
+import { ShowDormPage } from '../dorm/admin/show/show'
+import { ShowParkingPage } from '../parking/admin/show/show'
+import { ShowToiletPage } from '../toilet/admin/show/show'
 
 declare var google
 
@@ -360,18 +364,18 @@ export class MapAdminPage {
     if (this.nameMenu == 'bus') {
       page = ShowBusPage
     }
-    // if (this.nameMenu == 'dorm') {
-    //   page = DormUserPage
-    // }
-    // if (this.nameMenu == 'parking') {
-    //   page = ParkingUserPage
-    // }
-    // if (this.nameMenu == 'cafe') {
-    //   page = CafeUserPage
-    // }
-    // if (this.nameMenu == 'toilet') {
-    //   page = ToiletUserPage
-    // }
+    if (this.nameMenu == 'dorm') {
+      page = ShowDormPage
+    }
+    if (this.nameMenu == 'parking') {
+      page = ShowParkingPage
+    }
+    if (this.nameMenu == 'cafe') {
+      page = ShowCafePage
+    }
+    if (this.nameMenu == 'toilet') {
+      page = ShowToiletPage
+    }
     google.maps.event.addListener(marker, "click", () => {
       let profileModal = this.modalCtrl.create(page, {
         key: params.key

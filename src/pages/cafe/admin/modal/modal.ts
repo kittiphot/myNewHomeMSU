@@ -49,6 +49,7 @@ export class CafeAdminModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

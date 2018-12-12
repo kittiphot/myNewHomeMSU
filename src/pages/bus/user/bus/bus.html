@@ -7,10 +7,6 @@
       </button>
     </ion-buttons>
     <ion-buttons left>
-      <button ion-button icon-only (click)="navigate()">
-        <ion-icon name="ios-navigate">
-        </ion-icon>
-      </button>
     </ion-buttons>
     <ion-title text-center>
       {{ items.nameBus }}
@@ -27,6 +23,12 @@
 
 <ion-content padding style="background-color: gray; color: yellow">
   <ion-grid>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button round color="secondary" (click)="navigate()">นำทาง</button>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col col-12 text-center>
