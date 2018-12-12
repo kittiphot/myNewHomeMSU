@@ -59,9 +59,20 @@ export class BuildingNamePage {
   }
 
   delete(key) {
-    // this.afDatabase.list('building').remove(key)
-    this.afDatabase.list('score/building').remove(key)
-    this.afDatabase.list('comment/building').remove(key)
+    this.afDatabase.list('buildingName/' + key + '/building').snapshotChanges().subscribe(data => {
+      data.forEach(value => {
+        this.afDatabase.list('building').remove(value.payload.val()['key'])
+        this.afDatabase.list('score/building').remove(value.payload.val()['key'])
+        this.afDatabase.list('comment/building').remove(value.payload.val()['key'])
+      })
+    })
+    this.afDatabase.list('buildingName/' + key + '/toilet').snapshotChanges().subscribe(data => {
+      data.forEach(value => {
+        this.afDatabase.list('toilet').remove(value.payload.val()['key'])
+        this.afDatabase.list('score/toilet').remove(value.payload.val()['key'])
+        this.afDatabase.list('comment/toilet').remove(value.payload.val()['key'])
+      })
+    })
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

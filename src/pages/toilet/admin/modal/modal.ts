@@ -83,6 +83,7 @@ export class ToiletAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      key: '',
       buildingName: myform.value.buildingName,
       lat: '',
       lng: '',
@@ -92,12 +93,23 @@ export class ToiletAdminModalPage {
     }
     this.names.forEach(data => {
       if (params.buildingName == data.buildingName) {
+        params.key = data.key
         params.lat = data.lat
         params.lng = data.lng
       }
     })
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
+      let count = 0
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        if (count == 0) {
+          let key = {
+            key: data[data.length - 1].key
+          }
+          this.afDatabase.list('buildingName/' + params.key + '/toilet').push(key)
+        }
+        count++
+      })
       this.presentToast('บันทึกสำเร็จ')
     }
     else {

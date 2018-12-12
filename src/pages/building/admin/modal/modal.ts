@@ -83,6 +83,7 @@ export class BuildingAdminModalPage {
 
   onSubmit(myform) {
     let params = {
+      key: '',
       buildingName: myform.value.buildingName,
       lat: '',
       lng: '',
@@ -92,6 +93,7 @@ export class BuildingAdminModalPage {
     }
     this.names.forEach(data => {
       if (params.buildingName == data.buildingName) {
+        params.key = data.key
         params.lat = data.lat
         params.lng = data.lng
       }
@@ -111,6 +113,16 @@ export class BuildingAdminModalPage {
     if (params.openClosed != '') {
       if (typeof this.key == 'undefined') {
         this.itemsRef.push(params)
+        let count = 0
+        this.itemsRef.snapshotChanges().subscribe(data => {
+          if (count == 0) {
+            let key = {
+              key: data[data.length - 1].key
+            }
+            this.afDatabase.list('buildingName/' + params.key + '/building').push(key)
+          }
+          count++
+        })
         this.presentToast('บันทึกสำเร็จ')
       }
       else {
