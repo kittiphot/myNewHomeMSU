@@ -143,7 +143,7 @@ export class BankAdminModalPage {
             let key = {
               key: data[data.length - 1].key
             }
-            this.afDatabase.list('buildingName/' + params.key + '/bank').push(key)
+            this.afDatabase.list('bankName/' + params.key + '/bank').push(key)
           }
           count++
         })

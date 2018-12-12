@@ -130,7 +130,7 @@ export class AtmAdminModalPage {
           let key = {
             key: data[data.length - 1].key
           }
-          this.afDatabase.list('buildingName/' + params.key + '/atm').push(key)
+          this.afDatabase.list('bankName/' + params.key + '/atm').push(key)
         }
         count++
       })

@@ -155,7 +155,7 @@ export class CafeAdminModalPage {
             let key = {
               key: data[data.length - 1].key
             }
-            this.afDatabase.list('buildingName/' + params.key + '/cafe').push(key)
+            this.afDatabase.list('cafeType/' + params.key + '/cafe').push(key)
           }
           count++
         })

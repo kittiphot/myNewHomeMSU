@@ -64,7 +64,7 @@ export class CafeTypePage {
   }
 
   delete(key) {
-    this.afDatabase.list('buildingName/' + key + '/cafe').snapshotChanges().subscribe(data => {
+    this.afDatabase.list('cafeType/' + key + '/cafe').snapshotChanges().subscribe(data => {
       data.forEach(value => {
         this.afDatabase.list('cafe').remove(value.payload.val()['key'])
         this.afDatabase.list('score/cafe').remove(value.payload.val()['key'])

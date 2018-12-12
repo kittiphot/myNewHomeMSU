@@ -63,6 +63,7 @@ export class BuildingAdminModalPage {
     this.names = []
     this.afDatabase.list('buildingName').snapshotChanges().subscribe(data => {
       data.forEach(data => {
+        console.log()
         this.names.push({
           key: data.key,
           buildingName: data.payload.val()['buildingName'],
