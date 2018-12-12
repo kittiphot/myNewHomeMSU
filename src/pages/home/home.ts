@@ -10,6 +10,7 @@ import { LoginPage } from '../login/login'
 import { NewsUserPage } from '../news/user/news/news'
 import { NewsAdminPage } from '../news/admin/news/news'
 import { MapPage } from '../map/map'
+import { MapAdminPage } from '../map-admin/map-admin'
 import { AtmAdminPage } from '../atm/admin/atm/atm'
 import { BankNamePage } from '../bank-name/bank-name/bank-name'
 import { BankAdminPage } from '../bank/admin/bank/bank'
@@ -114,28 +115,52 @@ export class HomePage {
         this.navCtrl.push(NewsAdminPage)
       }
       if (nameMenu == 'building') {
-        this.navCtrl.push(BuildingAdminPage)
+        // this.navCtrl.push(BuildingAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'bank') {
-        this.navCtrl.push(BankAdminPage)
+        // this.navCtrl.push(BankAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'atm') {
-        this.navCtrl.push(AtmAdminPage)
+        // this.navCtrl.push(AtmAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'bus') {
-        this.navCtrl.push(BusAdminPage)
+        // this.navCtrl.push(BusAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'dorm') {
-        this.navCtrl.push(DormAdminPage)
+        // this.navCtrl.push(DormAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'parking') {
-        this.navCtrl.push(ParkingAdminiPage)
+        // this.navCtrl.push(ParkingAdminiPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'cafe') {
-        this.navCtrl.push(CafeAdminPage)
+        // this.navCtrl.push(CafeAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'toilet') {
-        this.navCtrl.push(ToiletAdminPage)
+        // this.navCtrl.push(ToiletAdminPage)
+        this.navCtrl.push(MapAdminPage, {
+          nameMenu: nameMenu
+        })
       }
       if (nameMenu == 'member') {
         this.navCtrl.push(MemberPage)

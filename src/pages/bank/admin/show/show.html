@@ -1,0 +1,80 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goToHomePage()">
+        <ion-icon name="ios-home"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>{{ items.bankName }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background-color: gray; color: yellow">
+
+  <ion-row>
+    <ion-col col-4 text-center>
+      <button ion-button clear item-end style="color: #69dcff" (click)="changeStatus(items.key, items.status)">{{
+        items.status }}</button>
+    </ion-col>
+    <ion-col col-4 text-center>
+      <button ion-button clear item-end style="color: #f0ad4e" (click)="update(items.key)">แก้ไข</button>
+    </ion-col>
+    <ion-col col-4 text-center>
+      <button ion-button clear item-end style="color: #ff0800" (click)="delete(items.key)">ลบ</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12 text-center>
+      <button ion-button round color="secondary" (click)="navigate()">นำทาง</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12 text-center>
+      <img src="../../../../assets/imgs/default.png" style="width: 300px; height: 200px">
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-1></ion-col>
+    <ion-col col-11>
+        <ion-label>เวลาเปิด – ปิดสานักงานธนาคาร : {{ items.openClosed }}</ion-label>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12 text-center style="font-size: 125%">
+      คะแนนเฉลี่ยประมาณ {{ average }} / 5 คะแนน
+    </ion-col>
+  </ion-row>
+
+  <br>
+
+  <ion-row>
+    <ion-col col-12 text-center style="font-size: 125%">
+      ความคิดเห็นทั้งหมด
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-12>
+      <ion-list>
+        <ion-item style="background-color: gray; color: yellow" *ngFor="let comment of comments">
+          <h2>{{ comment.eamil }}</h2>
+          <h3>&nbsp;&nbsp;{{ comment.comment }}</h3>
+          <button ion-button clear item-end style="color: #ff0800" (click)="deleteComment(comment.key)">ลบ</button>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

@@ -45,6 +45,7 @@ export class BankAdminModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -42,6 +42,7 @@ export class BuildingAdminModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

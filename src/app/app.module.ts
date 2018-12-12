@@ -26,6 +26,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login'
 import { MapPage } from '../pages/map/map'
+import { MapAdminPage } from '../pages/map-admin/map-admin'
 
 import { MemberPage } from '../pages/member/member'
 import { AdminPage } from '../pages/member/admin/admin'
@@ -37,6 +38,7 @@ import { AtmAdminPage } from '../pages/atm/admin/atm/atm'
 import { AtmAdminModalPage } from '../pages/atm/admin/modal/modal'
 import { AtmAdminSearchPage } from '../pages/atm/admin/search/search'
 import { AtmAdminCommentPage } from '../pages/atm/admin/comment/comment'
+import { ShowAtmPage } from '../pages/atm/admin/show/show'
 import { AtmUserPage } from '../pages/atm/user/atm/atm'
 import { AtmUserSearchPage } from '../pages/atm/user/search/search'
 import { AtmCommentPage } from '../pages/atm/user/comment/comment/comment'
@@ -46,6 +48,7 @@ import { BankAdminPage } from '../pages/bank/admin/bank/bank'
 import { BankAdminModalPage } from '../pages/bank/admin/modal/modal'
 import { BankAdminSearchPage } from '../pages/bank/admin/search/search'
 import { BankAdminCommentPage } from '../pages/bank/admin/comment/comment'
+import { ShowBankPage } from '../pages/bank/admin/show/show'
 import { BankUserPage } from '../pages/bank/user/bank/bank'
 import { BankUserSearchPage } from '../pages/bank/user/search/search'
 import { BankCommentPage } from '../pages/bank/user/comment/comment/comment'
@@ -59,6 +62,7 @@ import { BuildingAdminPage } from '../pages/building/admin/building/building'
 import { BuildingAdminModalPage } from '../pages/building/admin/modal/modal'
 import { BuildingAdminSearchPage } from '../pages/building/admin/search/search'
 import { BuildingAdminCommentPage } from '../pages/building/admin/comment/comment'
+import { ShowBuildingPage } from '../pages/building/admin/show/show'
 import { BuildingUserPage } from '../pages/building/user/building/building'
 import { BuildingUserSearchPage } from '../pages/building/user/search/search'
 import { BuildingCommentPage } from '../pages/building/user/comment/comment/comment'
@@ -128,6 +132,7 @@ let page =  [
   HomePage,
   LoginPage,
   MapPage,
+  MapAdminPage,
 
   MemberPage,
   AdminPage,
@@ -139,6 +144,7 @@ let page =  [
   AtmAdminModalPage,
   AtmAdminSearchPage,
   AtmAdminCommentPage,
+  ShowAtmPage,
   AtmUserPage,
   AtmUserSearchPage,
   AtmCommentPage,
@@ -148,6 +154,7 @@ let page =  [
   BankAdminModalPage,
   BankAdminSearchPage,
   BankAdminCommentPage,
+  ShowBankPage,
   BankUserPage,
   BankUserSearchPage,
   BankCommentPage,
@@ -161,6 +168,7 @@ let page =  [
   BuildingAdminModalPage,
   BuildingAdminSearchPage,
   BuildingAdminCommentPage,
+  ShowBuildingPage,
   BuildingUserPage,
   BuildingUserSearchPage,
   BuildingCommentPage,

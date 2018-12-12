@@ -93,10 +93,10 @@ export class CafeUserSearchPage {
       this.add(values)
     }
     values = []
-    val = myform.value.initials
+    val = myform.value.type
     if (val && val.trim() != '') {
       values = this.temp.filter(item => {
-        return (item.initials.toLowerCase().indexOf(val.toLowerCase()) > -1)
+        return (item.type.toLowerCase().indexOf(val.toLowerCase()) > -1)
       })
       this.add(values)
     }

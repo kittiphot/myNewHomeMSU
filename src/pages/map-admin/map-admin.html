@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goToHomePage()">
+        <ion-icon name="ios-home"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>แผนที่</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="search()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="create()">
+        <ion-icon name="ios-add"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="ios-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div #map id="map"></div>
+
+</ion-content>
