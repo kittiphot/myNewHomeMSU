@@ -98,75 +98,39 @@ export class LoginPage {
     loading.dismiss()
   }
 
-  // loginwithfb() {
-  //   let loading = this.loadingCtrl.create({
-  //     content: 'Please wait...'
-  //   })
-  //   loading.present()
-  //   var items = []
-  //   this.itemsRef.snapshotChanges().subscribe(data => {
-  //     data.forEach(values => {
-  //       items.push({
-  //         key: values.key,
-  //         email: values.payload.val()['email']
-  //       })
-  //     })
-  //     var values = []
-  //     var val = res.user.email
-  //     if (val && val.trim() != '') {
-  //       values = items.filter(item => {
-  //         return (item.email.toLowerCase().indexOf(val.toLowerCase()) > -1)
-  //       })
-  //       if (values.length == 0) {
-  //         this.member.name = res.user.displayName
-  //         this.member.email = res.user.email
-  //         this.member.password = ' '
-  //         this.member.img = res.user.photoURL
-  //         this.member.status = '2'
-  //         this.itemsRef.push(this.member)
-  //       }
-  //     }
-  //   })
-  //   this.storage.set('loggedIn', true)
-  //   this.storage.set('email', res.user.email)
-  //   this.storage.set('member', res.user.email)
-  //   this.checkBeforePage()
-  //   loading.dismiss()
-  // }
-
   loginwithfb() {
     this.fb.login(['public_profile', 'email'])
       .then(res => {
         if (res.status === "connected") {
           this.getUserDetail(res.authResponse.userID)
-          var items = []
           this.itemsRef.snapshotChanges().subscribe(data => {
+            var items = []
             data.forEach(values => {
               items.push({
                 key: values.key,
                 email: values.payload.val()['email']
               })
             })
-          })
-          var values = []
-          var val = this.users.email
-          if (val && val.trim() != '') {
-            values = items.filter(item => {
-              return (item.email.toLowerCase().indexOf(val.toLowerCase()) > -1)
-            })
-            if (values.length == 0) {
-              this.member.name = this.users.name
-              this.member.email = this.users.email
-              this.member.password = ' '
-              this.member.img = this.users.picture.data.url
-              this.member.status = '2'
-              this.itemsRef.push(this.member)
+            var values = []
+            var val = this.users.email
+            if (val && val.trim() != '') {
+              values = items.filter(item => {
+                return (item.email.toLowerCase() == val.toLowerCase())
+              })
+              if (values.length == 0) {
+                this.member.name = this.users.name
+                this.member.email = this.users.email
+                this.member.password = ' '
+                this.member.img = this.users.picture.data.url
+                this.member.status = '2'
+                this.itemsRef.push(this.member)
+              }
             }
-          }
-          this.storage.set('loggedIn', true)
-          this.storage.set('email', this.users.email)
-          this.storage.set('member', this.users.email)
-          this.checkBeforePage()
+            this.storage.set('loggedIn', true)
+            this.storage.set('email', this.users.email)
+            this.storage.set('member', this.users.email)
+            this.checkBeforePage()
+          })
         } else {
           this.storage.set('loggedIn', false)
         }

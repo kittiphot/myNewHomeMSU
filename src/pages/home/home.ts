@@ -100,7 +100,6 @@ export class HomePage {
 
   logout() {
     this.fb.logout()
-      .catch(e => console.log('Error logout from Facebook', e))
     this.storage.set('loggedIn', null)
     this.storage.set('email', null)
     this.facebook.loggedIn = false
