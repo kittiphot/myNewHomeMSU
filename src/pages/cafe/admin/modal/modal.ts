@@ -120,12 +120,10 @@ export class CafeAdminModalPage {
       phoneNumber: myform.value.phoneNumber,
       contact: myform.value.contact,
       type: myform.value.type,
-      typeKey: '',
       status: '1'
     }
     this.types.forEach(data => {
       if (params.type == data.CafeType) {
-        params.typeKey = data.key
       }
     })
     var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
@@ -144,7 +142,6 @@ export class CafeAdminModalPage {
       else {
         this.itemsRef.update(
           this.key, {
-            typeKey: params.typeKey,
             cafeName: params.cafeName,
             lat: params.lat,
             lng: params.lng,

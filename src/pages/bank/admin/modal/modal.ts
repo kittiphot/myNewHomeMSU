@@ -104,18 +104,12 @@ export class BankAdminModalPage {
 
   onSubmit(myform) {
     let params = {
-      nameKey: '',
       bankName: myform.value.bankName,
       lat: myform.value.lat,
       lng: myform.value.lng,
       openClosed: '',
       status: '1'
     }
-    this.names.forEach(data => {
-      if (params.bankName == data.bankName) {
-        params.nameKey = data.key
-      }
-    })
     var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
@@ -132,7 +126,6 @@ export class BankAdminModalPage {
       else {
         this.itemsRef.update(
           this.key, {
-            nameKey: params.nameKey,
             bankName: params.bankName,
             lat: params.lat,
             lng: params.lng,

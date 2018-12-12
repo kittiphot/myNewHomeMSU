@@ -83,7 +83,6 @@ export class ToiletAdminModalPage {
 
   onSubmit(myform) {
     let params = {
-      nameKey: '',
       buildingName: myform.value.buildingName,
       lat: '',
       lng: '',
@@ -93,7 +92,6 @@ export class ToiletAdminModalPage {
     }
     this.names.forEach(data => {
       if (params.buildingName == data.buildingName) {
-        params.nameKey = data.key
         params.lat = data.lat
         params.lng = data.lng
       }
@@ -105,7 +103,6 @@ export class ToiletAdminModalPage {
     else {
       this.itemsRef.update(
         this.key, {
-          nameKey: params.nameKey,
           buildingName: params.buildingName,
           lat: params.lat,
           lng: params.lng,
