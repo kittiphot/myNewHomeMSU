@@ -77,6 +77,8 @@ export class ToiletAdminPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/toilet').remove(key)
+    this.afDatabase.list('comment/toilet').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

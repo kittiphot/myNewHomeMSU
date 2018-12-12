@@ -77,6 +77,8 @@ export class DormAdminPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/dorm').remove(key)
+    this.afDatabase.list('comment/dorm').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

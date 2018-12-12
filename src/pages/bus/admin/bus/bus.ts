@@ -77,6 +77,8 @@ export class BusAdminPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/bus').remove(key)
+    this.afDatabase.list('comment/bus').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

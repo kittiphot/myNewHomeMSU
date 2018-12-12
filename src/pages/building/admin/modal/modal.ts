@@ -96,15 +96,15 @@ export class BuildingAdminModalPage {
         params.lng = data.lng
       }
     })
-    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/;
+    var re = /^[0-9]{2}.[0-9]{2} - [0-9]{2}.[0-9]{2} น.$/
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }
-    var re = /^[0-9]{2} ชม.$/;
+    var re = /^[0-9]{2} ชม.$/
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }
-    var re = /^-$/;
+    var re = /^-$/
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }

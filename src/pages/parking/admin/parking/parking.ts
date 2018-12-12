@@ -77,6 +77,8 @@ export class ParkingAdminiPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/parking').remove(key)
+    this.afDatabase.list('comment/parking').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

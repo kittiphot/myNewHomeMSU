@@ -77,6 +77,8 @@ export class BankAdminPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/bank').remove(key)
+    this.afDatabase.list('comment/bank').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }

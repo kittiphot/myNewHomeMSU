@@ -114,7 +114,11 @@ export class BankAdminModalPage {
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }
-    var re = /^[0-9]{2} ชม.$/;
+    var re = /^[0-9]{2} ชม.$/
+    if (re.test(myform.value.openClosed)) {
+      params.openClosed = myform.value.openClosed
+    }
+    var re = /^-$/
     if (re.test(myform.value.openClosed)) {
       params.openClosed = myform.value.openClosed
     }

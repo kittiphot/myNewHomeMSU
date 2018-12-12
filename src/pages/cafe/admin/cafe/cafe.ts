@@ -77,6 +77,8 @@ export class CafeAdminPage {
   }
 
   delete(key) {
+    this.afDatabase.list('score/cafe').remove(key)
+    this.afDatabase.list('comment/cafe').remove(key)
     this.itemsRef.remove(key)
     this.presentToast('ลบสำเร็จ')
   }
