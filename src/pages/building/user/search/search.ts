@@ -17,6 +17,7 @@ export class BuildingUserSearchPage {
   private temp
   private buildingNames
   private initials
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -35,6 +36,7 @@ export class BuildingUserSearchPage {
 
   ionViewDidLoad() {
     this.getBuilding()
+    this.getName()
   }
   
   goToHomePage() {
@@ -70,6 +72,20 @@ export class BuildingUserSearchPage {
     })
     loading.dismiss()
     this.temp = this.items
+  }
+
+  getName() {
+    this.names = []
+    this.afDatabase.list('buildingName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          buildingName: data.payload.val()['buildingName'],
+          lat: data.payload.val()['lat'],
+          lng: data.payload.val()['lng']
+        })
+      })
+    })
   }
 
   onSubmit(myform) {

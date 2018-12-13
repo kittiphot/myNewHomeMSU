@@ -14,6 +14,7 @@ export class AtmAdminSearchPage {
   private items
   private itemsRef
   private temp
+  private ATMNames
 
   constructor(
     public navCtrl: NavController,
@@ -43,6 +44,7 @@ export class AtmAdminSearchPage {
     })
     loading.present()
     this.items = []
+    this.ATMNames = []
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.items.push({
@@ -52,6 +54,9 @@ export class AtmAdminSearchPage {
           lng: data.payload.val()['lng'],
           ATMName: data.payload.val()['ATMName'],
           status: data.payload.val()['status']
+        })
+        this.ATMNames.push({
+          ATMName: data.payload.val()['ATMName']
         })
       })
     })

@@ -14,6 +14,7 @@ export class BankAdminSearchPage {
   private items
   private itemsRef
   private temp
+  private names
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +32,7 @@ export class BankAdminSearchPage {
 
   ionViewDidLoad() {
     this.getBank()
+    this.getName()
   }
   
   goToHomePage() {
@@ -57,6 +59,18 @@ export class BankAdminSearchPage {
     })
     loading.dismiss()
     this.temp = this.items
+  }
+
+  getName() {
+    this.names = []
+    this.afDatabase.list('bankName').snapshotChanges().subscribe(data => {
+      data.forEach(data => {
+        this.names.push({
+          key: data.key,
+          bankName: data.payload.val()['bankName']
+        })
+      })
+    })
   }
 
   onSubmit(myform) {

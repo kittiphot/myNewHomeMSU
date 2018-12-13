@@ -14,6 +14,7 @@ export class AtmUserSearchPage {
   private items
   private itemsRef
   private temp
+  private ATMNames
 
   constructor(
     public navCtrl: NavController,
@@ -32,7 +33,7 @@ export class AtmUserSearchPage {
   ionViewDidLoad() {
     this.getAtm()
   }
-  
+
   goToHomePage() {
     this.navCtrl.push(HomePage)
   }
@@ -43,6 +44,7 @@ export class AtmUserSearchPage {
     })
     loading.present()
     this.items = []
+    this.ATMNames = []
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         this.items.push({
@@ -52,6 +54,9 @@ export class AtmUserSearchPage {
           lng: data.payload.val()['lng'],
           ATMName: data.payload.val()['ATMName'],
           status: data.payload.val()['status']
+        })
+        this.ATMNames.push({
+          ATMName: data.payload.val()['ATMName']
         })
       })
     })

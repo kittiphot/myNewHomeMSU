@@ -27,7 +27,7 @@
           <ion-item style="background-color: gray; color: yellow">
             <ion-label style="color:#FFDAB9" floating>ชื่ออาคาร</ion-label>
             <ion-select [(ngModel)]="params.buildingName" name="buildingName">
-              <ion-option *ngFor="let buildingName of buildingNames" [value]="buildingName.buildingNames">{{ buildingName.buildingName }}</ion-option>
+              <ion-option *ngFor="let name of names" [value]="name.buildingName">{{ name.buildingName }}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -43,6 +43,24 @@
           </ion-item>
         </ion-col>
       </ion-row>
+
+      <!-- <ion-row>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ชื่ออาคาร</ion-label>
+            <ion-input type="text" [(ngModel)]="params.buildingName" name="buildingName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 text-center>
+          <ion-item style="background-color: gray; color: yellow">
+            <ion-label style="color:#FFDAB9" floating>ตัวอักษรย่อเรียกแทนชื่ออาคาร</ion-label>
+            <ion-input type="text" [(ngModel)]="params.initials" name="initials"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
 
       <ion-row>
         <ion-col col-12 text-center>
