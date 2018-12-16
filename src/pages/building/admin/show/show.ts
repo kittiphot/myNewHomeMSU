@@ -132,7 +132,7 @@ export class ShowBuildingPage {
     // this.afDatabase.list('building').remove(key)
     this.afDatabase.list('building').update(
       key, {
-        stastus: 0
+        status: '0'
       }
     )
     this.presentToast('ลบสำเร็จ')

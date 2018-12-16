@@ -69,7 +69,7 @@ export class BuildingNamePage {
       data.forEach(value => {
         this.afDatabase.list('building').update(
           value.payload.val()['key'], {
-            stastus: 0
+            status: '0'
           }
         )
         // this.afDatabase.list('building').remove(value.payload.val()['key'])
@@ -81,7 +81,7 @@ export class BuildingNamePage {
       data.forEach(value => {
         this.afDatabase.list('toilet').update(
           value.payload.val()['key'], {
-            stastus: 0
+            status: '0'
           }
         )
         // this.afDatabase.list('toilet').remove(value.payload.val()['key'])

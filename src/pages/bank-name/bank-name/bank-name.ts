@@ -69,7 +69,7 @@ export class BankNamePage {
       data.forEach(value => {
         this.afDatabase.list('atm').update(
           value.payload.val()['key'], {
-            stastus: 0
+            status: '0'
           }
         )
         // this.afDatabase.list('atm').remove(value.payload.val()['key'])
@@ -81,7 +81,7 @@ export class BankNamePage {
       data.forEach(value => {
         this.afDatabase.list('bank').update(
           value.payload.val()['key'], {
-            stastus: 0
+            status: '0'
           }
         )
         // this.afDatabase.list('bank').remove(value.payload.val()['key'])

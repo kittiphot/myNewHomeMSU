@@ -130,7 +130,7 @@ export class ShowBankPage {
     // this.afDatabase.list('bank').remove(key)
     this.afDatabase.list('bank').update(
       key, {
-        stastus: 0
+        status: '0'
       }
     )
     this.presentToast('ลบสำเร็จ')

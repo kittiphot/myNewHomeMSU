@@ -130,7 +130,7 @@ export class ShowAtmPage {
     // this.afDatabase.list('atm').remove(key)
     this.afDatabase.list('atm').update(
       key, {
-        stastus: 0
+        status: '0'
       }
     )
     this.presentToast('ลบสำเร็จ')

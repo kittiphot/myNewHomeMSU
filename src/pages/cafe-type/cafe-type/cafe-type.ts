@@ -70,7 +70,7 @@ export class CafeTypePage {
       data.forEach(value => {
         this.afDatabase.list('cafe').update(
           value.payload.val()['key'], {
-            stastus: 0
+            status: '0'
           }
         )
         // this.afDatabase.list('cafe').remove(value.payload.val()['key'])

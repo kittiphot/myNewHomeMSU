@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { ToastController } from 'ionic-angular'
 
@@ -21,7 +21,8 @@ export class NewsAdminPage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
   ) {
     this.itemsRef = this.afDatabase.list('news')
     this.items = []
@@ -75,7 +76,12 @@ export class NewsAdminPage {
   }
 
   delete(key) {
-    this.itemsRef.remove(key)
+    // this.itemsRef.remove(key)
+    this.itemsRef.update(
+      key, {
+        status: '0'
+      }
+    )
     this.presentToast('ลบสำเร็จ')
   }
 
@@ -135,6 +141,27 @@ export class NewsAdminPage {
       position: 'bottom'
     })
     toast.present()
+  }
+
+  presentConfirm(key) {
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ไม่ลบ',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            this.delete(key)
+          }
+        }
+      ]
+    })
+    alert.present()
   }
 
 }

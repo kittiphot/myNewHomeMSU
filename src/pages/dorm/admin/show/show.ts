@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, NavParams, ViewController, LoadingController, ToastController, ModalController } from 'ionic-angular'
+import { NavController, NavParams, ViewController, LoadingController, ToastController, ModalController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { HomePage } from '../../../home/home'
@@ -23,7 +23,8 @@ export class ShowDormPage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController
   ) {
     this.key = navParams.get('key')
     this.items = {
@@ -144,7 +145,12 @@ export class ShowDormPage {
   delete(key) {
     this.afDatabase.list('score/dorm').remove(key)
     this.afDatabase.list('comment/dorm').remove(key)
-    this.afDatabase.list('dorm').remove(key)
+    // this.afDatabase.list('dorm').remove(key)
+    this.afDatabase.list('dorm').update(
+      key, {
+        status: '0'
+      }
+    )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }
@@ -169,6 +175,27 @@ export class ShowDormPage {
       position: 'bottom'
     })
     toast.present()
+  }
+
+  presentConfirm(key) {
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ไม่ลบ',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            this.delete(key)
+          }
+        }
+      ]
+    })
+    alert.present()
   }
 
 }

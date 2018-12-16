@@ -130,7 +130,7 @@ export class ShowBusPage {
     // this.afDatabase.list('bus').remove(key)
     this.afDatabase.list('bus').update(
       key, {
-        stastus: 0
+        status: '0'
       }
     )
     this.presentToast('ลบสำเร็จ')

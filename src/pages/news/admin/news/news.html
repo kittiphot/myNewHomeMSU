@@ -28,7 +28,7 @@
       <button ion-button clear item-end style="color: #69dcff" (click)="changeStatus(item.key, item.status)">{{
         item.status }}</button>
       <button ion-button clear item-end style="color: #f0ad4e" (click)="update(item.key)">แก้ไข</button>
-      <button ion-button clear item-end style="color: #ff0800" (click)="delete(item.key)">ลบ</button>
+      <button ion-button clear item-end style="color: #ff0800" (click)="presentConfirm(item.key)">ลบ</button>
     </ion-item>
   </ion-list>
 
