@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController, ToastController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, ToastController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BankNameModalPage } from '../modal/modal'
@@ -20,7 +20,8 @@ export class BankNamePage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
   ) {
     this.itemsRef = this.afDatabase.list('bankName')
     this.items = []
@@ -66,16 +67,26 @@ export class BankNamePage {
   delete(key) {
     this.afDatabase.list('bankName/' + key + '/atm').snapshotChanges().subscribe(data => {
       data.forEach(value => {
-        this.afDatabase.list('atm').remove(value.payload.val()['key'])
-        this.afDatabase.list('score/atm').remove(value.payload.val()['key'])
-        this.afDatabase.list('comment/atm').remove(value.payload.val()['key'])
+        this.afDatabase.list('atm').update(
+          value.payload.val()['key'], {
+            stastus: 0
+          }
+        )
+        // this.afDatabase.list('atm').remove(value.payload.val()['key'])
+        // this.afDatabase.list('score/atm').remove(value.payload.val()['key'])
+        // this.afDatabase.list('comment/atm').remove(value.payload.val()['key'])
       })
     })
     this.afDatabase.list('bankName/' + key + '/bank').snapshotChanges().subscribe(data => {
       data.forEach(value => {
-        this.afDatabase.list('bank').remove(value.payload.val()['key'])
-        this.afDatabase.list('score/bank').remove(value.payload.val()['key'])
-        this.afDatabase.list('comment/bank').remove(value.payload.val()['key'])
+        this.afDatabase.list('bank').update(
+          value.payload.val()['key'], {
+            stastus: 0
+          }
+        )
+        // this.afDatabase.list('bank').remove(value.payload.val()['key'])
+        // this.afDatabase.list('score/bank').remove(value.payload.val()['key'])
+        // this.afDatabase.list('comment/bank').remove(value.payload.val()['key'])
       })
     })
     this.itemsRef.remove(key)
@@ -103,6 +114,27 @@ export class BankNamePage {
       position: 'bottom'
     })
     toast.present()
+  }
+
+  presentConfirm(key) {
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ไม่ลบ',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            this.delete(key)
+          }
+        }
+      ]
+    })
+    alert.present()
   }
 
 }

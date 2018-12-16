@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core'
 import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import { Geolocation } from '@ionic-native/geolocation'
 
 import { HomePage } from '../home/home'
 import { AtmAdminSearchPage } from '../atm/admin/search/search'
@@ -49,7 +50,8 @@ export class MapAdminPage {
     public navParams: NavParams,
     private viewCtrl: ViewController,
     private afDatabase: AngularFireDatabase,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private geolocation: Geolocation
   ) {
     this.nameMenu = navParams.get('nameMenu')
     this.itemsRef = this.afDatabase.list(this.nameMenu)
@@ -57,8 +59,16 @@ export class MapAdminPage {
   }
 
   ionViewDidLoad() {
-    this.loadMap()
-    this.getPlaceProfiles()
+    
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let localtion = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+      this.loadMap(localtion)
+    }).catch((error) => {
+      console.log('Error getting location', error)
+    })
   }
 
   ionViewWillEnter() {
@@ -74,6 +84,7 @@ export class MapAdminPage {
       let searchModal = this.modalCtrl.create(BuildingAdminSearchPage)
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -82,6 +93,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -92,6 +111,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -100,6 +120,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -110,14 +138,23 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
-            name: value.placeName,
+            name: value.ATMName,
             lat: value.lat,
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -128,6 +165,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -136,6 +174,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -146,6 +192,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -154,6 +201,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -164,6 +219,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -172,6 +228,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -182,6 +246,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -190,6 +255,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -200,6 +273,7 @@ export class MapAdminPage {
       })
       searchModal.onDidDismiss(data => {
         this.clear()
+        let count = 0
         data.forEach(value => {
           let params = {
             key: value.key,
@@ -208,6 +282,14 @@ export class MapAdminPage {
             lng: value.lng
           }
           this.addMarker(params)
+          if (count == 0) {
+            let localtion = {
+              lat: value.lat,
+              lng: value.lng
+            }
+            this.loadMap(localtion)
+          }
+          count++
         })
       })
       searchModal.present()
@@ -244,8 +326,8 @@ export class MapAdminPage {
     profileModal.present()
   }
 
-  loadMap() {
-    let latLng = new google.maps.LatLng(16.245616, 103.250208)
+  loadMap(localtion) {
+    let latLng = new google.maps.LatLng(localtion.lat, localtion.lng)
     let mapOptions = {
       center: latLng,
       zoom: 15,
@@ -258,6 +340,17 @@ export class MapAdminPage {
       fullscreenControl: false
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+    this.getPlaceProfiles()
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let localtion = {
+        localtion: 'me',
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+      this.addMarker(localtion)
+    }).catch((error) => {
+      console.log('Error getting location', error)
+    })
   }
 
   getPlaceProfiles() {
@@ -284,7 +377,7 @@ export class MapAdminPage {
         if (this.nameMenu == "atm") {
           let params = {
             key: values.key,
-            name: values.payload.val()['placeName'],
+            name: values.payload.val()['ATMName'],
             lat: values.payload.val()['lat'],
             lng: values.payload.val()['lng']
           }
@@ -340,14 +433,24 @@ export class MapAdminPage {
   }
 
   addMarker(params) {
-    let marker = new google.maps.Marker({
-      map: this.map,
-      label: { text: params.name, color: "yellow" },
-      animation: google.maps.Animation.DROP,
-      position: new google.maps.LatLng(params.lat, params.lng)
-    })
-    this.markers.push(marker)
-    this.addInfoWindow(marker, params)
+    if (params.localtion == 'me') {
+      let marker = new google.maps.Marker({
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(params.lat, params.lng)
+      })
+      this.addInfoWindow(marker, params)
+    }
+    else {
+      let marker = new google.maps.Marker({
+        map: this.map,
+        label: { text: params.name, color: "yellow" },
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(params.lat, params.lng)
+      })
+      this.markers.push(marker)
+      this.addInfoWindow(marker, params)
+    }
   }
 
   addInfoWindow(marker, params) {

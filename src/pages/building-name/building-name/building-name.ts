@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { NavController, LoadingController, ModalController, ToastController } from 'ionic-angular'
+import { NavController, LoadingController, ModalController, ToastController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 
 import { BuildingNameModalPage } from '../modal/modal'
@@ -20,7 +20,8 @@ export class BuildingNamePage {
     private afDatabase: AngularFireDatabase,
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
   ) {
     this.itemsRef = this.afDatabase.list('buildingName')
     this.items = []
@@ -66,16 +67,26 @@ export class BuildingNamePage {
   delete(key) {
     this.afDatabase.list('buildingName/' + key + '/building').snapshotChanges().subscribe(data => {
       data.forEach(value => {
-        this.afDatabase.list('building').remove(value.payload.val()['key'])
-        this.afDatabase.list('score/building').remove(value.payload.val()['key'])
-        this.afDatabase.list('comment/building').remove(value.payload.val()['key'])
+        this.afDatabase.list('building').update(
+          value.payload.val()['key'], {
+            stastus: 0
+          }
+        )
+        // this.afDatabase.list('building').remove(value.payload.val()['key'])
+        // this.afDatabase.list('score/building').remove(value.payload.val()['key'])
+        // this.afDatabase.list('comment/building').remove(value.payload.val()['key'])
       })
     })
     this.afDatabase.list('buildingName/' + key + '/toilet').snapshotChanges().subscribe(data => {
       data.forEach(value => {
-        this.afDatabase.list('toilet').remove(value.payload.val()['key'])
-        this.afDatabase.list('score/toilet').remove(value.payload.val()['key'])
-        this.afDatabase.list('comment/toilet').remove(value.payload.val()['key'])
+        this.afDatabase.list('toilet').update(
+          value.payload.val()['key'], {
+            stastus: 0
+          }
+        )
+        // this.afDatabase.list('toilet').remove(value.payload.val()['key'])
+        // this.afDatabase.list('score/toilet').remove(value.payload.val()['key'])
+        // this.afDatabase.list('comment/toilet').remove(value.payload.val()['key'])
       })
     })
     this.itemsRef.remove(key)
@@ -105,6 +116,27 @@ export class BuildingNamePage {
       position: 'bottom'
     })
     toast.present()
+  }
+
+  presentConfirm(key) {
+    let alert = this.alertCtrl.create({
+      title: 'ต้องการลบข้อมูลหรือไม่',
+      buttons: [
+        {
+          text: 'ไม่ลบ',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            this.delete(key)
+          }
+        }
+      ]
+    })
+    alert.present()
   }
 
 }

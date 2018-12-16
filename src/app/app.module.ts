@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { Camera } from '@ionic-native/camera'
 import { ToastController } from 'ionic-angular'
 import { Facebook } from '@ionic-native/facebook'
+import { Geolocation } from '@ionic-native/geolocation'
 
 var config = {
   apiKey: "AIzaSyAqR_SZXnH5YgR1ZuMBMFMhzR7hR_K8Uv4",
@@ -270,6 +271,7 @@ let page =  [
     Camera,
     ToastController,
     Facebook,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
