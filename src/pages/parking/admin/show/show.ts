@@ -127,12 +127,12 @@ export class ShowParkingPage {
   delete(key) {
     this.afDatabase.list('score/parking').remove(key)
     this.afDatabase.list('comment/parking').remove(key)
-    // this.afDatabase.list('parking').remove(key)
-    this.afDatabase.list('parking').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('parking').remove(key)
+    // this.afDatabase.list('parking').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

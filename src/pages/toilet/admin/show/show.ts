@@ -129,12 +129,12 @@ export class ShowToiletPage {
   delete(key) {
     this.afDatabase.list('score/toilet').remove(key)
     this.afDatabase.list('comment/toilet').remove(key)
-    // this.afDatabase.list('toilet').remove(key)
-    this.afDatabase.list('toilet').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('toilet').remove(key)
+    // this.afDatabase.list('toilet').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

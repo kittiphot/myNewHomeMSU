@@ -135,12 +135,12 @@ export class ShowCafePage {
   delete(key) {
     this.afDatabase.list('score/cafe').remove(key)
     this.afDatabase.list('comment/cafe').remove(key)
-    // this.afDatabase.list('cafe').remove(key)
-    this.afDatabase.list('cafe').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('cafe').remove(key)
+    // this.afDatabase.list('cafe').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

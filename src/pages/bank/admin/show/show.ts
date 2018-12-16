@@ -127,12 +127,12 @@ export class ShowBankPage {
   delete(key) {
     this.afDatabase.list('score/bank').remove(key)
     this.afDatabase.list('comment/bank').remove(key)
-    // this.afDatabase.list('bank').remove(key)
-    this.afDatabase.list('bank').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('bank').remove(key)
+    // this.afDatabase.list('bank').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

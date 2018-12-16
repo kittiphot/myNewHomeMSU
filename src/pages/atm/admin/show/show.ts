@@ -127,12 +127,12 @@ export class ShowAtmPage {
   delete(key) {
     this.afDatabase.list('score/atm').remove(key)
     this.afDatabase.list('comment/atm').remove(key)
-    // this.afDatabase.list('atm').remove(key)
-    this.afDatabase.list('atm').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('atm').remove(key)
+    // this.afDatabase.list('atm').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

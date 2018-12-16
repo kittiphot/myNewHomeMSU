@@ -127,12 +127,12 @@ export class ShowBusPage {
   delete(key) {
     this.afDatabase.list('score/bus').remove(key)
     this.afDatabase.list('comment/bus').remove(key)
-    // this.afDatabase.list('bus').remove(key)
-    this.afDatabase.list('bus').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('bus').remove(key)
+    // this.afDatabase.list('bus').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

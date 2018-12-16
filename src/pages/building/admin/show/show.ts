@@ -129,12 +129,12 @@ export class ShowBuildingPage {
   delete(key) {
     this.afDatabase.list('score/building').remove(key)
     this.afDatabase.list('comment/building').remove(key)
-    // this.afDatabase.list('building').remove(key)
-    this.afDatabase.list('building').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('building').remove(key)
+    // this.afDatabase.list('building').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }

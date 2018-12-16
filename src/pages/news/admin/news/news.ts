@@ -76,12 +76,12 @@ export class NewsAdminPage {
   }
 
   delete(key) {
-    // this.itemsRef.remove(key)
-    this.itemsRef.update(
-      key, {
-        status: '0'
-      }
-    )
+    this.itemsRef.remove(key)
+    // this.itemsRef.update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
   }
 

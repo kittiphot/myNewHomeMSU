@@ -145,12 +145,12 @@ export class ShowDormPage {
   delete(key) {
     this.afDatabase.list('score/dorm').remove(key)
     this.afDatabase.list('comment/dorm').remove(key)
-    // this.afDatabase.list('dorm').remove(key)
-    this.afDatabase.list('dorm').update(
-      key, {
-        status: '0'
-      }
-    )
+    this.afDatabase.list('dorm').remove(key)
+    // this.afDatabase.list('dorm').update(
+    //   key, {
+    //     status: '0'
+    //   }
+    // )
     this.presentToast('ลบสำเร็จ')
     this.closeModal()
   }
