@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class BusUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,12 +44,6 @@ export class BusUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('bus')
-    this.items = {
-      nameBus: '',
-      lat: '',
-      lng: '',
-      busStopDetail: ''
-    }
     this.key = navParams.get('key')
     this.storage.get('email').then((val) => {
       this.email = ''
@@ -55,15 +51,27 @@ export class BusUserPage {
         this.email = val
       }
     })
+    this.items = {
+      nameBus: '',
+      lat: '',
+      lng: '',
+      busStopDetail: ''
+    }
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getBus()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
@@ -71,14 +79,20 @@ export class BusUserPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getBus() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`bus/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getBus() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -88,15 +102,10 @@ export class BusUserPage {
           this.items.busStopDetail = data.payload.val()['busStopDetail']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/bus/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -109,7 +118,6 @@ export class BusUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -118,10 +126,6 @@ export class BusUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/bus/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -142,7 +146,6 @@ export class BusUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -275,12 +278,12 @@ export class BusUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'bus'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

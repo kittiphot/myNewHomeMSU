@@ -39,6 +39,7 @@ export class BankNameModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

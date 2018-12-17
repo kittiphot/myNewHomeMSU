@@ -37,6 +37,7 @@ export class AtmCommentModalPage {
   }
 
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

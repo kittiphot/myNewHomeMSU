@@ -37,6 +37,7 @@ export class CafeUserSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

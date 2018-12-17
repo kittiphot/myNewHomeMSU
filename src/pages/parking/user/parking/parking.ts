@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class ParkingUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,12 +44,6 @@ export class ParkingUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('parking')
-    this.items = {
-      parkingName: '',
-      lat: '',
-      lng: '',
-      type: ''
-    }
     this.key = navParams.get('key')
     this.storage.get('email').then((val) => {
       this.email = ''
@@ -55,15 +51,27 @@ export class ParkingUserPage {
         this.email = val
       }
     })
+    this.items = {
+      parkingName: '',
+      lat: '',
+      lng: '',
+      type: ''
+    }
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getParking()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
@@ -71,14 +79,20 @@ export class ParkingUserPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getParking() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`parking/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getParking() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -88,15 +102,10 @@ export class ParkingUserPage {
           this.items.type = data.payload.val()['type']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/parking/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -109,7 +118,6 @@ export class ParkingUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -118,10 +126,6 @@ export class ParkingUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/parking/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -142,7 +146,6 @@ export class ParkingUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -275,12 +278,12 @@ export class ParkingUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'parking'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

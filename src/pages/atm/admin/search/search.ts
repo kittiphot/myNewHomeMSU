@@ -35,6 +35,7 @@ export class AtmAdminSearchPage {
   }
 
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

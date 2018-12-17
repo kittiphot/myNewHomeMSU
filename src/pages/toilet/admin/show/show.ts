@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, LoadingController, ToastController, ModalController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import firebase from 'firebase'
 
 import { HomePage } from '../../../home/home'
 import { ToiletAdminModalPage } from '../modal/modal'
@@ -15,6 +16,7 @@ export class ShowToiletPage {
   private items
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -36,9 +38,15 @@ export class ShowToiletPage {
       detail: '',
       status: ''
     }
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getToilet()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   goToHomePage() {
@@ -46,11 +54,16 @@ export class ShowToiletPage {
     this.navCtrl.push(HomePage)
   }
 
-  getToilet() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`toilet/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getToilet() {
     this.afDatabase.list('toilet').snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
@@ -68,7 +81,6 @@ export class ShowToiletPage {
           }
         }
       })
-      loading.dismiss()
     })
   }
 
@@ -123,6 +135,9 @@ export class ShowToiletPage {
     let profileModal = this.modalCtrl.create(ToiletAdminModalPage, {
       key: key
     })
+    profileModal.onDidDismiss(data =>
+      this.getImage()
+    )
     profileModal.present()
   }
 

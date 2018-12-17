@@ -40,6 +40,7 @@ export class BuildingUserSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -43,6 +43,7 @@ export class BusCommentPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

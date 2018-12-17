@@ -34,6 +34,7 @@ export class BusAdminSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

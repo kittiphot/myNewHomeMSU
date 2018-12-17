@@ -43,6 +43,7 @@ export class ToiletCommentPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

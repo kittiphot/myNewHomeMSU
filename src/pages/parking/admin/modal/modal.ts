@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
+import firebase from 'firebase'
 
 import { HomePage } from '../../../home/home'
 
@@ -43,6 +44,7 @@ export class ParkingAdminModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
@@ -82,15 +84,23 @@ export class ParkingAdminModalPage {
 
   getPhoto() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum: false
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: 0
     }
     this.camera.getPicture(options).then((imageData) => {
       this.params.img = 'data:image/jpeg;base64,' + imageData
     }, (err) => {
       console.log(err)
+    })
+  }
+
+  upload(key) {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`parking/${key}.jpg`)
+    imageRef.putString(this.params.img, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
     })
   }
 
@@ -104,9 +114,21 @@ export class ParkingAdminModalPage {
     }
     if (typeof this.key == 'undefined') {
       this.itemsRef.push(params)
+      let count = 0
+      this.itemsRef.snapshotChanges().subscribe(data => {
+        if (count == 0) {
+          if (this.params.img) {
+            this.upload(data[data.length - 1].key)
+          }
+        }
+        count++
+      })
       this.presentToast('บันทึกสำเร็จ')
     }
     else {
+      if (this.params.img) {
+        this.upload(this.key)
+      }
       this.itemsRef.update(
         this.key, {
           parkingName: params.parkingName,

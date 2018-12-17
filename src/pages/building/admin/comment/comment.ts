@@ -32,6 +32,7 @@ export class BuildingAdminCommentPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

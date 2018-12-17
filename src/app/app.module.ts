@@ -13,6 +13,7 @@ import { Camera } from '@ionic-native/camera'
 import { ToastController } from 'ionic-angular'
 import { Facebook } from '@ionic-native/facebook'
 import { Geolocation } from '@ionic-native/geolocation'
+import firebase from 'firebase'
 
 var config = {
   apiKey: "AIzaSyAqR_SZXnH5YgR1ZuMBMFMhzR7hR_K8Uv4",
@@ -22,6 +23,8 @@ var config = {
   storageBucket: "mynewhomemsu-bfbac.appspot.com",
   messagingSenderId: "200325386174"
 }
+
+firebase.initializeApp(config)
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -258,7 +261,7 @@ let page =  [
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

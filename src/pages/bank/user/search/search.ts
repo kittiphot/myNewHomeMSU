@@ -36,6 +36,7 @@ export class BankUserSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

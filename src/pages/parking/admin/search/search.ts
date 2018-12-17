@@ -34,6 +34,7 @@ export class ParkingAdminSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

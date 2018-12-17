@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class CafeUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,6 +44,13 @@ export class CafeUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('cafe')
+    this.key = navParams.get('key')
+    this.storage.get('email').then((val) => {
+      this.email = ''
+      if (val != '') {
+        this.email = val
+      }
+    })
     this.items = {
       cafeName: '',
       lat: '',
@@ -52,22 +61,21 @@ export class CafeUserPage {
       phoneNumber: '',
       contact: ''
     }
-    this.key = navParams.get('key')
-    this.storage.get('email').then((val) => {
-      this.email = ''
-      if (val != '') {
-        this.email = val
-      }
-    })
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getCafe()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
@@ -75,14 +83,20 @@ export class CafeUserPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getCafe() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`cafe/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getCafe() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -96,15 +110,10 @@ export class CafeUserPage {
           this.items.contact = data.payload.val()['contact']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/cafe/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -117,7 +126,6 @@ export class CafeUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -126,10 +134,6 @@ export class CafeUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/cafe/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -150,7 +154,6 @@ export class CafeUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -283,12 +286,12 @@ export class CafeUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'cafe'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

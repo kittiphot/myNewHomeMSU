@@ -35,6 +35,7 @@ export class DormAdminSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -42,6 +42,7 @@ export class BuildingNameModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

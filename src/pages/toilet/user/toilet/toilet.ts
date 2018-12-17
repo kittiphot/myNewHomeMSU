@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class ToiletUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,13 +44,6 @@ export class ToiletUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('toilet')
-    this.items = {
-      buildingName: '',
-      lat: '',
-      lng: '',
-      type: '',
-      detail: ''
-    }
     this.key = navParams.get('key')
     this.storage.get('email').then((val) => {
       this.email = ''
@@ -56,30 +51,49 @@ export class ToiletUserPage {
         this.email = val
       }
     })
+    this.items = {
+      buildingName: '',
+      lat: '',
+      lng: '',
+      type: '',
+      detail: ''
+    }
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getToilet()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
   }
-  
+
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getToilet() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`toilet/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getToilet() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -90,15 +104,10 @@ export class ToiletUserPage {
           this.items.detail = data.payload.val()['detail']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/toilet/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -111,7 +120,6 @@ export class ToiletUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -120,10 +128,6 @@ export class ToiletUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/toilet/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -144,7 +148,6 @@ export class ToiletUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -277,12 +280,12 @@ export class ToiletUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'toilet'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

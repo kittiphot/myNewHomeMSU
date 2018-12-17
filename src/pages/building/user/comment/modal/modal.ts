@@ -37,6 +37,7 @@ export class BuildingCommentModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -36,6 +36,7 @@ export class NewsUserSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

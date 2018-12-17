@@ -32,6 +32,7 @@ export class BankAdminCommentPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

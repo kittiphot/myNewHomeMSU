@@ -37,6 +37,7 @@ export class DormCommentModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class DormUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,6 +44,13 @@ export class DormUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('dorm')
+    this.key = navParams.get('key')
+    this.storage.get('email').then((val) => {
+      this.email = ''
+      if (val != '') {
+        this.email = val
+      }
+    })
     this.items = {
       dormName: '',
       lat: '',
@@ -57,37 +66,42 @@ export class DormUserPage {
       contact: '',
       type: ''
     }
-    this.key = navParams.get('key')
-    this.storage.get('email').then((val) => {
-      this.email = ''
-      if (val != '') {
-        this.email = val
-      }
-    })
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getDorm()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false)
   }
-  
+
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getDorm() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`dorm/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getDorm() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -106,15 +120,10 @@ export class DormUserPage {
           this.items.type = data.payload.val()['type']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/dorm/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -127,7 +136,6 @@ export class DormUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -136,10 +144,6 @@ export class DormUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/dorm/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -160,7 +164,6 @@ export class DormUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -293,12 +296,12 @@ export class DormUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'dorm'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

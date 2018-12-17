@@ -32,7 +32,8 @@
 
     <ion-row>
       <ion-col col-12 text-center>
-        <img src="../../../../assets/imgs/default.png" style="width: 300px; height: 200px">
+        <img src="../../../../assets/imgs/default.png" style="width: 300px; height: 200px" *ngIf="!img">
+        <img [src]="this.img" style="width: 200px; height: 200px" *ngIf="img">
       </ion-col>
     </ion-row>
 

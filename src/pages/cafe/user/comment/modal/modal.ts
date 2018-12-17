@@ -37,6 +37,7 @@ export class CafeCommentModalPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

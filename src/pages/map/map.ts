@@ -49,7 +49,10 @@ export class MapPage {
   }
 
   ionViewDidLoad() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+    var options = {
+      enableHighAccuracy: true, timeout: 60000, maximumAge: 0
+    }
+    this.geolocation.getCurrentPosition(options).then((resp) => {
       let localtion = {
         lat: resp.coords.latitude,
         lng: resp.coords.longitude
@@ -83,7 +86,10 @@ export class MapPage {
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
     this.getPlaceProfiles()
-    this.geolocation.getCurrentPosition().then((resp) => {
+    var options = {
+      enableHighAccuracy: true, timeout: 60000, maximumAge: 0
+    }
+    this.geolocation.getCurrentPosition(options).then((resp) => {
       let localtion = {
         localtion: 'me',
         lat: resp.coords.latitude,

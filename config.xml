@@ -20,6 +20,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
+        <preference name="loadUrlTimeoutValue" value="700000" />
         <config-file parent="/resources" target="./res/values/strings.xml">
             <string name="fb_app_id">1803200809805858</string>
             <string name="fb_app_name">MyNewHomeMSU</string>
@@ -91,8 +92,8 @@
         <variable name="APP_ID" value="1803200809805858" />
         <variable name="APP_NAME" value="MyNewHomeMSU" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>

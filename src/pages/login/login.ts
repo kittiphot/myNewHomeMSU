@@ -5,7 +5,6 @@ import { Facebook } from '@ionic-native/facebook'
 import { Storage } from '@ionic/storage'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase } from 'angularfire2/database'
-import firebase from 'firebase'
 
 import { HomePage } from '../home/home'
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, LoadingController, ToastController, ModalController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import firebase from 'firebase'
 
 import { HomePage } from '../../../home/home'
 import { AtmAdminModalPage } from '../modal/modal'
@@ -15,6 +16,7 @@ export class ShowAtmPage {
   private items
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -35,14 +37,29 @@ export class ShowAtmPage {
       placeName: '',
       status: ''
     }
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getAtm()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   goToHomePage() {
     this.closeModal()
     this.navCtrl.push(HomePage)
+  }
+
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`atm/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
+    })
   }
 
   getAtm() {
@@ -121,6 +138,9 @@ export class ShowAtmPage {
     let profileModal = this.modalCtrl.create(AtmAdminModalPage, {
       key: key
     })
+    profileModal.onDidDismiss(data =>
+      this.getImage()
+    )
     profileModal.present()
   }
 

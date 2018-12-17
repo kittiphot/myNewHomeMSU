@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core'
 import { NavController, NavParams, ViewController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Camera, CameraOptions } from '@ionic-native/camera'
+import firebase from 'firebase'
 
 import { HomePage } from '../../../home/home'
 
@@ -97,15 +98,23 @@ export class AtmAdminModalPage {
 
   getPhoto() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      saveToPhotoAlbum: false
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: 0
     }
     this.camera.getPicture(options).then((imageData) => {
       this.params.img = 'data:image/jpeg;base64,' + imageData
     }, (err) => {
       console.log(err)
+    })
+  }
+
+  upload(key) {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`atm/${key}.jpg`)
+    imageRef.putString(this.params.img, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
     })
   }
 
@@ -132,12 +141,18 @@ export class AtmAdminModalPage {
             key: data[data.length - 1].key
           }
           this.afDatabase.list('bankName/' + params.key + '/atm').push(key)
+          if (this.params.img) {
+            this.upload(data[data.length - 1].key)
+          }
         }
         count++
       })
       this.presentToast('บันทึกสำเร็จ')
     }
     else {
+      if (this.params.img) {
+        this.upload(this.key)
+      }
       this.itemsRef.update(
         this.key, {
           placeName: params.placeName,

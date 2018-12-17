@@ -35,6 +35,7 @@ export class BuildingNameSearchPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { NavController, NavParams, LoadingController, ViewController, ModalController, ToastController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { Storage } from '@ionic/storage'
+import firebase from 'firebase'
 
 import { LoginPage } from '../../../login/login'
 import { MapPage } from '../../../map/map'
@@ -29,6 +30,7 @@ export class BuildingUserPage {
   private comment
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -42,13 +44,6 @@ export class BuildingUserPage {
   ) {
     this.itemsRef = this.afDatabase.list('member')
     this.itemsRef = this.afDatabase.list('building')
-    this.items = {
-      buildingName: '',
-      lat: '',
-      lng: '',
-      initials: '',
-      openClosed: ''
-    }
     this.key = navParams.get('key')
     this.storage.get('email').then((val) => {
       this.email = ''
@@ -56,15 +51,28 @@ export class BuildingUserPage {
         this.email = val
       }
     })
+    this.items = {
+      buildingName: '',
+      lat: '',
+      lng: '',
+      initials: '',
+      openClosed: ''
+    }
     this.star1 = "dark"
     this.star2 = "dark"
     this.star3 = "dark"
     this.star4 = "dark"
     this.star5 = "dark"
     this.comment = ''
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getBuilding()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   ionViewWillEnter() {
@@ -72,14 +80,20 @@ export class BuildingUserPage {
   }
   
   goToHomePage() {
+    this.closeModal()
     this.navCtrl.push(HomePage)
   }
 
-  getBuilding() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`building/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getBuilding() {
     this.itemsRef.snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (data.key == this.key) {
@@ -90,15 +104,10 @@ export class BuildingUserPage {
           this.items.openClosed = data.payload.val()['openClosed']
         }
       })
-      loading.dismiss()
     })
   }
 
   getScores() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('score/building/' + this.key).snapshotChanges().subscribe(data => {
       this.scores = []
       let sum = 0
@@ -111,7 +120,6 @@ export class BuildingUserPage {
         })
         sum = sum + data.payload.val()['score']
       })
-      loading.dismiss()
       this.average = (sum / this.scores.length).toFixed(2)
       if (this.average == 'NaN') {
         this.average = '0'
@@ -120,10 +128,6 @@ export class BuildingUserPage {
   }
 
   getComments() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    })
-    loading.present()
     this.afDatabase.list('comment/building/' + this.key).snapshotChanges().subscribe(data => {
       this.comments = []
       let temp = []
@@ -144,7 +148,6 @@ export class BuildingUserPage {
           this.comments.push(temp[index])
         }
       }
-      loading.dismiss()
     })
   }
 
@@ -277,12 +280,12 @@ export class BuildingUserPage {
   }
 
   closeModal() {
+    this.viewCtrl.dismiss('close')
     if (this.navParams.get('before') == 'LoginPage') {
       this.navCtrl.push(MapPage, {
         nameMenu: 'building'
       })
     }
-    this.viewCtrl.dismiss('close')
   }
 
   navigate() {

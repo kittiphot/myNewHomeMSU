@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, ViewController, LoadingController, ToastController, ModalController, AlertController } from 'ionic-angular'
 import { AngularFireDatabase } from 'angularfire2/database'
+import firebase from 'firebase'
 
 import { HomePage } from '../../../home/home'
 import { ParkingAdminModalPage } from '../modal/modal'
@@ -15,6 +16,7 @@ export class ShowParkingPage {
   private items
   private comments
   private average
+  private img
 
   constructor(
     public navCtrl: NavController,
@@ -35,9 +37,15 @@ export class ShowParkingPage {
       type: '',
       status: ''
     }
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    })
+    loading.present()
+    this.getImage()
     this.getParking()
     this.getScores()
     this.getComments()
+    loading.dismiss()
   }
 
   goToHomePage() {
@@ -45,11 +53,16 @@ export class ShowParkingPage {
     this.navCtrl.push(HomePage)
   }
 
-  getParking() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+  getImage() {
+    let storageRef = firebase.storage().ref()
+    const imageRef = storageRef.child(`parking/${this.key}.jpg`)
+    imageRef.getDownloadURL().then(url => {
+      this.img = url
+    }).catch(function (error) {
     })
-    loading.present()
+  }
+
+  getParking() {
     this.afDatabase.list('parking').snapshotChanges().subscribe(data => {
       data.forEach(data => {
         if (this.key == data.key) {
@@ -66,7 +79,6 @@ export class ShowParkingPage {
           }
         }
       })
-      loading.dismiss()
     })
   }
 
@@ -121,6 +133,9 @@ export class ShowParkingPage {
     let profileModal = this.modalCtrl.create(ParkingAdminModalPage, {
       key: key
     })
+    profileModal.onDidDismiss(data =>
+      this.getImage()
+    )
     profileModal.present()
   }
 
